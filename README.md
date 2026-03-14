@@ -67,7 +67,7 @@ Networking-lab/
 
 | Laboratorio | Modulo | Argomento | Livello |
 |---|---|---|---|
-| *Prossimamente* | Modulo 1 | Livello applicativo TCP/IP — HTTP e REST | ⭐⭐⭐ Avanzato |
+| [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | Modulo 1 | HTTP, REST, JSON | ⭐⭐⭐ Avanzato |
 | *Prossimamente* | Modulo 2 | — | — |
 | *Prossimamente* | Modulo 3 | — | — |
 | *Prossimamente* | Modulo 4 | — | — |
