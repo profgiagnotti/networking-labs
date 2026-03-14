@@ -68,7 +68,7 @@ Networking-lab/
 | Laboratorio | Modulo | Argomento | Livello |
 |---|---|---|---|
 | [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | Modulo 1 | HTTP, REST, JSON | ⭐⭐⭐ Avanzato |
-| *Prossimamente* | Modulo 2 | — | — |
+| [Lab FTP con Filezilla](./Anno-5/Modulo-1/lab-ftp-filezilla-server-client.md) | Modulo 1 | FTP, Filezilla, XAMPP | ⭐⭐⭐ Avanzato |
 | *Prossimamente* | Modulo 3 | — | — |
 | *Prossimamente* | Modulo 4 | — | — |
 | *Prossimamente* | Modulo 5 | — | — |
