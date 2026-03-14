@@ -45,8 +45,8 @@ Networking-lab/
 
 | Laboratorio | Modulo | Argomento | Livello |
 |---|---|---|---|
-| [Smontaggio di un PC](./Anno-3/Modulo-1/smontaggio%20PC/Lab%20smontaggio%20di%20un%20PC.pdf) | Modulo 1 | Componenti hardware | ⭐ Base |
-| [Montaggio di un PC](./Anno-3/Modulo-1/montaggio%20PC/Lab%20montaggio%20di%20un%20PC.pdf) | Modulo 1 | Assemblaggio PC | ⭐ Base |
+| [Smontaggio di un PC](./Anno-3/Modulo-1/smontaggio-PC/Lab-smontaggio-di-un-PC.pdf) | Modulo 1 | Smontaggio di un PC | ⭐ Base |
+| [Montaggio di un PC](./Anno-3/Modulo-1/montaggio-PC/Lab-montaggio-di-un-PC.pdf) | Modulo 1 | Assemblaggio PC | ⭐ Base |
 | *Prossimamente* | Modulo 2 | — | — |
 | *Prossimamente* | Modulo 3 | — | — |
 | *Prossimamente* | Modulo 4 | — | — |
