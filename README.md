@@ -93,11 +93,11 @@ Networking-labs/
 | [Lab DMZ con router](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.md) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con ASA 5506](./Anno-5/Modulo-2/lab-asa-dmz-nat-acl.md) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 
-> 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: 
-[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi.pkt)
-[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-acl-estese-esercizio.pkt)
-[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.pkt)
-[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)
+> 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
+[lab-acl-standard-esercizi.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi.pkt)<br>
+[lab-acl-estese-esercizio.pkt](./Anno-5/Modulo-3/lab-acl-estese-esercizio.pkt)<br>
+[lab-router-acl-dmz-nat.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.pkt)<br>
+[lab-asa-dmz-nat-acl.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)<br>
 
 ---
 
