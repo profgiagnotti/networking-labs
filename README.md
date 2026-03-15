@@ -70,7 +70,7 @@ Networking-lab/
 | [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | Modulo 1 | HTTP, REST, JSON | ⭐⭐⭐ Avanzato |
 | [Lab FTP con Filezilla](./Anno-5/Modulo-1/lab-ftp-filezilla-server-client.md) | Modulo 1 | FTP, Filezilla, XAMPP | ⭐⭐⭐ Avanzato |
 | [Lab Wireshark attacchi TCP IP](./Anno-5/Modulo-2/lab-wireshark-attacchi-tcp-ip.md) | Modulo 2 | Wireshark | ⭐⭐⭐ Avanzato |
-| *Prossimamente* | Modulo 4 | — | — |
+| [Lab Openssl con AES](./Anno-5/Modulo-2/lab-openssl-aes.md) | Modulo 2 | Openssl, AES | ⭐⭐⭐ Avanzato |
 | *Prossimamente* | Modulo 5 | — | — |
 | *Prossimamente* | Modulo 6 | — | — |
 
