@@ -17,7 +17,7 @@ Ogni laboratorio è pensato per essere **pratico e completo** — dalla consulta
 ## 🗂️ Struttura del repository
 
 ```
-Networking-lab/
+Networking-labs/
 │
 ├── Anno-3/                         ← Sistemi di elaborazione e fondamenti
 │   ├── Modulo-1/                   ✅ disponibile
@@ -65,14 +65,24 @@ Networking-lab/
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
 
-| Laboratorio | Modulo | Argomento | Livello |
+### Modulo 1 — Protocolli applicativi TCP/IP
+
+| Laboratorio | Argomento | Tool | Livello |
 |---|---|---|---|
-| [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | Modulo 1 | HTTP, REST, JSON | ⭐⭐⭐ Avanzato |
-| [Lab FTP con Filezilla](./Anno-5/Modulo-1/lab-ftp-filezilla-server-client.md) | Modulo 1 | FTP, Filezilla, XAMPP | ⭐⭐⭐ Avanzato |
-| [Lab Wireshark attacchi TCP IP](./Anno-5/Modulo-2/lab-wireshark-attacchi-tcp-ip.md) | Modulo 2 | Wireshark | ⭐⭐⭐ Avanzato |
-| [Lab Openssl con AES](./Anno-5/Modulo-2/lab-openssl-aes.md) | Modulo 2 | Openssl, AES | ⭐⭐⭐ Avanzato |
-| [Lab Openssl con RSA](./Anno-5/Modulo-2/lab-openssl-rsa.md) | Modulo 2 | Openssl, RSA | ⭐⭐⭐ Avanzato |
-| [Lab Hash e certificati](./Anno-5/Modulo-2/lab-hash-certificati.md) | Modulo 2 | Openssl, RSA | ⭐⭐⭐ Avanzato |
+| [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | HTTP, REST, JSON | Postman | ⭐⭐ Intermedio |
+| [Lab FTP con FileZilla](./Anno-5/Modulo-1/lab-ftp-filezilla-server-client.md) | FTP, FileZilla, XAMPP | FileZilla | ⭐⭐ Intermedio |
+| [Lab Servizi Internet](./Anno-5/Modulo-1/lab-packet-tracer-servizi-internet.md) | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
+
+> 📦 Il file `.pkt` di Packet Tracer è disponibile nella stessa cartella: [lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-1/lab-packet-tracer-servizi-internet.pkt)
+
+### Modulo 2 — Sicurezza informatica e crittografia
+
+| Laboratorio | Argomento | Tool | Livello |
+|---|---|---|---|
+| [Lab Wireshark e attacchi TCP/IP](./Anno-5/Modulo-2/lab-wireshark-attacchi-tcp-ip.md) | SYN Flood, ARP Poisoning, port scan | Wireshark, nmap, hping3 | ⭐⭐⭐ Avanzato |
+| [Lab Crittografia AES](./Anno-5/Modulo-2/lab-openssl-aes.md) | AES-128/256, CBC, GCM, effetto valanga | OpenSSL | ⭐⭐ Intermedio |
+| [Lab Crittografia RSA](./Anno-5/Modulo-2/lab-openssl-rsa.md) | RSA, sistema ibrido RSA+AES | OpenSSL | ⭐⭐⭐ Avanzato |
+| [Lab Hash e certificati](./Anno-5/Modulo-2/lab-hash-certificati.md) | SHA-256, firma digitale, X.509, PKI | OpenSSL | ⭐⭐⭐ Avanzato |
 
 ---
 
