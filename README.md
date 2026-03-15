@@ -84,6 +84,21 @@ Networking-labs/
 | [Lab Crittografia RSA](./Anno-5/Modulo-2/lab-openssl-rsa.md) | RSA, sistema ibrido RSA+AES | OpenSSL | ⭐⭐⭐ Avanzato |
 | [Lab Hash e certificati](./Anno-5/Modulo-2/lab-hash-certificati.md) | SHA-256, firma digitale, X.509, PKI | OpenSSL | ⭐⭐⭐ Avanzato |
 
+### Modulo 3 — Sicurezza perimetrale
+
+| Laboratorio | Argomento | Tool | Livello |
+|---|---|---|---|
+| [Lab ACL Standard](./Anno-5/Modulo-3/lab-acl-standard-esercizi.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab ACL Estese](./Anno-5/Modulo-3/lab-acl-estese-esercizio.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab DMZ con router](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.md) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab DMZ con ASA 5506](./Anno-5/Modulo-2/lab-asa-dmz-nat-acl.md) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+
+> 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: 
+[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi.pkt)
+[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-acl-estese-esercizio.pkt)
+[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.pkt)
+[lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)
+
 ---
 
 ## 🤝 Come contribuire
