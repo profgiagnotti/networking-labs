@@ -33,7 +33,7 @@ Networking-labs/
 └── Anno-5/                         ← Reti avanzate e livello applicativo
     ├── Modulo-1/                   ✅ disponibile
     ├── Modulo-2/                   ✅ disponibile
-    ├── Modulo-3/                   🔜 in arrivo
+    ├── Modulo-3/                   ✅ disponibile
     ├── Modulo-4/                   🔜 in arrivo
     ├── Modulo-5/                   🔜 in arrivo
     └── Modulo-6/                   🔜 in arrivo
@@ -89,9 +89,9 @@ Networking-labs/
 | Laboratorio | Argomento | Tool | Livello |
 |---|---|---|---|
 | [Lab ACL Standard](./Anno-5/Modulo-3/lab-acl-standard-esercizi.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab ACL Estese](./Anno-5/Modulo-3/lab-acl-estese-esercizio.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab ACL Estese](./Anno-5/Modulo-3/lab-acl-estese-esercizio.md) | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con router](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.md) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab DMZ con ASA 5506](./Anno-5/Modulo-2/lab-asa-dmz-nat-acl.md) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab DMZ con ASA 5506](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.md) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
 [lab-acl-standard-esercizi.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi.pkt)<br>
