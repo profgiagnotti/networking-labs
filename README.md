@@ -31,8 +31,8 @@ Networking-lab/
 │   └── Modulo-3/                   🔜 in arrivo
 │
 └── Anno-5/                         ← Reti avanzate e livello applicativo
-    ├── Modulo-1/                   🔜 in arrivo
-    ├── Modulo-2/                   🔜 in arrivo
+    ├── Modulo-1/                   ✅ disponibile
+    ├── Modulo-2/                   ✅ disponibile
     ├── Modulo-3/                   🔜 in arrivo
     ├── Modulo-4/                   🔜 in arrivo
     ├── Modulo-5/                   🔜 in arrivo
@@ -69,7 +69,7 @@ Networking-lab/
 |---|---|---|---|
 | [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | Modulo 1 | HTTP, REST, JSON | ⭐⭐⭐ Avanzato |
 | [Lab FTP con Filezilla](./Anno-5/Modulo-1/lab-ftp-filezilla-server-client.md) | Modulo 1 | FTP, Filezilla, XAMPP | ⭐⭐⭐ Avanzato |
-| *Prossimamente* | Modulo 3 | — | — |
+| [Lab Wireshark attacchi TCP IP](./Anno-5/Modulo-2/lab-wireshark-attacchi-tcp-ip.md) | Modulo 2 | Wireshark | ⭐⭐⭐ Avanzato |
 | *Prossimamente* | Modulo 4 | — | — |
 | *Prossimamente* | Modulo 5 | — | — |
 | *Prossimamente* | Modulo 6 | — | — |
