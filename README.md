@@ -97,7 +97,7 @@ Networking-labs/
 [lab-acl-standard-esercizi1.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi1.pkt)<br>
 [lab-acl-standard-esercizi2.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi2.pkt)<br>
 [lab-acl-estese-esercizio.pkt](./Anno-5/Modulo-3/lab-acl-estese-esercizio.pkt)<br>
-[lab-router-acl-dmz-nat.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz-nat.pkt)<br>
+[lab-router-acl-dmz.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz.pkt)<br>
 [lab-asa-dmz-nat-acl.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)<br>
 
 ---
