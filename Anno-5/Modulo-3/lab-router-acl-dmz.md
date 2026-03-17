@@ -440,9 +440,9 @@ RouterA(config)#access-list 100 remark === DNS (RISPOSTE) ===
 RouterA(config)#access-list 100 permit udp host 8.0.0.3 eq 53 192.168.1.0 0.0.0.255 gt 1023
 
 ! ── PERMESSI DMZ ─────────────────────────
-! Dobbiamo cnsentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
-sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
-permettiamo l’accesso attraverso la porta 443 (HTTPS), 143 (IMAP)
+! Dobbiamo consentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
+!sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
+!permettiamo l’accesso attraverso la porta 443 (HTTPS), 143 (IMAP)
 
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 80
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 443
@@ -459,20 +459,15 @@ RouterA(config-ext-nacl)# permit icmp any any unreachable
 ! verso i client della LAN, quindi non serve filtrarla nella ACL interna
 
 ! Nega TUTTO il traffico non autorizzato verso il server FTP
+
 RouterA(config)#deny tcp any host 192.168.1.2 eq 21
 
 ! Permetti il traffico dalla rete interna verso il server FTP
+
 RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 
 
-RouterA(config-ext-nacl)# exit
 
-! Applica ACL all'interfaccia seriale INBOUND
-! (filtra il traffico che arriva da Internet)
-RouterA(config)# interface Serial2/0
-RouterA(config-if)# ip access-group ACL-ESTERNA in
-RouterA(config-if)# exit
-```
 
 ### ACL-DMZ — traffico dalla DMZ verso la rete interna
 
