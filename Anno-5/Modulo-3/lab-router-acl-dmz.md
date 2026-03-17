@@ -414,9 +414,9 @@ Questa è la parte centrale del laboratorio. Configuriamo una ACL:
 
 ### ACL-ESTERNA — traffico da Internet verso la rete aziendale
 
-```
 
-#### ── PERMESSI DHCP ────────────────────────────────────
+
+### ── PERMESSI DHCP ────────────────────────────────────
 ```
 ! Dobbiamo permettere l’autoconfigurazione e aprire al traffico le porte (67 e 68) su cui 
 !lavora il protocollo 
@@ -424,11 +424,11 @@ Questa è la parte centrale del laboratorio. Configuriamo una ACL:
 RouterA(config)# access-list 100 remark === DHCP ===
 RouterA(config)access-list 100 permit udp any any eq 67
 RouterA(config)access-list 100 permit udp any any eq 68
-
-
 ```
-#### ── PERMESSI DNS ─────────────────────────
 
+
+### ── PERMESSI DNS ─────────────────────────
+```
 ! Quando il DNS risponde:
 ! · SORGENTE → porta 53
 ! · DESTINAZIONE → porta ALTA casuale (>1023), NON 53
@@ -442,8 +442,8 @@ RouterA(config)#access-list 100 remark === DNS (RISPOSTE) ===
 RouterA(config)#access-list 100 permit udp host 8.0.0.3 eq 53 192.168.1.0 0.0.0.255 gt 1023
 ```
 
-```
 #### ── PERMESSI DMZ ─────────────────────────
+```
 ! Dobbiamo consentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
 !sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
 !permettiamo l’accesso attraverso la porta 443 (HTTPS), 143 (IMAP)
@@ -458,9 +458,9 @@ RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
 RouterA(config-ext-nacl)# permit icmp any any unreachable
 ```
 
-```
-#### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ─────────────────────────────────────────
 
+#### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ─────────────────────────────────────────
+```
 ! NOTA: con Packet Tracer o server FTP passivo, la porta 20 non viene usata direttamente 
 ! verso i client della LAN, quindi non serve filtrarla nella ACL interna
 
