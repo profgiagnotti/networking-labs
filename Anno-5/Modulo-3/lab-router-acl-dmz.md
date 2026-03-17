@@ -20,7 +20,6 @@ Al termine di questo laboratorio sarai in grado di:
 - ✅ Scrivere e applicare **ACL estese** per controllare il traffico tra DMZ, LAN interna e rete esterna
 - ✅ Usare la keyword **`established`** per gestire le risposte TCP senza aprire connessioni non richieste
 - ✅ Verificare che i server in DMZ siano raggiungibili dall'esterno e che la rete interna sia protetta
-- ✅ Configurare il **NAT/PAT** su router IOS per l'accesso Internet degli host interni
 
 ---
 
@@ -96,8 +95,6 @@ Prima di scrivere qualsiasi ACL, è fondamentale definire chiaramente la **polit
 | PC1 → DMZ | ✅ Sì | LAN può accedere alla DMZ |
 | PC1 → www.mioftp.com (FTP) | ✅ Sì | Accesso FTP dalla rete interna |
 | DMZ → LAN interna | ❌ No | I server DMZ non devono accedere alla LAN |
-| Ping da qualsiasi → qualsiasi | ✅ Sì (parziale) | Solo echo-reply permesse dall'esterno |
-
 ---
 
 ## 📋 Step 1 — Costruzione della topologia in Packet Tracer
@@ -168,6 +165,8 @@ RouterA(config-if)# exit
 
 ! Interfaccia verso la rete interna (192.168.1.0/24)
 RouterA(config)# interface FastEthernet1/0
+! Dobbiamo consentire al Server DHCP esterno alla LAN di configurare i dispositivi interni alla LAN
+RouterA(config-if)# ip helper-address 8.0.0.4
 RouterA(config-if)# ip address 192.168.1.1 255.255.255.0
 RouterA(config-if)# description Interfaccia-LAN-Interna
 RouterA(config-if)# no shutdown
@@ -181,12 +180,15 @@ RouterA(config-if)# no shutdown
 RouterA(config-if)# exit
 
 ! ─────────────────────────────────────────────────
-! ROUTING STATICO
+! ROUTING DINAMICO RIPv1 (no subnetting)
 ! ─────────────────────────────────────────────────
 
-! Rotta di default — tutto il traffico non locale
-! viene inoltrato verso Router B (100.0.0.2)
-RouterA(config)# ip route 0.0.0.0 0.0.0.0 100.0.0.2
+! Annunciamo le reti adiacenti
+RouterA(config)# router rip
+RouterA(config-rip)# network 192.168.0.0
+RouterA(config-rip)# network 192.168.1.0
+RouterA(config-rip)# network 100.0.0.0
+RouterA(config-rip)# exit
 
 RouterA(config)# end
 RouterA# write memory
@@ -199,7 +201,7 @@ RouterA# show ip interface brief
 RouterA# show ip route
 ```
 
-Deve comparire una rotta `S* 0.0.0.0/0 [1/0] via 100.0.0.2`.
+Devranno comparire le rotte `C` (verso le reti direttamente connesse).
 
 ---
 
@@ -229,16 +231,16 @@ RouterB(config-if)# no shutdown
 RouterB(config-if)# exit
 
 ! ─────────────────────────────────────────────────
-! ROUTING STATICO
+! ROUTING DINAMICO
 ! Router B deve sapere come raggiungere la DMZ
 ! e la LAN interna (via Router A)
 ! ─────────────────────────────────────────────────
 
-! Rotta verso la DMZ aziendale
-RouterB(config)# ip route 192.168.0.0 255.255.255.0 100.0.0.1
-
-! Rotta verso la rete LAN interna aziendale
-RouterB(config)# ip route 192.168.1.0 255.255.255.0 100.0.0.1
+! Annunciamo le reti adiacenti
+RouterB(config)# router rip
+RouterB(config-rip)# network 8.0.0.0
+RouterA(config-rip)# network 100.0.0.0
+RouterA(config-rip)# exit
 
 RouterB(config)# end
 RouterB# write memory
@@ -250,7 +252,8 @@ RouterB# write memory
 RouterB# show ip route
 ```
 
-Devono comparire le due rotte statiche verso 192.168.0.0 e 192.168.1.0 con next-hop 100.0.0.1.
+Devono comparire le due rotte `C` (verso le reti direttamente connesse) 
+e le due rotte `R` (192.168.0.0 e 192.168.1.0) raggiungibili con RIP
 
 ---
 
@@ -260,7 +263,7 @@ Devono comparire le due rotte statiche verso 192.168.0.0 e 192.168.1.0 con next-
 
 **Config → FastEthernet0:**
 ```
-IP: 192.168.0.2 / SM: 255.255.255.0 / GW: 192.168.0.1
+IP: 192.168.0.2 / SM: 255.255.255.0 / GW: 192.168.0.1 / DNS: 8.0.0.3
 ```
 **Services → HTTP → ON**
 
@@ -279,9 +282,9 @@ Modifica `index.html`:
 
 **Config → FastEthernet0:**
 ```
-IP: 192.168.0.3 / SM: 255.255.255.0 / GW: 192.168.0.1
+IP: 192.168.0.3 / SM: 255.255.255.0 / GW: 192.168.0.1 / DNS: 8.0.0.3
 ```
-**Services → HTTP → ON** (e opzionalmente **Email → ON** per simulare SMTP)
+**Services → HTTP → ON** 
 
 Modifica `index.html`:
 ```html
@@ -293,12 +296,17 @@ Modifica `index.html`:
 </body>
 </html>
 ```
+ **Sevices → EMAIL → ON** per simulare SMTP
+
+ Domain name -> gmail.com ->set
+ User setup -> Userename:User1 Password:User1
+ User setup -> Userename:User2 Password:User2
 
 ### Server www.mioftp.com (LAN interna)
 
 **Config → FastEthernet0:**
 ```
-IP: 192.168.1.2 / SM: 255.255.255.0 / GW: 192.168.1.1
+IP: 192.168.1.2 / SM: 255.255.255.0 / GW: 192.168.1.1 / DNS: 8.0.0.3 / DNS: 8.0.0.3
 ```
 **Services → FTP → ON**
 
@@ -310,7 +318,7 @@ Aggiungi un utente FTP:
 
 **Config → FastEthernet0:**
 ```
-IP: 8.0.0.2 / SM: 255.0.0.0 / GW: 8.0.0.1
+IP: 8.0.0.2 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
 ```
 **Services → HTTP → ON**
 
@@ -329,7 +337,7 @@ Modifica `index.html`:
 
 **Config → FastEthernet0:**
 ```
-IP: 8.0.0.3 / SM: 255.0.0.0 / GW: 8.0.0.1
+IP: 8.0.0.3 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
 ```
 **Services → DNS → ON**
 
@@ -340,16 +348,19 @@ Aggiungi i record DNS:
 | www.miosito.com | A Record | 192.168.0.2 |
 | www.gmail.com | A Record | 192.168.0.3 |
 | www.mioftp.com | A Record | 192.168.1.2 |
-| google.com | A Record | 8.0.0.2 |
-| www.google.com | CNAME | google.com |
+| gmail.com | CNAME | www.gmail.com |
 
 ### DHCP Server (rete esterna)
 
 **Config → FastEthernet0:**
 ```
-IP: 8.0.0.4 / SM: 255.0.0.0 / GW: 8.0.0.1
+IP: 8.0.0.4 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
 ```
-**Services → DHCP → ON** (configurazione di default va bene)
+**Services → DHCP → ON** 
+!DHCP per dispositivi della rete 8.0.0.0
+Pool Name: serverPool / GW: 8.0.0.1 / DNS: 8.0.0.3 / Start IP: 8.0.0.10 / SM: 255.0.0.0 / Maximum Number of Users: 512
+!DHCP per dispositivi della rete 192.168.1.0
+Pool Name: serverPool2 / GW: 192.168.1.1 / DNS: 8.0.0.3 / Start IP: 192.168.1.10 / SM: 255.255.255.0 / Maximum Number of Users: 246
 
 ### PC1 (LAN interna)
 
