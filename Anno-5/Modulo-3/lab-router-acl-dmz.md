@@ -497,10 +497,9 @@ RouterA(config)#permit ip any any
 
 ```
 RouterA# show access-lists
-RouterA# show access-lists ACL-ESTERNA
-RouterA# show access-lists ACL-DMZ
-RouterA# show ip interface Serial2/0
-RouterA# show ip interface FastEthernet0/0
+
+!oppure
+RouterA# show access-list 100
 ```
 
 L'output di `show access-lists` mostra le regole con i contatori dei match. Inizialmente tutti sono 0 — crescono man mano che esegui i test.
