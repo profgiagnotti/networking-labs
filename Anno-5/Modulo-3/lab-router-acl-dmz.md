@@ -473,6 +473,22 @@ RouterA(config)#deny tcp any host 192.168.1.2 eq 21
 RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 ```
 
+#### ── BLOCCO ESPLICITO DALL' ESTERNO verso la LAN ──────────
+```
+! Blocchiamo tutti gli accessi diretti alla LAN interna
+
+RouterA(config)#deny ip any 192.168.1.0 0.0.0.255
+```
+
+
+#### ── PERMESSO ESPLICITO VERSO L'ESTERNO ──────────
+```
+! PermettIAMO tutto il resto (routing, ICMP verso esterno, ecc.).
+
+RouterA(config)#permit ip any any
+```
+
+
 
 
 ---
