@@ -40,7 +40,7 @@ Al termine di questo laboratorio sarai in grado di:
 │  │    [Switch2]            │   │    Fa0/1                 │  │
 │  │    Fa2/1  Fa1/1         │   │    Fa1/1 Fa2/1           │  │
 │  └──────┬──────────────────┘   └──────────┬───────────────┘  │
-│         │ Fa0/0                           │ Fa1/0             │
+│         │ Fa0/0                           │ Fa1/0            │
 │         └──────────[Router A]─────────────┘                  │
 │                        │ Se2/0                               │
 │                   100.0.0.1                                  │
