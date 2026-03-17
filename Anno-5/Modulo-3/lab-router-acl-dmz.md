@@ -297,7 +297,7 @@ Modifica `index.html`:
 </html>
 ```
  **Sevices → EMAIL → ON** per simulare SMTP:
- 
+
 ```
  Domain name -> gmail.com ->set
  User setup -> Userename:User1 Password:User1
@@ -358,11 +358,14 @@ Aggiungi i record DNS:
 ```
 IP: 8.0.0.4 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
 ```
-**Services → DHCP → ON** 
+**Services → DHCP → ON**:
+
+```
 !DHCP per dispositivi della rete 8.0.0.0
 Pool Name: serverPool / GW: 8.0.0.1 / DNS: 8.0.0.3 / Start IP: 8.0.0.10 / SM: 255.0.0.0 / Maximum Number of Users: 512
 !DHCP per dispositivi della rete 192.168.1.0
 Pool Name: serverPool2 / GW: 192.168.1.1 / DNS: 8.0.0.3 / Start IP: 192.168.1.10 / SM: 255.255.255.0 / Maximum Number of Users: 246
+```
 
 ### PC1 (LAN interna)
 
