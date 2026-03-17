@@ -433,12 +433,19 @@ RouterA(config-ext-nacl)# permit tcp any host 192.168.0.3 eq 80
 ! Permette SMTP verso www.gmail.com (porta 25 - ricezione email)
 RouterA(config-ext-nacl)# permit tcp any host 192.168.0.3 eq 25
 
-! ── RISPOSTE TCP PER LA LAN INTERNA ─────────────────────────
+! ── DNS ─────────────────────────
 
-! Permette le RISPOSTE HTTP alle navigazioni dei client LAN
-! "established" = pacchetti con flag ACK o RST attivo
-! = risposte a connessioni già avviate dall'interno
-RouterA(config-ext-nacl)# permit tcp any 192.168.1.0 0.0.0.255 established
+! Quando il DNS risponde:
+! · SORGENTE → porta 53
+! · DESTINAZIONE → porta ALTA casuale (>1023), NON 53
+! Quindi il pacchetto reale è:
+! UDP src port 53 ---> dst port 1025 / 1030 / 49152 ...
+! Inoltre non funziona estabilished (lavora su UDP)
+! In definitiva dobbiamo consentire:
+! UDP da 8.0.0.3 porta 53 verso porte maggiori rispetto alle well-known ports
+
+RouterA(config)#access-list 100 remark === DNS (RISPOSTE) ===
+RouterA(config)#access-list 100 permit udp host 8.0.0.3 eq 53 192.168.1.0 0.0.0.255 gt 1023
 
 ! Permette le risposte ICMP (echo-reply) per i ping dalla LAN
 RouterA(config-ext-nacl)# permit icmp any any echo-reply
