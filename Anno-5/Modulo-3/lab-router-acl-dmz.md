@@ -371,6 +371,7 @@ Pool Name: serverPool2 / GW: 192.168.1.1 / DNS: 8.0.0.3 / Start IP: 192.168.1.10
 
 **Desktop → IP Configuration:**
 ```
+Inizialmente configuriamo il dispositivo in modo statico. Poi testeremo il DHCP
 IP: 192.168.1.3 / SM: 255.255.255.0 / GW: 192.168.1.1 / DNS: 8.0.0.3
 ```
 
@@ -378,7 +379,7 @@ IP: 192.168.1.3 / SM: 255.255.255.0 / GW: 192.168.1.1 / DNS: 8.0.0.3
 
 **Desktop → IP Configuration:**
 ```
-Inizialmente configuriamo i dispositivi in modo statico. Poi testeremo il DHCP
+Inizialmente configuriamo il dispositivo in modo statico. Poi testeremo il DHCP
 IP: 8.0.0.10 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
 ```
 
@@ -404,69 +405,24 @@ ping 192.168.1.3        ! → PC1 (deve funzionare PRIMA delle ACL)
 
 ---
 
-## 📋 Step 6 — Configurazione del PAT (NAT Overload)
 
-Prima di applicare le ACL, configura il PAT per consentire agli host interni di raggiungere Internet con l'IP pubblico del router.
+## 📋 Step 6 — Configurazione delle ACL estese
 
-```
-RouterA(config)# ip access-list standard NAT-LAN
-RouterA(config-std-nacl)# permit 192.168.1.0 0.0.0.255
-RouterA(config-std-nacl)# exit
+Questa è la parte centrale del laboratorio. Configuriamo una ACL:
 
-RouterA(config)# ip access-list standard NAT-DMZ
-RouterA(config-std-nacl)# permit 192.168.0.0 0.0.0.255
-RouterA(config-std-nacl)# exit
-
-! PAT per la rete interna — escono con IP di Se2/0 (100.0.0.1)
-RouterA(config)# ip nat inside source list NAT-LAN interface Serial2/0 overload
-
-! PAT per la rete DMZ — escono con IP di Se2/0 (100.0.0.1)
-RouterA(config)# ip nat inside source list NAT-DMZ interface Serial2/0 overload
-
-! Designa le interfacce inside e outside
-RouterA(config)# interface FastEthernet0/0
-RouterA(config-if)# ip nat inside
-RouterA(config-if)# exit
-
-RouterA(config)# interface FastEthernet1/0
-RouterA(config-if)# ip nat inside
-RouterA(config-if)# exit
-
-RouterA(config)# interface Serial2/0
-RouterA(config-if)# ip nat outside
-RouterA(config-if)# exit
-
-RouterA(config)# end
-RouterA# write memory
-```
-
-### Verifica PAT
-
-```
-RouterA# show ip nat translations
-RouterA# show ip nat statistics
-```
-
-Dal **PC1**, naviga su `http://8.0.0.2` (google.com simulato) — il browser deve caricare la pagina. Poi controlla `show ip nat translations` sul router per vedere la traduzione attiva.
-
----
-
-## 📋 Step 7 — Configurazione delle ACL estese
-
-Questa è la parte centrale del laboratorio. Configuriamo due ACL:
-
-- **ACL-ESTERNA**: applicata `in` sull'interfaccia Se2/0 — filtra il traffico che arriva da Internet verso la rete aziendale
-- **ACL-DMZ**: applicata `in` sull'interfaccia Fa0/0 — filtra il traffico che arriva dalla DMZ verso la LAN interna
+- **100**: applicata `in` sull'interfaccia Se2/0 — filtra il traffico che arriva da Internet verso la rete aziendale
 
 ### ACL-ESTERNA — traffico da Internet verso la rete aziendale
 
 ```
-RouterA(config)# ip access-list extended ACL-ESTERNA
 
-! ── TRAFFICO VERSO LA DMZ ────────────────────────────────────
+! ── DHCP ────────────────────────────────────
 
-! Permette HTTP verso www.miosito.com (server web in DMZ)
-RouterA(config-ext-nacl)# permit tcp any host 192.168.0.2 eq 80
+! Dobbiamo permettere l’autoconfigurazione e aprire al traffico le porte (67 e 68) su cui 
+!lavora il protocollo 
+RouterA(config)# access-list 100 remark === DHCP ===
+RouterA(config)access-list 100 permit udp any any eq 67
+RouterA(config)access-list 100 permit udp any any eq 68
 
 ! Permette HTTPS verso www.miosito.com
 RouterA(config-ext-nacl)# permit tcp any host 192.168.0.2 eq 443
