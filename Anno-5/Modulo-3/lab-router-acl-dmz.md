@@ -459,7 +459,7 @@ RouterA(config-ext-nacl)# permit icmp any any unreachable
 ```
 
 
-#### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ─────────────────────────────────────────
+#### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ──────────
 ```
 ! NOTA: con Packet Tracer o server FTP passivo, la porta 20 non viene usata direttamente 
 ! verso i client della LAN, quindi non serve filtrarla nella ACL interna
@@ -474,8 +474,6 @@ RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 ```
 
 
-
-```
 
 ---
 
