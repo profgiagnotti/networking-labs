@@ -296,12 +296,14 @@ Modifica `index.html`:
 </body>
 </html>
 ```
- **Sevices → EMAIL → ON** per simulare SMTP
-'''
+ **Sevices → EMAIL → ON** per simulare SMTP:
+ 
+```
  Domain name -> gmail.com ->set
  User setup -> Userename:User1 Password:User1
  User setup -> Userename:User2 Password:User2
-'''
+```
+
 ### Server www.mioftp.com (LAN interna)
 
 **Config → FastEthernet0:**
