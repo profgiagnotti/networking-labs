@@ -567,12 +567,12 @@ Dal **PC interno**: `Desktop → Email → Receive`
 
 Dal **PC esterno**: `Desktop → Command Prompt`
 ```
-ftp 192.168.1.2
+ftp www.mioftp.com
 ```
 
 **Risultato atteso:** connessione rifiutata o timeout — il server FTP è nella LAN interna, non accessibile dall'esterno.
 
-**Cosa verifica:** l'ACL-ESTERNA non ha regole che permettono il traffico verso 192.168.1.0/24 (solo `established` per le risposte).
+**Cosa verifica:** l'ACL non ha regole che permettono il traffico verso 192.168.1.0/24 (solo `established` per le risposte).
 
 ---
 
@@ -591,12 +591,12 @@ ping 192.168.1.3
 
 Dal **PC1** (192.168.1.3): `Desktop → Web Browser`
 ```
-http://8.0.0.2
+http://www.google.com
 ```
 
 **Risultato atteso:** la pagina di google.com simulato appare.
 
-**Cosa verifica:** il PAT traduce l'IP privato del PC1 e l'ACL-ESTERNA permette le risposte TCP con `established`.
+**Cosa verifica:** l'ACL non ha regole per bloccare HTTP, porta 80, verso 8.0.0.2.
 
 ---
 
@@ -604,7 +604,7 @@ http://8.0.0.2
 
 Dal **PC1**: `Desktop → Command Prompt`
 ```
-ftp 192.168.1.2
+ftp www.mioftp.com
 ```
 
 Inserisci le credenziali: `studente` / `studente123`
@@ -624,61 +624,16 @@ ftp> quit
 
 Dal **PC1**: `Desktop → Web Browser`
 ```
-http://192.168.0.2
+http://www.miosito.com
 ```
 
 **Risultato atteso:** la pagina appare.
 
-**Cosa verifica:** il traffico dalla LAN interna verso la DMZ non è filtrato da ACL-ESTERNA (che agisce solo su Se2/0) né da ACL-DMZ (che filtra solo il traffico che arriva dalla DMZ in direzione inbound su Fa0/0).
+**Cosa verifica:** il traffico dalla LAN interna verso la DMZ non è filtrato.
 
 ---
 
-### Test 8 — www.miosito.com → LAN interna ❌ (deve fallire)
 
-Apri la CLI del server **www.miosito.com** (in Packet Tracer i server hanno una scheda Desktop con Command Prompt):
-
-`www.miosito.com → Desktop → Command Prompt`
-```
-ping 192.168.1.3
-```
-
-**Risultato atteso:** nessuna risposta.
-
-**Cosa verifica:** l'ACL-DMZ blocca tutto il traffico dalla rete 192.168.0.0/24 verso la rete 192.168.1.0/24.
-
----
-
-### Test 9 — PC1 → ping verso Internet ✅ (deve funzionare)
-
-Dal **PC1**: `Desktop → Command Prompt`
-```
-ping 8.0.0.2
-```
-
-**Risultato atteso:** ping riuscito.
-
-**Cosa verifica:** l'ACL-ESTERNA permette `icmp any any echo-reply` quindi le risposte ai ping arrivano correttamente.
-
----
-
-### Test 10 — PC esterno → ping verso DMZ ✅ (verifica parziale)
-
-Dal **PC esterno**:
-```
-ping 192.168.0.2
-```
-
-**Risultato atteso:** potrebbe fallire perché l'ACL-ESTERNA non ha una regola `permit icmp any host 192.168.0.2 echo`. Solo le `echo-reply` sono permesse.
-
-Per permettere anche i ping verso la DMZ, aggiungi questa regola **prima** del `deny ip any any`:
-
-```
-RouterA(config)# ip access-list extended ACL-ESTERNA
-RouterA(config-ext-nacl)# no deny ip any any log
-RouterA(config-ext-nacl)# permit icmp any 192.168.0.0 0.0.0.255 echo
-RouterA(config-ext-nacl)# deny ip any any log
-RouterA(config-ext-nacl)# exit
-```
 
 > 📌 Su ACL con nome è possibile rimuovere singole ACE con `no <testo-ace>` e aggiungere nuove ACE senza riscrivere tutto — questo è uno dei vantaggi delle ACL con nome rispetto a quelle numeriche.
 
@@ -692,22 +647,6 @@ RouterA(config-ext-nacl)# exit
 RouterA# show access-lists
 ```
 
-Output esempio dopo i test:
-```
-Extended IP access list ACL-ESTERNA
-    10 permit tcp any host 192.168.0.2 eq www (8 matches)
-    20 permit tcp any host 192.168.0.2 eq 443 (0 matches)
-    30 permit tcp any host 192.168.0.3 eq www (5 matches)
-    40 permit tcp any host 192.168.0.3 eq smtp (0 matches)
-    50 permit tcp any 192.168.1.0 0.0.0.255 established (24 matches)
-    60 permit icmp any any echo-reply (6 matches)
-    70 permit icmp any any unreachable (0 matches)
-    80 deny ip any any log (3 matches)
-
-Extended IP access list ACL-DMZ
-    10 deny ip 192.168.0.0 0.0.0.255 192.168.1.0 0.0.0.255 log (0 matches)
-    20 permit ip any any (12 matches)
-```
 
 I **contatori** sono essenziali per il debug: se una regola ha sempre 0 match ma dovrebbe averne, probabilmente c'è una regola più generale che la "intercetta" prima.
 
@@ -717,19 +656,6 @@ I **contatori** sono essenziali per il debug: se una regola ha sempre 0 match ma
 RouterA# clear ip access-list counters
 ```
 
-### Visualizza la tabella NAT durante i test
-
-```
-RouterA# show ip nat translations
-```
-
-Output durante la navigazione di PC1:
-```
-Pro  Inside global   Inside local    Outside local   Outside global
-tcp  100.0.0.1:1025  192.168.1.3:1025  8.0.0.2:80    8.0.0.2:80
-```
-
----
 
 ## 📋 Step 11 — Aggiunta di una ACL standard (esercizio supplementare)
 
@@ -751,7 +677,7 @@ RouterA(config-if)# ip access-group PROTEGGI-FTP out
 RouterA(config-if)# exit
 ```
 
-> ⚠️ Nota: questo scenario ha valore didattico ma in questo laboratorio il PC esterno è già bloccato dall'ACL-ESTERNA prima di arrivare qui. L'ACL standard è utile quando si vuole agire solo sull'IP sorgente senza considerare protocollo e porta.
+> ⚠️ Nota: questo scenario ha valore didattico ma in questo laboratorio il PC esterno è già bloccato dall'ACL prima di arrivare qui. L'ACL standard è utile quando si vuole agire solo sull'IP sorgente senza considerare protocollo e porta.
 
 ---
 
@@ -766,15 +692,10 @@ RouterA# show ip interface FastEthernet0/0 ! ACL applicate su Fa0/0
 ! ── ROUTING ────────────────────────────────────────────────
 RouterA# show ip route                     ! tabella di routing completa
 
-! ── NAT ────────────────────────────────────────────────────
-RouterA# show ip nat translations          ! traduzioni NAT attive
-RouterA# show ip nat statistics            ! statistiche PAT
-RouterA# clear ip nat translation *        ! azzera tutte le traduzioni
 
 ! ── ACL ────────────────────────────────────────────────────
 RouterA# show access-lists                 ! tutte le ACL con match counter
-RouterA# show access-lists ACL-ESTERNA     ! solo ACL-ESTERNA
-RouterA# show access-lists ACL-DMZ         ! solo ACL-DMZ
+RouterA# show access-list 100              ! solo ACL 100
 RouterA# clear ip access-list counters     ! azzera i contatori
 ```
 
@@ -793,24 +714,16 @@ Compila questa tabella dopo aver eseguito tutti i test:
 | 5 | HTTP verso google | PC1 | 8.0.0.2 | 80 | ACL-ESTERNA (risposta) | ✅ OK | |
 | 6 | FTP verso mioftp | PC1 | 192.168.1.2 | 21 | nessuna | ✅ OK | |
 | 7 | HTTP verso miosito | PC1 | 192.168.0.2 | 80 | nessuna | ✅ OK | |
-| 8 | Ping verso PC1 | www.miosito.com | 192.168.1.3 | ICMP | ACL-DMZ | ❌ BLOCCATO | |
-| 9 | Ping verso google | PC1 | 8.0.0.2 | ICMP | ACL-ESTERNA (reply) | ✅ OK | |
 
 ---
 
 ## 📋 Domande di verifica
 
-1. Perché l'**ACL-ESTERNA** è applicata `in` sull'interfaccia **Se2/0** e non `out`? Cosa cambierebbe se la applicassimo `out` su Fa0/0 o Fa1/0?
+1. Perché l'**ACL ** è applicata `in` sull'interfaccia **Se2/0** e non `out`? Cosa cambierebbe se la applicassimo `out` su Fa0/0 o Fa1/0?
 
 2. La regola `permit tcp any 192.168.1.0 0.0.0.255 established` permette le risposte HTTP per i client LAN. Spiega tecnicamente perché un pacchetto SYN proveniente da un attaccante esterno **non corrisponde** a questa regola.
 
-3. L'**ACL-DMZ** è applicata `in` su Fa0/0 (interfaccia DMZ). Perché non è stata applicata `out` su Fa1/0 (interfaccia LAN)? Il risultato sarebbe lo stesso? Ci sarebbero differenze di efficienza?
-
-4. Perché le **ACL standard** vanno applicate vicino alla destinazione mentre le **ACL estese** vanno applicate vicino alla sorgente? Usa la topologia di questo laboratorio per fare un esempio concreto di cosa succederebbe se invertissimo questo principio.
-
-5. Nel laboratorio hai configurato il **PAT** con `ip nat inside source list ... interface Serial2/0 overload`. Cosa significa `overload` e cosa succederebbe senza quella keyword?
-
-6. Dopo aver applicato le ACL, i contatori di `show access-lists` mostrano 0 match per la regola `deny ip 192.168.0.0 0.0.0.255 192.168.1.0 0.0.0.255` dell'ACL-DMZ. Questo è normale o indica un problema? Come potresti verificare che la regola funzioni davvero?
+3. Perché le **ACL standard** vanno applicate vicino alla destinazione mentre le **ACL estese** vanno applicate vicino alla sorgente? Usa la topologia di questo laboratorio per fare un esempio concreto di cosa succederebbe se invertissimo questo principio.
 
 ---
 
