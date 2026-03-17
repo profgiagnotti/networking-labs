@@ -180,7 +180,7 @@ RouterA(config-if)# no shutdown
 RouterA(config-if)# exit
 
 ! ─────────────────────────────────────────────────
-! ROUTING DINAMICO RIPv1 (no subnetting)
+! ROUTING DINAMICO RIPv1 (no subnetting) (per semplicità)
 ! ─────────────────────────────────────────────────
 
 ! Annunciamo le reti adiacenti
@@ -231,7 +231,7 @@ RouterB(config-if)# no shutdown
 RouterB(config-if)# exit
 
 ! ─────────────────────────────────────────────────
-! ROUTING DINAMICO
+! ROUTING DINAMICO RIP (per semplicità)
 ! Router B deve sapere come raggiungere la DMZ
 ! e la LAN interna (via Router A)
 ! ─────────────────────────────────────────────────
@@ -416,7 +416,7 @@ Questa è la parte centrale del laboratorio. Configuriamo una ACL:
 
 ```
 
-! ── DHCP ────────────────────────────────────
+! ── PERMESSI DHCP ────────────────────────────────────
 
 ! Dobbiamo permettere l’autoconfigurazione e aprire al traffico le porte (67 e 68) su cui 
 !lavora il protocollo 
@@ -425,7 +425,7 @@ RouterA(config)# access-list 100 remark === DHCP ===
 RouterA(config)access-list 100 permit udp any any eq 67
 RouterA(config)access-list 100 permit udp any any eq 68
 
-! ── DNS ─────────────────────────
+! ── PERMESSI DNS ─────────────────────────
 
 ! Quando il DNS risponde:
 ! · SORGENTE → porta 53
@@ -439,12 +439,12 @@ RouterA(config)access-list 100 permit udp any any eq 68
 RouterA(config)#access-list 100 remark === DNS (RISPOSTE) ===
 RouterA(config)#access-list 100 permit udp host 8.0.0.3 eq 53 192.168.1.0 0.0.0.255 gt 1023
 
-! ── DMZ ─────────────────────────
+! ── PERMESSI DMZ ─────────────────────────
 ! Dobbiamo cnsentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
 sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
 permettiamo l’accesso attraverso la porta 443 (HTTPS), 143 (IMAP)
 
-RouterA(config)# access-list 100 permit tcp any host 192.168.0.2 eq 80
+RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 80
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 443
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 25
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 110
@@ -453,11 +453,17 @@ RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
 ! Permette i messaggi ICMP unreachable (necessari per MTU discovery)
 RouterA(config-ext-nacl)# permit icmp any any unreachable
 
-! ── BLOCCO ESPLICITO ─────────────────────────────────────────
+! ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ─────────────────────────────────────────
 
-! Nega TUTTO il traffico non autorizzato
-! (deny implicito finale — reso esplicito per leggibilità e log)
-RouterA(config-ext-nacl)# deny ip any any log
+! NOTA: con Packet Tracer o server FTP passivo, la porta 20 non viene usata direttamente 
+! verso i client della LAN, quindi non serve filtrarla nella ACL interna
+
+! Nega TUTTO il traffico non autorizzato verso il server FTP
+RouterA(config)#deny tcp any host 192.168.1.2 eq 21
+
+! Permetti il traffico dalla rete interna verso il server FTP
+RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
+
 
 RouterA(config-ext-nacl)# exit
 
