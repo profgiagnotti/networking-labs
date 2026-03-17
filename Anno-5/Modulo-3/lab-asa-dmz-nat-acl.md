@@ -68,7 +68,7 @@ Al termine di questo laboratorio sarai in grado di:
 | Server Interno (LAN) | Fa0 | 192.168.1.2 | 255.255.255.0 | 192.168.1.1 | |
 | PC esterno | Fa0 | 10.0.0.2 | 255.0.0.0 | 10.0.0.1 | |
 | ASA — interfaccia LAN | Gig1/2 | 192.168.1.1 | 255.255.255.0 | — | inside, SL 100 |
-| ASA — interfaccia DMZ | Gig0/2 | 192.168.2.1 | 255.255.255.0 | — | dmz, SL 50 |
+| ASA — interfaccia DMZ | Gig1/2 | 192.168.2.1 | 255.255.255.0 | — | dmz, SL 50 |
 | ASA — interfaccia WAN | Gig1/3 | 150.10.0.1 | 255.255.255.0 | — | outside, SL 0 |
 | Router Internet — verso ASA | Fa1/0 | 150.10.0.2 | 255.255.255.0 | — | |
 | Router Internet — verso esterno | Fa0/0 | 10.0.0.1 | 255.0.0.0 | — | |
