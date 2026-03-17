@@ -420,18 +420,10 @@ Questa è la parte centrale del laboratorio. Configuriamo una ACL:
 
 ! Dobbiamo permettere l’autoconfigurazione e aprire al traffico le porte (67 e 68) su cui 
 !lavora il protocollo 
+
 RouterA(config)# access-list 100 remark === DHCP ===
 RouterA(config)access-list 100 permit udp any any eq 67
 RouterA(config)access-list 100 permit udp any any eq 68
-
-! Permette HTTPS verso www.miosito.com
-RouterA(config-ext-nacl)# permit tcp any host 192.168.0.2 eq 443
-
-! Permette HTTP verso www.gmail.com (server mail simulato in DMZ)
-RouterA(config-ext-nacl)# permit tcp any host 192.168.0.3 eq 80
-
-! Permette SMTP verso www.gmail.com (porta 25 - ricezione email)
-RouterA(config-ext-nacl)# permit tcp any host 192.168.0.3 eq 25
 
 ! ── DNS ─────────────────────────
 
@@ -447,8 +439,16 @@ RouterA(config-ext-nacl)# permit tcp any host 192.168.0.3 eq 25
 RouterA(config)#access-list 100 remark === DNS (RISPOSTE) ===
 RouterA(config)#access-list 100 permit udp host 8.0.0.3 eq 53 192.168.1.0 0.0.0.255 gt 1023
 
-! Permette le risposte ICMP (echo-reply) per i ping dalla LAN
-RouterA(config-ext-nacl)# permit icmp any any echo-reply
+! ── DMZ ─────────────────────────
+! Dobbiamo cnsentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
+sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
+permettiamo l’accesso attraverso la porta 443 (HTTPS), 143 (IMAP)
+
+RouterA(config)# access-list 100 permit tcp any host 192.168.0.2 eq 80
+RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 443
+RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 25
+RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 110
+RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
 
 ! Permette i messaggi ICMP unreachable (necessari per MTU discovery)
 RouterA(config-ext-nacl)# permit icmp any any unreachable
