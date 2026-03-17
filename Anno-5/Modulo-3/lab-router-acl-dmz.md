@@ -374,6 +374,17 @@ Pool Name: serverPool2 / GW: 192.168.1.1 / DNS: 8.0.0.3 / Start IP: 192.168.1.10
 Inizialmente configuriamo il dispositivo in modo statico. Poi testeremo il DHCP
 IP: 192.168.1.3 / SM: 255.255.255.0 / GW: 192.168.1.1 / DNS: 8.0.0.3
 ```
+```
+Configuriamo l'account e-mail:
+ Desktop → Email  → Configure
+Your name: user1
+Email address: user1@gmail.com
+Incoming Mail Server: www.gmail.com
+Outgoing Mail Server: www.gmail.com
+User Name: user1 (identico a quello impostato nel Server Mail)
+Password: user1 (identica a quello impostato nel Server Mail)
+
+```
 
 ### PC esterno
 
@@ -381,6 +392,17 @@ IP: 192.168.1.3 / SM: 255.255.255.0 / GW: 192.168.1.1 / DNS: 8.0.0.3
 ```
 Inizialmente configuriamo il dispositivo in modo statico. Poi testeremo il DHCP
 IP: 8.0.0.10 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
+```
+```
+Configuriamo l'account e-mail:
+ Desktop → Email  → Configure
+Your name: user2
+Email address: user2@gmail.com
+Incoming Mail Server: www.gmail.com
+Outgoing Mail Server: www.gmail.com
+User Name: user2 (identico a quello impostato nel Server Mail)
+Password: user2 (identica a quello impostato nel Server Mail)
+
 ```
 
 ---
@@ -499,6 +521,7 @@ RouterA(config)#permit ip any any
 RouterA# show access-lists
 
 !oppure
+
 RouterA# show access-list 100
 ```
 
@@ -514,27 +537,29 @@ Esegui ogni test e confronta il risultato con quello atteso.
 
 Dal **PC esterno** (8.0.0.10): `Desktop → Web Browser`
 ```
-http://192.168.0.2
-```
-oppure, se il DNS è configurato:
-```
+
 http://www.miosito.com
 ```
 
 **Risultato atteso:** la pagina HTML del server appare nel browser.
 
-**Cosa verifica:** l'ACL-ESTERNA permette TCP porta 80 verso 192.168.0.2.
+**Cosa verifica:** l'ACL permette TCP porta 80 verso 192.168.0.2.
 
 ---
 
-### Test 2 — PC esterno → www.gmail.com ✅ (deve funzionare)
+### Test 2 — PC esterno → mail a user1@gmail.com ✅ (deve funzionare)
 
-Dal **PC esterno**: `Desktop → Web Browser`
+Dal **PC esterno**: `Desktop → Email → Compose`
 ```
-http://192.168.0.3
+to: user1@gmail.com 
+subjest: test 
+body: ciao da user2
 ```
 
-**Risultato atteso:** la pagina del server appare.
+Dal **PC interno**: `Desktop → Email → Receive`
+
+
+**Risultato atteso:** Il PC interno visualizza l'emai ricevuta.
 
 ---
 
