@@ -378,6 +378,7 @@ IP: 192.168.1.3 / SM: 255.255.255.0 / GW: 192.168.1.1 / DNS: 8.0.0.3
 
 **Desktop → IP Configuration:**
 ```
+Inizialmente configuriamo i dispositivi in modo statico. Poi testeremo il DHCP
 IP: 8.0.0.10 / SM: 255.0.0.0 / GW: 8.0.0.1 / DNS: 8.0.0.3
 ```
 
