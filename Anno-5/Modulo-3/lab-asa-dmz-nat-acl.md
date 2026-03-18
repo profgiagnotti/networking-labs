@@ -210,7 +210,7 @@ Modifica la pagina `index.html` con un contenuto riconoscibile:
 <head><title>Azienda - Web Server DMZ</title></head>
 <body>
   <h1>Server Web Aziendale</h1>
-  <p>Questo server si trova nella DMZ - IP: 192.168.2.10</p>
+  <p>Questo server si trova nella DMZ - IP: 172.16.0.2</p>
 </body>
 </html>
 ```
@@ -240,7 +240,7 @@ ciscoasa(config)# hostname ASA-Lab
 ! Security level 0 = minima fiducia
 ! ─────────────────────────────────────────────────
 ASA-Lab(config)# interface GigabitEthernet1/3
-ASA-Lab(config-if)# ip address 150.10.0.1 255.255.255.0
+ASA-Lab(config-if)# ip address 10.0.0.1 255.0.0.0
 ASA-Lab(config-if)# nameif outside
 ASA-Lab(config-if)# security-level 0
 ASA-Lab(config-if)# no shutdown
@@ -262,7 +262,7 @@ ASA-Lab(config-if)# exit
 ! Security level 50 = fiducia intermedia
 ! ─────────────────────────────────────────────────
 ASA-Lab(config)# interface GigabitEthernet0/2
-ASA-Lab(config-if)# ip address 192.168.2.1 255.255.255.0
+ASA-Lab(config-if)# ip address 172.16.0.1 255.255.0.0
 ASA-Lab(config-if)# nameif dmz
 ASA-Lab(config-if)# security-level 50
 ASA-Lab(config-if)# no shutdown
@@ -289,7 +289,7 @@ L'ASA usa il meccanismo **object NAT** (o auto-NAT): si crea un oggetto di rete 
 ! ─────────────────────────────────────────────────
 ! PAT DINAMICO — host LAN escono con IP dell'interfaccia outside
 ! Tutti i PC della rete 192.168.1.0/24 accedono a Internet
-! con l'IP pubblico 150.10.0.1 e porte diverse
+! con l'IP pubblico 10.0.0.1 e porte diverse
 ! ─────────────────────────────────────────────────
 ASA-Lab(config)# object network LAN-INTERNA
 ASA-Lab(config-network-object)# subnet 192.168.1.0 255.255.255.0
@@ -301,19 +301,19 @@ ASA-Lab(config-network-object)# exit
 ! Il web server può avviare connessioni verso Internet se necessario
 ! ─────────────────────────────────────────────────
 ASA-Lab(config)# object network DMZ-NET
-ASA-Lab(config-network-object)# subnet 192.168.2.0 255.255.255.0
+ASA-Lab(config-network-object)# subnet 172.16.0.0 255.255.0.0
 ASA-Lab(config-network-object)# nat (dmz,outside) dynamic interface
 ASA-Lab(config-network-object)# exit
 
 ! ─────────────────────────────────────────────────
 ! NAT STATICO — il web server in DMZ è raggiungibile
-! dall'esterno all'IP pubblico 150.10.0.1
-! IP privato 192.168.2.10 ↔ IP pubblico 150.10.0.1
+! dall'esterno all'IP pubblico 10.0.0.1
+! IP privato 172.16.0.2 ↔ IP pubblico 10.0.0.100
 ! (mappatura permanente e bidirezionale)
 ! ─────────────────────────────────────────────────
 ASA-Lab(config)# object network WEBSERVER-DMZ
-ASA-Lab(config-network-object)# host 192.168.2.10
-ASA-Lab(config-network-object)# nat (dmz,outside) static 150.10.0.1
+ASA-Lab(config-network-object)# host 172.16.0.2
+ASA-Lab(config-network-object)# nat (dmz,outside) static 10.0.0.100
 ASA-Lab(config-network-object)# exit
 ```
 
@@ -336,9 +336,9 @@ ASA-Lab# show xlate
 ! ─────────────────────────────────────────────────
 ! ROTTA DI DEFAULT
 ! Tutto il traffico non specificato viene instradato
-! verso il Router Internet (150.10.0.2)
+! verso il Router Internet (10.10.0.2)
 ! ─────────────────────────────────────────────────
-ASA-Lab(config)# route outside 0.0.0.0 0.0.0.0 150.10.0.2
+ASA-Lab(config)# route outside 0.0.0.0 0.0.0.0 10.0.0.2
 ```
 
 ### Verifica routing
@@ -347,7 +347,7 @@ ASA-Lab(config)# route outside 0.0.0.0 0.0.0.0 150.10.0.2
 ASA-Lab# show route
 ```
 
-Deve comparire una rotta `S* 0.0.0.0/0 [1/0] via 150.10.0.2, outside`.
+Deve comparire una rotta `S* 0.0.0.0/0 [1/0] via 10.0.0.2, outside`.
 
 ---
 
@@ -371,17 +371,17 @@ ASA-Lab(config)# access-list OUTSIDE-IN extended permit icmp any any echo-reply
 ASA-Lab(config)# access-list OUTSIDE-IN extended permit icmp any any unreachable
 
 ! Permette traffico HTTP (porta 80) verso il web server
-! Il client esterno si connette all'IP pubblico 150.10.0.1
-! che l'ASA traduce (NAT statico) verso 192.168.2.10
-ASA-Lab(config)# access-list OUTSIDE-IN extended permit tcp any host 150.10.0.1 eq www
+! Il client esterno si connette all'IP pubblico 10.0.0.100
+! che l'ASA traduce (NAT statico) verso 172.16.0.2
+ASA-Lab(config)# access-list OUTSIDE-IN extended permit tcp any host 10.0.0.100 eq www
 
 ! Permette traffico HTTPS (porta 443) verso il web server
-ASA-Lab(config)# access-list OUTSIDE-IN extended permit tcp any host 150.10.0.1 eq 443
+ASA-Lab(config)# access-list OUTSIDE-IN extended permit tcp any host 10.0.0.100 eq 443
 
 ! Nega esplicitamente tutto il resto
 ! (la regola "deny any any" è implicita su ASA,
 ! ma renderla esplicita attiva il logging)
-ASA-Lab(config)# access-list OUTSIDE-IN extended deny ip any any log
+ASA-Lab(config)# access-list OUTSIDE-IN extended deny ip any any
 
 ! ─────────────────────────────────────────────────
 ! APPLICA L'ACL all'interfaccia outside in ingresso
@@ -395,8 +395,7 @@ ASA-Lab# write memory
 ### Verifica ACL
 
 ```
-ASA-Lab# show access-list OUTSIDE-IN
-ASA-Lab# show access-group
+ASA-Lab# show access-list 
 ```
 
 `show access-list` mostra le regole con i contatori dei match. Dopo i test, i contatori degli echo-reply e del traffico HTTP devono essere > 0.
@@ -412,10 +411,10 @@ Esegui i test nell'ordine indicato. Ogni test verifica un aspetto specifico dell
 Dal **PC1** (192.168.1.10): `Desktop → Command Prompt`
 
 ```
-ping 150.10.0.2
+ping 10.0.0.2
 ```
 
-**Risultato atteso:** ping riuscito (Reply from 150.10.0.2)
+**Risultato atteso:** ping riuscito (Reply from 10.0.0.2)
 
 **Cosa verifica:** il PAT funziona — i PC della LAN raggiungono Internet tramite l'IP pubblico dell'ASA.
 
@@ -425,10 +424,10 @@ ping 150.10.0.2
 
 ### Test 2 — Ping dal PC esterno verso l'IP pubblico ✅
 
-Dal **PC esterno** (10.0.0.2): `Desktop → Command Prompt`
+Dal **PC esterno** (8.0.0.2): `Desktop → Command Prompt`
 
 ```
-ping 150.10.0.1
+ping 10.0.0.1
 ```
 
 **Risultato atteso:** ping riuscito
@@ -445,7 +444,7 @@ Dal **PC esterno**: `Desktop → Web Browser`
 
 Digita nella barra degli indirizzi:
 ```
-http://150.10.0.1
+http://10.0.0.100
 ```
 
 **Risultato atteso:** appare la pagina HTML del web server ("Server Web Aziendale").
@@ -475,7 +474,7 @@ ping 192.168.1.2
 Dal **PC1**: `Desktop → Web Browser`
 
 ```
-http://192.168.2.10
+http://172.16.0.2
 ```
 
 **Risultato atteso:** appare la pagina del web server.
@@ -484,26 +483,9 @@ http://192.168.2.10
 
 ---
 
-### Test 6 — PC LAN raggiunge Internet ✅
 
-Dal **PC1**: `Desktop → Web Browser`
 
-```
-http://10.0.0.2
-```
-
-oppure dal Command Prompt:
-```
-ping 10.0.0.2
-```
-
-**Risultato atteso:** la pagina del PC esterno appare, oppure il ping risponde.
-
-**Cosa verifica:** il PAT LAN funziona per tutto il traffico verso Internet.
-
----
-
-### Test 7 — PC esterno NON raggiunge la LAN direttamente ❌ (atteso)
+### Test 6 — PC esterno NON raggiunge la LAN direttamente ❌ (atteso)
 
 Dal **PC esterno**:
 ```
@@ -516,32 +498,9 @@ ping 192.168.1.10
 
 ---
 
-## 📋 Step 6 — Verifica della tabella NAT in tempo reale
 
-Mentre i test sono in corso, visualizza le traduzioni NAT attive:
 
-```
-ASA-Lab# show xlate
-```
-
-Output esempio durante la navigazione di PC1:
-```
-Global 150.10.0.1   Local  192.168.1.10  ICMP  id 1
-Global 150.10.0.1   Local  192.168.1.11  TCP  50231 -> 10.0.0.2:80
-Global 150.10.0.1   Local  192.168.2.10  STATIC
-```
-
-L'ultima riga mostra il NAT statico sempre attivo per il web server.
-
-```
-ASA-Lab# show nat detail
-```
-
-Mostra le statistiche di ogni regola NAT — quanti pacchetti ha tradotto.
-
----
-
-## 📋 Step 7 (avanzato) — Port Forwarding per HTTPS
+## 📋 Step 6 (avanzato) — Port Forwarding per HTTPS
 
 In questo step avanzato modifichiamo il NAT statico per usare il **port forwarding** invece di mappare l'intero IP. Questo permette di avere più servizi su IP diversi usando lo stesso IP pubblico.
 
@@ -551,28 +510,28 @@ ASA-Lab(config)# no object network WEBSERVER-DMZ
 
 ! Ricrea con port forwarding specifico per porta 80
 ASA-Lab(config)# object network WEBSERVER-HTTP
-ASA-Lab(config-network-object)# host 192.168.2.10
-ASA-Lab(config-network-object)# nat (dmz,outside) static 150.10.0.1 service tcp www www
+ASA-Lab(config-network-object)# host 172.16.0.2
+ASA-Lab(config-network-object)# nat (dmz,outside) static 10.0.0.100 service tcp www www
 ASA-Lab(config-network-object)# exit
 
 ! Port forwarding per porta 443 (HTTPS) allo stesso server
 ASA-Lab(config)# object network WEBSERVER-HTTPS
-ASA-Lab(config-network-object)# host 192.168.2.10
-ASA-Lab(config-network-object)# nat (dmz,outside) static 150.10.0.1 service tcp 443 443
+ASA-Lab(config-network-object)# host 172.16.0.2
+ASA-Lab(config-network-object)# nat (dmz,outside) static 10.0.0.100 service tcp 443 443
 ASA-Lab(config-network-object)# exit
 ```
 
-Con questa configurazione, solo le porte 80 e 443 dell'IP pubblico 150.10.0.1 vengono inoltrate al web server. Una connessione su porta 22 (SSH) verso 150.10.0.1 non raggiungerà il server.
+Con questa configurazione, solo le porte 80 e 443 dell'IP pubblico 10.10.0.100 vengono inoltrate al web server. Una connessione su porta 22 (SSH) verso 10.0.0.100 non raggiungerà il server.
 
 ---
 
-## 📋 Step 8 — Aggiunta di un server DNS locale (opzionale)
+## 📋 Step 7 — Aggiunta di un server DNS locale (opzionale)
 
-Per un laboratorio più realistico, aggiungi un server DNS nella DMZ che risolva il nome `www.azienda.it` verso 150.10.0.1.
+Per un laboratorio più realistico, aggiungi un server DNS nella DMZ che risolva il nome `www.azienda.it` verso 10.0.0.100.
 
 ### Configura il server DNS in DMZ
 
-Aggiungi un secondo server in DMZ con IP `192.168.2.11` (collega allo stesso Switch1).
+Aggiungi un secondo server in DMZ con IP `172.16.0.10` (collega allo stesso Switch1).
 
 **Server DNS → Services → DNS → ON**
 
@@ -580,12 +539,12 @@ Aggiungi i record:
 
 | Name | Type | Address |
 |---|---|---|
-| www.azienda.it | A Record | 150.10.0.1 |
+| www.azienda.it | A Record | 10.0.0.100 |
 | azienda.it | CNAME | www.azienda.it |
 
 ### Aggiorna i DNS sui client
 
-Su ogni PC (PC1, PC2, PC esterno), imposta il DNS Server a `192.168.2.11`.
+Su ogni PC (PC1, PC2, PC esterno), imposta il DNS Server a `172.16.0.10`.
 
 ### Test DNS
 
@@ -610,20 +569,12 @@ ASA-Lab# show route                        ! tabella di routing
 
 ! ── NAT ────────────────────────────────────────────────────
 ASA-Lab# show nat                          ! regole NAT configurate
-ASA-Lab# show nat detail                   ! statistiche per regola
 ASA-Lab# show xlate                        ! traduzioni NAT attive in tempo reale
 ASA-Lab# clear xlate                       ! azzera la tabella di traduzione (test)
 
 ! ── ACL ────────────────────────────────────────────────────
 ASA-Lab# show access-list                  ! tutte le ACL con contatori
-ASA-Lab# show access-list OUTSIDE-IN       ! solo l'ACL specificata
-ASA-Lab# show access-group                 ! quale ACL è applicata su quale interfaccia
 
-! ── CONNESSIONI ─────────────────────────────────────────────
-ASA-Lab# show conn                         ! connessioni TCP/UDP attive
-
-! ── LOG ─────────────────────────────────────────────────────
-ASA-Lab# show logging                      ! log di sistema (utile per debug ACL)
 ```
 
 ---
@@ -634,9 +585,9 @@ ASA-Lab# show logging                      ! log di sistema (utile per debug ACL
 
 2. Qual è la differenza tra il **PAT dinamico** configurato per la LAN e il **NAT statico** configurato per il web server? In quale scenario si usa ciascuno?
 
-3. Nel laboratorio hai aperto solo le porte 80 e 443 verso il web server. Cosa succederebbe se un attaccante cercasse di connettersi alla porta 22 (SSH) dell'IP pubblico 150.10.0.1? Dove verrebbe bloccato?
+3. Nel laboratorio hai aperto solo le porte 80 e 443 verso il web server. Cosa succederebbe se un attaccante cercasse di connettersi alla porta 22 (SSH) dell'IP pubblico 10.0.0.100? Dove verrebbe bloccato?
 
-4. Perché nel piano di indirizzamento il web server ha come **gateway 192.168.2.1** (l'interfaccia DMZ dell'ASA) invece del Router Internet? Traccia il percorso di un pacchetto dal web server verso il PC esterno.
+4. Perché nel piano di indirizzamento il web server ha come **gateway 172.16.0.1** (l'interfaccia DMZ dell'ASA) invece del Router Internet? Traccia il percorso di un pacchetto dal web server verso il PC esterno.
 
 5. La regola ACL `permit icmp any any echo-reply` è necessaria per i ping dalla LAN verso Internet. Spiega perché: cosa succederebbe senza di essa durante un ping da PC1 verso 10.0.0.2?
 
