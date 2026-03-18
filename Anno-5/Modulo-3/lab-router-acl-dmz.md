@@ -51,8 +51,8 @@ Al termine di questo laboratorio sarai in grado di:
                      8.0.0.1
                          │
                     [Switch0]
-              ┌──────────┼──────────────┐
-              │          │              │
+              ┌──────────┼────────────────────────────┐
+              │          │              │             |
          [PC est.]  [google.com]  [DNS Server]  [DHCP Server]
           8.0.0.10    8.0.0.2       8.0.0.3       8.0.0.4
 
