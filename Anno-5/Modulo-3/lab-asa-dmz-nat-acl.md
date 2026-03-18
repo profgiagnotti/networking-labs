@@ -20,7 +20,6 @@ Al termine di questo laboratorio sarai in grado di:
 - ✅ Configurare il PAT dinamico per permettere agli host LAN e DMZ di accedere a Internet
 - ✅ Configurare il NAT statico per rendere il web server in DMZ raggiungibile dall'esterno
 - ✅ Scrivere e applicare ACL sull'interfaccia outside dell'ASA
-- ✅ Verificare il funzionamento con ping e browser dal PC esterno e dai PC interni
 
 ---
 
@@ -34,26 +33,26 @@ Al termine di questo laboratorio sarai in grado di:
 │  │       DMZ        │           │         LAN          │    │
 │  │                  │           │                      │    │
 │  │  [WebServer]     │           │  [PC1] 192.168.1.10  │    │
-│  │  192.168.2.10    │           │  [PC2] 192.168.1.11  │    │
+│  │  192.168.2.10    │           │  [PC2] 192.168.1.20  │    │
 │  │       |          │           │  [SrvInt] 192.168.1.2│    │
 │  │  [Switch1]       │           │       |              │    │
 │  │       |          │           │  [Switch2]           │    │
-│  │  Fa0/2           │           │  Fa0/1               │    │
+│  │  Fa0/2           │           │  Fa0/2               │    │
 │  └───────┬──────────┘           └────────┬─────────────┘    │
 │          │ Gig1/1                        │ Gig1/2           │
 │          └───────────[ASA 5506-X]────────┘                  │
 │                           │ Gig1/3                          │
-│                      150.10.0.1                             │
+│                      10.0.0.1                             │
 └───────────────────────────┼─────────────────────────────────┘
-                            │ 150.10.0.2
+                            │ 10.0.0.2
                      [Router INTERNET]
                        Fa1/0 | Fa0/0
-                         10.0.0.1
+                         8.0.0.1
                             │
                         [Switch0]
                             │
                      [PC esterno]
-                      10.0.0.2
+                      8.0.0.2
 ```
 
 ---
@@ -62,18 +61,18 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Dispositivo | Interfaccia | Indirizzo IP | Subnet Mask | Gateway | Note |
 |---|---|---|---|---|---|
-| WebServer (DMZ) | Fa0 | 192.168.2.10 | 255.255.255.0 | 192.168.2.1 | DNS: 192.168.2.1 |
+| WebServer (DMZ) | Fa0 | 192.168.2.10 | 255.255.255.0 | 192.168.2.1 | |
 | PC1 (LAN) | Fa0 | 192.168.1.10 | 255.255.255.0 | 192.168.1.1 | |
-| PC2 (LAN) | Fa0 | 192.168.1.11 | 255.255.255.0 | 192.168.1.1 | |
+| PC2 (LAN) | Fa0 | 192.168.1.21 | 255.255.255.0 | 192.168.1.1 | |
 | Server Interno (LAN) | Fa0 | 192.168.1.2 | 255.255.255.0 | 192.168.1.1 | |
-| PC esterno | Fa0 | 10.0.0.2 | 255.0.0.0 | 10.0.0.1 | |
+| PC esterno | Fa0 | 8.0.0.2 | 255.0.0.0 | 8.0.0.1 | |
 | ASA — interfaccia LAN | Gig1/2 | 192.168.1.1 | 255.255.255.0 | — | inside, SL 100 |
-| ASA — interfaccia DMZ | Gig1/2 | 192.168.2.1 | 255.255.255.0 | — | dmz, SL 50 |
-| ASA — interfaccia WAN | Gig1/3 | 150.10.0.1 | 255.255.255.0 | — | outside, SL 0 |
-| Router Internet — verso ASA | Fa1/0 | 150.10.0.2 | 255.255.255.0 | — | |
-| Router Internet — verso esterno | Fa0/0 | 10.0.0.1 | 255.0.0.0 | — | |
+| ASA — interfaccia DMZ | Gig1/2 | 172.16.0.1 | 255.255.255.0 | — | dmz, SL 50 |
+| ASA — interfaccia WAN | Gig1/3 | 10.0.0.1 | 255.0.0.0 | — | outside, SL 0 |
+| Router Internet — verso ASA | Fa1/0 | 10.0.0.2 | 255.0.0.0 | — | |
+| Router Internet — verso esterno | Fa0/0 | 8.0.0.1 | 255.0.0.0 | — | |
 
-> 📌 L'IP pubblico dell'azienda (quello visibile da Internet) è **150.10.0.1** — l'interfaccia outside dell'ASA.
+> 📌 L'IP pubblico dell'azienda (quello visibile da Internet) è **10.0.0.1** — l'interfaccia outside dell'ASA.
 
 ---
 
@@ -137,13 +136,13 @@ RouterInternet(config-if)# ip address 10.0.0.1 255.0.0.0
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
 
-! Rotta statica verso la rete DMZ (192.168.2.0)
+! Rotte statiche verso la rete DMZ (172.16.0.0) 
 ! Necessaria per raggiungere il web server dall'esterno
-RouterInternet(config)# ip route 192.168.2.0 255.255.255.0 150.10.0.1
+RouterInternet(config)# ip route 172.16.0.0 255.255.0.0 10.0.0.1
 
 ! Rotta statica verso la rete LAN (192.168.1.0)
 ! Necessaria per le risposte ai client LAN
-RouterInternet(config)# ip route 192.168.1.0 255.255.255.0 150.10.0.1
+RouterInternet(config)# ip route 192.168.1.0 255.255.255.0 10.0.0.1
 
 RouterInternet(config)# end
 RouterInternet# write memory
@@ -156,7 +155,7 @@ RouterInternet# show ip interface brief
 RouterInternet# show ip route
 ```
 
-L'output di `show ip route` deve mostrare le due rotte statiche verso 192.168.2.0 e 192.168.1.0 con next-hop 150.10.0.1.
+L'output di `show ip route` deve mostrare le due rotte statiche verso 192.168.2.0 e 192.168.1.0 con next-hop 10.0.0.1.
 
 ---
 
@@ -168,9 +167,9 @@ Clicca su **PC esterno → Desktop → IP Configuration**:
 
 | Campo | Valore |
 |---|---|
-| IP Address | 10.0.0.2 |
+| IP Address | 8.0.0.2 |
 | Subnet Mask | 255.0.0.0 |
-| Default Gateway | 10.0.0.1 |
+| Default Gateway | 8.0.0.1 |
 
 ### PC1 e PC2 (LAN)
 
@@ -178,7 +177,7 @@ Clicca su ogni PC → **Desktop → IP Configuration**:
 
 | Campo | PC1 | PC2 |
 |---|---|---|
-| IP Address | 192.168.1.10 | 192.168.1.11 |
+| IP Address | 192.168.1.10 | 192.168.1.20 |
 | Subnet Mask | 255.255.255.0 | 255.255.255.0 |
 | Default Gateway | 192.168.1.1 | 192.168.1.1 |
 
@@ -198,9 +197,9 @@ Clicca su ogni PC → **Desktop → IP Configuration**:
 
 | Campo | Valore |
 |---|---|
-| IP Address | 192.168.2.10 |
+| IP Address | 172.16.0.2 |
 | Subnet Mask | 255.255.255.0 |
-| Default Gateway | 192.168.2.1 |
+| Default Gateway | 172.16.0.1 |
 
 Attiva il servizio HTTP: **Services → HTTP → ON**
 
