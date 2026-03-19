@@ -133,16 +133,14 @@ Router> enable
 Router# configure terminal
 Router(config)# hostname RouterInternet
 
-! Interfaccia seriale verso Router VPN
-RouterInternet(config)# interface Serial2/0
+! Interfaccia verso Router VPN
+RouterInternet(config)# interface G0/0
 RouterInternet(config-if)# ip address 10.0.0.2 255.255.255.252
-RouterInternet(config-if)# clock rate 64000
-! clock rate sul lato DCE del cavo seriale
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
 
 ! Interfaccia verso la rete del PC remoto
-RouterInternet(config)# interface FastEthernet1/0
+RouterInternet(config)# interface G0/1
 RouterInternet(config-if)# ip address 203.0.113.1 255.255.255.0
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
@@ -164,14 +162,14 @@ Router# configure terminal
 Router(config)# hostname RouterVPN
 
 ! Interfaccia LAN verso la rete aziendale
-RouterVPN(config)# interface FastEthernet0/0
+RouterVPN(config)# interface G0/0
 RouterVPN(config-if)# ip address 192.168.1.1 255.255.255.0
 RouterVPN(config-if)# description LAN-Aziendale
 RouterVPN(config-if)# no shutdown
 RouterVPN(config-if)# exit
 
 ! Interfaccia WAN verso Internet
-RouterVPN(config)# interface Serial2/0
+RouterVPN(config)# interface G0/1
 RouterVPN(config-if)# ip address 10.0.0.1 255.255.255.252
 RouterVPN(config-if)# description WAN-Internet
 RouterVPN(config-if)# no shutdown
@@ -195,7 +193,13 @@ ping 10.0.0.1    ! → Router VPN WAN: deve rispondere ✅
 
 ---
 
-## 📋 Step 3 — Configurazione del server VPN (EasyVPN Server)
+## 📋 Step 3 — Configurazione del server VPN (EasyVPN Server) sul RouterVPN
+
+Prima di procedere dobbiamo installare il software securityk9:
+```
+RouterVPN(config)#license boot module c1900 technology-package securityk9
+```
+
 
 La VPN Remote Access su Cisco IOS si basa su **EasyVPN** — una versione semplificata che centralizza tutta la configurazione sul server.
 
