@@ -270,17 +270,17 @@ RouterA(config)# crypto isakmp policy 10
 RouterA(config-isakmp)# encryption aes 256
 ! Algoritmo di cifratura per il canale IKE di controllo
 
-RouterA(config-isakmp)# hash sha256
+RouterA(config-isakmp)# hash sha
 ! Algoritmo di hash per verificare l'integrità dei messaggi IKE
-! sha256 = SHA-2 a 256 bit — standard attuale
 
 RouterA(config-isakmp)# authentication pre-share
 ! Metodo di autenticazione tra i due peer
 ! pre-share = chiave segreta condivisa (Pre-Shared Key, PSK)
 ! L'alternativa è "rsa-sig" con certificati digitali
 
-RouterA(config-isakmp)# group 14
+RouterA(config-isakmp)# group 5
 ! Gruppo Diffie-Hellman per lo scambio sicuro delle chiavi
+! Gruppo 5 = 1536 bit — obsoleto ma il massimo possibile in simulazione con PKT
 ! Gruppo 14 = 2048 bit — il minimo raccomandato oggi
 ! Gruppi 19 e 20 (384/256-bit ellittico) sono ancora più sicuri
 
@@ -292,8 +292,8 @@ RouterA(config-isakmp)# exit
 
 ! Definisce la chiave pre-condivisa per il peer Router B
 ! La chiave DEVE essere identica su entrambi i router
-RouterA(config)# crypto isakmp key VpnSecret!2024 address 200.0.0.2
-! "VpnSecret!2024" = chiave segreta (sceglila lunga e complessa)
+RouterA(config)# crypto isakmp key VpnSecret!2026 address 200.0.0.2
+! "VpnSecret!2026" = chiave segreta (sceglila lunga e complessa)
 ! "200.0.0.2" = IP pubblico dell'altro peer (Router B)
 ```
 
@@ -302,16 +302,10 @@ RouterA(config)# crypto isakmp key VpnSecret!2024 address 200.0.0.2
 ```
 ! Il transform set definisce gli algoritmi per proteggere i DATI degli utenti
 ! (non il canale di controllo IKE, quello era definito al Passo 1)
-RouterA(config)# crypto ipsec transform-set TS-SEDE-A-B esp-aes 256 esp-sha256-hmac
+RouterA(config)# crypto ipsec transform-set TS-SEDE-A-B esp-aes 256 esp-sha-hmac
 ! "TS-SEDE-A-B" = nome del transform set (sceglilo descrittivo)
 ! esp-aes 256   = cifratura ESP con AES a 256 bit
-! esp-sha256-hmac = integrità ESP con HMAC-SHA256
-
-RouterA(cfg-crypto-trans)# mode tunnel
-! Tunnel Mode: incapsula l'INTERO pacchetto IP originale
-! in un nuovo pacchetto — nasconde gli IP interni della LAN
-
-RouterA(cfg-crypto-trans)# exit
+! esp-sha-hmac = integrità ESP con HMAC-SHA
 ```
 
 ### Passo 3 — Crypto ACL (traffico da proteggere)
@@ -360,7 +354,7 @@ RouterA(config-crypto-map)# exit
 
 ! Applica la crypto map sull'interfaccia WAN
 ! DEVE essere applicata sull'interfaccia che riceve/invia traffico Internet
-RouterA(config)# interface Serial2/0
+RouterA(config)# interface G0/1
 RouterA(config-if)# crypto map VPN-MAP-A
 ! Da questo momento, ogni pacchetto in uscita che corrisponde
 ! alla crypto ACL verrà cifrato e incapsulato nel tunnel IPsec
@@ -382,20 +376,19 @@ La configurazione è **speculare** a Router A. Le differenze sono:
 ! ─── PASSO 1: ISAKMP Policy ────────────────────────────────────────────
 RouterB(config)# crypto isakmp policy 10
 RouterB(config-isakmp)# encryption aes 256
-RouterB(config-isakmp)# hash sha256
+RouterB(config-isakmp)# hash sha
 RouterB(config-isakmp)# authentication pre-share
-RouterB(config-isakmp)# group 14
+RouterB(config-isakmp)# group 5
 RouterB(config-isakmp)# lifetime 86400
 RouterB(config-isakmp)# exit
 
 ! Stessa chiave di Router A — DEVE essere identica
-RouterB(config)# crypto isakmp key VpnSecret!2024 address 200.0.0.1
-! "200.0.0.1" = IP pubblico del peer (Router A)
+RouterB(config)# crypto isakmp key VpnSecret!2026 address 100.0.0.2
+! "100.0.0.2" = IP pubblico del peer (Router A)
 
 ! ─── PASSO 2: Transform Set ─────────────────────────────────────────────
 ! Stesso transform set di Router A — algoritmi devono coincidere
-RouterB(config)# crypto ipsec transform-set TS-SEDE-B-A esp-aes 256 esp-sha256-hmac
-RouterB(cfg-crypto-trans)# mode tunnel
+RouterB(config)# crypto ipsec transform-set TS-SEDE-B-A esp-aes 256 esp-sha-hmac
 RouterB(cfg-crypto-trans)# exit
 
 ! ─── PASSO 3: Crypto ACL ────────────────────────────────────────────────
@@ -407,14 +400,14 @@ RouterB(config-ext-nacl)# exit
 
 ! ─── PASSO 4: Crypto Map e applicazione ─────────────────────────────────
 RouterB(config)# crypto map VPN-MAP-B 10 ipsec-isakmp
-RouterB(config-crypto-map)# set peer 200.0.0.1
+RouterB(config-crypto-map)# set peer 100.0.0.2
 ! IP pubblico del peer = Router A
 RouterB(config-crypto-map)# set transform-set TS-SEDE-B-A
 RouterB(config-crypto-map)# match address ACL-VPN-B-A
 RouterB(config-crypto-map)# set security-association lifetime seconds 3600
 RouterB(config-crypto-map)# exit
 
-RouterB(config)# interface Serial2/0
+RouterB(config)# interface G0/1
 RouterB(config-if)# crypto map VPN-MAP-B
 RouterB(config-if)# exit
 
