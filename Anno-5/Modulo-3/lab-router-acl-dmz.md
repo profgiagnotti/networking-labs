@@ -464,21 +464,30 @@ RouterA(config)#access-list 100 remark === DNS (RISPOSTE) ===
 RouterA(config)#access-list 100 permit udp host 8.0.0.3 eq 53 192.168.1.0 0.0.0.255 gt 1023
 ```
 
+### ── RISOSTE TCP A CONNESSIONI LAN ─────────────────────────
+```
+! Consentire il traffico TCP in entrata da qualsiasi origine verso la rete, 
+! ma solo se il traffico fa parte di una sessione esistente (stabilita). 
+! Ciò consente il traffico di ritorno per le connessioni interne, 
+! bloccando al contempo le nuove sessioni avviate dall'esterno.
+
+RouterA(config)#access-list 100 remark === RISPOSTE TCP A CONNESSIONI LAN ===
+RouterA(config)#access-list 100 permit tcp any 192.168.1.0 0.0.0.255 established
+```
+
 #### ── PERMESSI DMZ ─────────────────────────
 ```
 ! Dobbiamo consentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
 !sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
 !permettiamo l’accesso attraverso la porta 443 (HTTPS), 143 (IMAP)
 
+RouterA(config)#access-list 100 remark === ACCESSO AI SERVER DMZ ===
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 80
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 443
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 25
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 110
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
 
-! Permette i messaggi ICMP unreachable (necessari per MTU discovery)
-RouterA(config-ext-nacl)# permit icmp any any unreachable
-```
 
 
 #### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ──────────
@@ -488,6 +497,7 @@ RouterA(config-ext-nacl)# permit icmp any any unreachable
 
 ! Nega TUTTO il traffico non autorizzato verso il server FTP
 
+RouterA(config)#access-list 100 remark === FTP INTERNO SOLO LAN ===
 RouterA(config)#deny tcp any host 192.168.1.2 eq 21
 
 ! Permetti il traffico dalla rete interna verso il server FTP
@@ -499,17 +509,9 @@ RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 ```
 ! Blocchiamo tutti gli accessi diretti alla LAN interna
 
+RouterA(config)#access-list 100 remark === BLOCCO ACCESSI DIRETTI ALLA LAN ===
 RouterA(config)#deny ip any 192.168.1.0 0.0.0.255
 ```
-
-
-#### ── PERMESSO ESPLICITO VERSO L'ESTERNO ──────────
-```
-! PermettIAMO tutto il resto (routing, ICMP verso esterno, ecc.).
-
-RouterA(config)#permit ip any any
-```
-
 
 
 
