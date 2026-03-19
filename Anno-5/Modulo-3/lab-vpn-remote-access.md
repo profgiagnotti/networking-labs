@@ -34,17 +34,19 @@ Al termine di questo laboratorio sarai in grado di:
 │  [PC-LAN1] 192.168.1.10               │
 │  [Server]  192.168.1.100              │
 │       |                               │
-│  [Switch LAN]                         │
-│       | Fa0/0 — 192.168.1.1           │
+│  [Switch LAN]                         |
+|       | Fa0/0                         |
+|       |                               │
+│       | G0/0 — 192.168.1.1            │
 │  [Router VPN Gateway]                 │
-│       | Se2/0 — 10.0.0.1              │
+│       | G0/1 — 10.0.0.1               │
 └───────────────────┬───────────────────┘
                     │
               (Internet simulato)
                     │
-              10.0.0.2 | Fa0/0
+              10.0.0.2 | G0/0
            [Router Internet]
-              Fa1/0 | 203.0.113.1
+              G0/1 | 203.0.113.1
                     │
               [Switch Remoto]
                     │
@@ -60,10 +62,10 @@ Al termine di questo laboratorio sarai in grado di:
 |---|---|---|---|---|
 | PC-LAN1 (rete aziendale) | Fa0 | 192.168.1.10 | 255.255.255.0 | 192.168.1.1 |
 | Server (rete aziendale) | Fa0 | 192.168.1.100 | 255.255.255.0 | 192.168.1.1 |
-| Router VPN — verso LAN | Fa0/0 | 192.168.1.1 | 255.255.255.0 | — |
-| Router VPN — verso Internet | Se2/0 | 10.0.0.1 | 255.255.255.252 | — |
-| Router Internet — verso VPN | Se2/0 | 10.0.0.2 | 255.255.255.252 | — |
-| Router Internet — verso remoto | Fa1/0 | 203.0.113.1 | 255.255.255.0 | — |
+| Router VPN — verso LAN | G0/0 | 192.168.1.1 | 255.255.255.0 | — |
+| Router VPN — verso Internet | G0/1 | 10.0.0.1 | 255.255.255.252 | — |
+| Router Internet — verso VPN | G0/0 | 10.0.0.2 | 255.255.255.252 | — |
+| Router Internet — verso remoto | G0/1 | 203.0.113.1 | 255.255.255.0 | — |
 | PC-REMOTO (dipendente remoto) | Fa0 | 203.0.113.10 | 255.255.255.0 | 203.0.113.1 |
 
 **Pool VPN** (indirizzi assegnati ai client VPN remoti):
@@ -84,8 +86,8 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Dispositivo | Modello PT | Quantità |
 |---|---|---|
-| Router VPN Gateway | Router-PT o 2911 | 1 |
-| Router Internet | Router-PT o 2911 | 1 |
+| Router VPN Gateway | Router 1941 | 1 |
+| Router Internet | Router 1941 | 1 |
 | Switch LAN aziendale | 2960-24TT | 1 |
 | Switch rete remota | 2960-24TT | 1 |
 | PC-LAN1 (rete aziendale) | PC-PT | 1 |
@@ -98,9 +100,9 @@ Al termine di questo laboratorio sarai in grado di:
 |---|---|---|---|---|
 | PC-LAN1 | Fa0 | Switch LAN | Fa0/1 | Dritto |
 | Server | Fa0 | Switch LAN | Fa0/2 | Dritto |
-| Switch LAN | Fa0/3 | Router VPN | Fa0/0 | Dritto |
-| Router VPN | Se2/0 | Router Internet | Se2/0 | Seriale DCE |
-| Router Internet | Fa1/0 | Switch Remoto | Fa0/1 | Dritto |
+| Switch LAN | Fa0/3 | Router VPN | G0/0 | Dritto |
+| Router VPN | G0/1 | Router Internet | G0/0 | Incrociato |
+| Router Internet | G0/1 | Switch Remoto | Fa0/1 | Dritto |
 | Switch Remoto | Fa0/2 | PC-REMOTO | Fa0 | Dritto |
 
 ### 1.3 — Configurazione dispositivi finali
