@@ -34,16 +34,18 @@ Al termine di questo laboratorio sarai in grado di:
 │                            │         │                            │
 │  [PC-A1] 192.168.1.10      │         │  [PC-B1] 192.168.2.10      │
 │  [PC-A2] 192.168.1.20      │         │  [PC-B2] 192.168.2.20      │
-│       |                    │         │       |                    │
+│       |                    │         │        |                   │
 │  [Switch-A]                │         │  [Switch-B]                │
-│       | Fa0/0              │         │  Fa0/0 |                   │
+│       | Fa0/3              |         |        | Fa0/3             |
+|       |                    |         |        |                   |
+|       │ G0/0               |         |        │ G0/0              |
 │  [Router A]                │         │  [Router B]                │
-│       | Se2/0              │         │  Se2/0 |                   │
-│   200.0.0.1                │         │   200.0.0.2                │
+│       | G0/1               │         │        | G0/1              │
+│   100.0.0.2                │         │   200.0.0.2                │
 └────────────┬───────────────┘         └──────────────┬─────────────┘
-             │                                         │
-             │ Se2/0  100.0.0.1    100.0.0.2  Se3/0   │
-             └──────────[Router ISP]───────────────────┘
+             │                                        │
+             │ G0/0  100.0.0.1    200.0.0.1  G0/1     │
+             └──────────[Router ISP]──────────────────┘
                          (simula Internet)
 ```
 
@@ -57,12 +59,12 @@ Al termine di questo laboratorio sarai in grado di:
 | PC-A2 | Fa0 | 192.168.1.20 | 255.255.255.0 | 192.168.1.1 |
 | PC-B1 | Fa0 | 192.168.2.10 | 255.255.255.0 | 192.168.2.1 |
 | PC-B2 | Fa0 | 192.168.2.20 | 255.255.255.0 | 192.168.2.1 |
-| Router A — verso LAN Sede A | Fa0/0 | 192.168.1.1 | 255.255.255.0 | — |
-| Router A — verso ISP | Se2/0 | 200.0.0.1 | 255.255.255.252 | — |
-| Router B — verso LAN Sede B | Fa0/0 | 192.168.2.1 | 255.255.255.0 | — |
-| Router B — verso ISP | Se2/0 | 200.0.0.2 | 255.255.255.252 | — |
-| Router ISP — verso Router A | Se2/0 | 100.0.0.1 | 255.255.255.252 | — |
-| Router ISP — verso Router B | Se3/0 | 100.0.0.2 | 255.255.255.252 | — |
+| Router A — verso LAN Sede A | G0/0 | 192.168.1.1 | 255.255.255.0 | — |
+| Router A — verso ISP | G0/1 | 100.0.0.2 | 255.255.255.252 | — |
+| Router B — verso LAN Sede B | G0/0 | 192.168.2.1 | 255.255.255.0 | — |
+| Router B — verso ISP | G0/1 | 200.0.0.2 | 255.255.255.252 | — |
+| Router ISP — verso Router A | G0//0 | 100.0.0.1 | 255.255.255.252 | — |
+| Router ISP — verso Router B | G0/1 | 200.0.0.2 | 255.255.255.252 | — |
 
 > 📌 **Nota sugli indirizzi WAN**: nei laboratori Packet Tracer è comune usare reti /30 per i link punto-punto WAN — contengono solo 2 indirizzi host, esattamente quelli necessari.
 
