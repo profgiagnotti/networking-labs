@@ -199,11 +199,23 @@ RouterB(config)# end
 RouterB# write memory
 ```
 
-### Configurazione dei PC
+### Configurazione dei dispositivi terminali
 
 **PC-A1**: IP `192.168.1.10` / SM `255.255.255.0` / GW `192.168.1.1`  
 **PC-A2**: IP `192.168.1.20` / SM `255.255.255.0` / GW `192.168.1.1`  
 **Web Server**: IP `192.168.2.2` / SM `255.255.255.0` / GW `192.168.2.1`  
+
+**Services → HTTP → ON**
+
+Modifica `index.html`:
+```
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>La VPN Site-to-Site funziona!</h1>
+</body>
+</html>
+```
 
 ### Verifica connettività base (senza VPN)
 
@@ -218,6 +230,32 @@ ping 192.168.2.2  ! → Web Server: deve rispondere ✅ (PRIMA della VPN)
 ---
 
 ## 📋 Step 3 — Configurazione IPsec su Router A
+
+Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9:
+
+```
+RouterA(config)# licence boot module c1900 technology-ackage security k9
+```
+
+Se l'installazione è andata a buon fine il comando 
+```
+RouterA#show version
+```
+
+dovrebbe mostrare:
+
+Technology Package License Information for Module:'c1900'
+
+----------------------------------------------------------------
+Technology    Technology-package          Technology-package
+              Current       Type          Next reboot
+-----------------------------------------------------------------
+ipbase        ipbasek9      Permanent     ipbasek9
+security      securityk9    Evaluation    securityk9
+data          disable       None          None
+
+
+
 
 La configurazione IPsec segue sempre quattro passi. Ogni passo corrisponde a un elemento della negoziazione IKE.
 
