@@ -475,7 +475,7 @@ RouterA(config)#access-list 100 remark === RISPOSTE TCP A CONNESSIONI LAN ===
 RouterA(config)#access-list 100 permit tcp any 192.168.1.0 0.0.0.255 established
 ```
 
-#### ── PERMESSI DMZ ─────────────────────────
+### ── PERMESSI DMZ ─────────────────────────
 ```
 ! Dobbiamo consentire l'accesso pubblico per web e mail server DMZ. In realtà basterebbe la regola 
 !sulla porta 80 (HTTP), quella sulla porta 110 (POP3) e quella sulla porta 25 (SMTP) ma a scopo didattico
@@ -490,7 +490,7 @@ RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
 ```
 
 
-#### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ──────────
+### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ──────────
 ```
 ! NOTA: con Packet Tracer o server FTP passivo, la porta 20 non viene usata direttamente 
 ! verso i client della LAN, quindi non serve filtrarla nella ACL interna
@@ -505,7 +505,7 @@ RouterA(config)#deny tcp any host 192.168.1.2 eq 21
 RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 ```
 
-#### ── BLOCCO ESPLICITO DALL' ESTERNO verso la LAN ──────────
+### ── BLOCCO ESPLICITO DALL' ESTERNO verso la LAN ──────────
 ```
 ! Blocchiamo tutti gli accessi diretti alla LAN interna
 
