@@ -350,6 +350,7 @@ Aggiungi i record DNS:
 | www.miosito.com | A Record | 192.168.0.2 |
 | www.gmail.com | A Record | 192.168.0.3 |
 | www.mioftp.com | A Record | 192.168.1.2 |
+| www.google.com | A Record | 8.0.0.2 |
 | gmail.com | CNAME | www.gmail.com |
 
 ### DHCP Server (rete esterna)
