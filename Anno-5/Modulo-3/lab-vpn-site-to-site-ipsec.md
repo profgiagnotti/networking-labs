@@ -112,24 +112,26 @@ Router> enable
 Router# configure terminal
 Router(config)# hostname RouterISP
 
-! Interfaccia seriale verso Router A
-RouterISP(config)# interface Serial2/0
+! Interfaccia verso Router A
+RouterISP(config)# interface G0/0
 RouterISP(config-if)# ip address 100.0.0.1 255.255.255.252
-RouterISP(config-if)# clock rate 64000
-! "clock rate" è necessario sul lato DCE del cavo seriale
 RouterISP(config-if)# no shutdown
 RouterISP(config-if)# exit
 
-! Interfaccia seriale verso Router B
-RouterISP(config)# interface Serial3/0
-RouterISP(config-if)# ip address 100.0.0.2 255.255.255.252
+! Interfaccia verso Router B
+RouterISP(config)# interface G1/0
+RouterISP(config-if)# ip address 200.0.0.1 255.255.255.252
 RouterISP(config-if)# no shutdown
 RouterISP(config-if)# exit
 
 ! Rotte statiche verso le LAN private
 ! (nella realtà Internet non conosce gli IP privati — qui serve per il laboratorio)
-RouterISP(config)# ip route 200.0.0.0 255.255.255.252 100.0.0.1
 ! Rotta verso il link WAN di Router A
+RouterISP(config)# ip route 100.0.0.0 255.255.255.252 100.0.0.2
+
+! Rotta verso il link WAN di Router B
+RouterISP(config)# ip route 200.0.0.0 255.255.255.252 200.0.0.2
+
 
 RouterISP(config)# end
 RouterISP# write memory
@@ -143,15 +145,15 @@ Router# configure terminal
 Router(config)# hostname RouterA
 
 ! Interfaccia LAN verso Sede A
-RouterA(config)# interface FastEthernet0/0
+RouterA(config)# interface G0/0
 RouterA(config-if)# ip address 192.168.1.1 255.255.255.0
 RouterA(config-if)# description LAN-Sede-A
 RouterA(config-if)# no shutdown
 RouterA(config-if)# exit
 
 ! Interfaccia WAN verso ISP (IP pubblico Sede A)
-RouterA(config)# interface Serial2/0
-RouterA(config-if)# ip address 200.0.0.1 255.255.255.252
+RouterA(config)# interface G0/1
+RouterA(config-if)# ip address 100.0.0.2 255.255.255.252
 RouterA(config-if)# description WAN-verso-ISP
 RouterA(config-if)# no shutdown
 RouterA(config-if)# exit
@@ -171,21 +173,21 @@ Router# configure terminal
 Router(config)# hostname RouterB
 
 ! Interfaccia LAN verso Sede B
-RouterB(config)# interface FastEthernet0/0
+RouterB(config)# interface G0/0
 RouterB(config-if)# ip address 192.168.2.1 255.255.255.0
 RouterB(config-if)# description LAN-Sede-B
 RouterB(config-if)# no shutdown
 RouterB(config-if)# exit
 
 ! Interfaccia WAN verso ISP (IP pubblico Sede B)
-RouterB(config)# interface Serial2/0
+RouterB(config)# interface G0/1
 RouterB(config-if)# ip address 200.0.0.2 255.255.255.252
 RouterB(config-if)# description WAN-verso-ISP
 RouterB(config-if)# no shutdown
 RouterB(config-if)# exit
 
 ! Rotta di default verso Internet (tramite ISP)
-RouterB(config)# ip route 0.0.0.0 0.0.0.0 100.0.0.2
+RouterB(config)# ip route 0.0.0.0 0.0.0.0 200.0.0.1
 
 RouterB(config)# end
 RouterB# write memory
