@@ -245,7 +245,7 @@ RouterA#show version
 dovrebbe mostrare:
 
 Technology Package License Information for Module:'c1900'
-
+```
 ----------------------------------------------------------------
 Technology    Technology-package          Technology-package
               Current       Type          Next reboot
@@ -253,7 +253,7 @@ Technology    Technology-package          Technology-package
 ipbase        ipbasek9      Permanent     ipbasek9
 security      securityk9    Evaluation    securityk9
 data          disable       None          None
-
+```
 
 
 
