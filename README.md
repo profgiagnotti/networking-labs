@@ -101,7 +101,7 @@ Networking-labs/
 [lab-acl-estese-esercizio.pkt](./Anno-5/Modulo-3/lab-acl-estese-esercizio.pkt)<br>
 [lab-router-acl-dmz.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz.pkt)<br>
 [lab-asa-dmz-nat-acl.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)<br>
-[lab-vpn-site-to-site-ipsec-acl-dmz.pkt](./Anno-5/Modulo-3/lab-vpn-site-to-site-ipsec-acl-dmz.pkt)<br>
+[lab-vpn-site-to-site-ipsec.pkt](./Anno-5/Modulo-3/lab-vpn-site-to-site-ipsec.pkt)<br>
 [lab-vpn-remote-access.pkt](./Anno-5/Modulo-3/lab-vpn-remote-access.pkt)<br>
 
 ---
