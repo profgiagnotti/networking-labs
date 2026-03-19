@@ -368,6 +368,12 @@ RouterA# write memory
 
 ## 📋 Step 4 — Configurazione IPsec su Router B
 
+Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9:
+
+```
+RouterB(config)# licence boot module c1900 technology-ackage security k9
+```
+
 La configurazione è **speculare** a Router A. Le differenze sono:
 - IP del peer: `200.0.0.1` (Router A)
 - Crypto ACL: sorgente e destinazione invertite
@@ -415,32 +421,10 @@ RouterB(config)# end
 RouterB# write memory
 ```
 
----
-
-## 📋 Step 5 — Attivazione del tunnel e test
-
-Il tunnel IPsec si attiva **on-demand**: viene negoziato solo quando il primo pacchetto che corrisponde alla crypto ACL tenta di attraversare l'interfaccia WAN.
-
-### Forza la negoziazione del tunnel
-
-Da **Router A** CLI:
-```
-RouterA# ping 192.168.2.10 source FastEthernet0/0
-! "source FastEthernet0/0" forza il ping ad uscire dalla LAN
-! → il pacchetto ha sorgente 192.168.1.1, corrisponde alla crypto ACL
-! → viene avviata la negoziazione IKE Fase 1 e poi Fase 2
-```
-
-Oppure da **PC-A1**:
-```
-ping 192.168.2.10
-```
-
-Il **primo ping potrebbe fallire** — il tempo di negoziazione del tunnel IKE supera il timeout del ping. I ping successivi funzioneranno perché il tunnel è già stabilito.
 
 ---
 
-## 📋 Step 6 — Verifica del tunnel
+## 📋 Step 5 — Verifica del tunnel
 
 ### Verifica Fase 1 — IKE SA
 
@@ -451,7 +435,7 @@ RouterA# show crypto isakmp sa
 Output atteso con tunnel attivo:
 ```
 dst             src             state          conn-id slot status
-200.0.0.2       200.0.0.1       QM_IDLE             1    0 ACTIVE
+200.0.0.2       100.0.0.1       QM_IDLE             1    0 ACTIVE
 ```
 
 - `QM_IDLE` → la Fase 1 è completata e il canale IKE è attivo
@@ -465,8 +449,8 @@ RouterA# show crypto ipsec sa
 
 Output atteso (estratto):
 ```
-interface: Serial2/0
-    Crypto map tag: VPN-MAP-A, local addr 200.0.0.1
+interface: GigabitEthernet0/1
+    Crypto map tag: VPN-MAP-A, local addr 100.0.0.2
 
    protected vrf: (none)
    local  ident (addr/mask/prot/port): (192.168.1.0/255.255.255.0/0/0)
@@ -493,18 +477,17 @@ Mostra la configurazione completa della crypto map con peer, transform set e ACL
 
 Da **PC-A1**:
 ```
-ping 192.168.2.10    ! → PC-B1: deve rispondere ✅
-ping 192.168.2.20    ! → PC-B2: deve rispondere ✅
+ping 192.168.2.2     ! → Web Server: deve rispondere ✅
 ```
 
-Da **PC-B1**:
+Da **Web Server**:
 ```
 ping 192.168.1.10    ! → PC-A1: deve rispondere ✅
 ```
 
 ---
 
-## 📋 Step 7 — Verifica che il traffico sia davvero cifrato
+## 📋 Step 6 — Verifica che il traffico sia davvero cifrato
 
 Uno dei test più importanti: verificare che il traffico tra le LAN usi il tunnel e non passi in chiaro.
 
@@ -512,11 +495,11 @@ Uno dei test più importanti: verificare che il traffico tra le LAN usi il tunne
 
 In modalità **Simulazione** di Packet Tracer:
 1. Clicca su **Simulation** (in basso a destra)
-2. Imposta il filtro su `ICMP` e `ESP`
-3. Esegui un ping da PC-A1 verso 192.168.2.10
+2. Imposta il filtro su `ICMP` 
+3. Esegui un ping da PC-A1 verso 192.168.2.2
 4. Osserva i pacchetti che attraversano il collegamento tra Router A e Router ISP:
    - I pacchetti devono essere di tipo **ESP** (non ICMP in chiaro)
-   - L'header esterno mostra gli IP pubblici 200.0.0.1 → 200.0.0.2
+   - L'header esterno mostra gli IP pubblici 100.0.0.2 → 200.0.0.2
    - Il payload è cifrato — non si vede il contenuto ICMP originale
 
 ### Test: traffico fuori dal tunnel passa normalmente
@@ -525,7 +508,7 @@ Aggiungi un server su una terza rete (es. 8.8.8.8 simulato) e verifica che il tr
 
 ---
 
-## 📋 Step 8 — Debug e risoluzione problemi
+## 📋 Step 7 — Debug e risoluzione problemi
 
 Se il tunnel non si stabilisce, usa questi comandi per identificare il problema:
 
@@ -569,16 +552,16 @@ RouterA# no debug all
 ! FASE 1 — ISAKMP Policy
 crypto isakmp policy <priorità>
  encryption aes 256
- hash sha256
+ hash sha
  authentication pre-share
- group 14
+ group 5
  lifetime 86400
 
 ! Chiave pre-condivisa
 crypto isakmp key <CHIAVE-SEGRETA> address <IP-PEER>
 
 ! FASE 2 — Transform Set
-crypto ipsec transform-set <NOME> esp-aes 256 esp-sha256-hmac
+crypto ipsec transform-set <NOME> esp-aes 256 esp-sha-hmac
  mode tunnel
 
 ! Crypto ACL
@@ -617,11 +600,11 @@ undebug all                   ! disabilita tutti i debug
 
 2. La crypto ACL su Router A è `permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255` mentre su Router B è `permit ip 192.168.2.0 0.0.0.255 192.168.1.0 0.0.0.255`. Perché devono essere **speculari** e cosa succederebbe se su Router B usassi la stessa ACL di Router A?
 
-3. Nel transform set hai usato `esp-aes 256 esp-sha256-hmac`. Cosa succederebbe se su Router A usassi `esp-aes 128` e su Router B `esp-aes 256`? La Fase 2 si completterebbe?
+3. Nel transform set hai usato `esp-aes 256 esp-sha-hmac`. Cosa succederebbe se su Router A usassi `esp-aes 128` e su Router B `esp-aes 256`? La Fase 2 si completterebbe?
 
-4. Il primo ping da PC-A1 verso PC-B1 spesso fallisce, mentre i successivi funzionano. Spiega il motivo tecnico di questo comportamento collegandolo al meccanismo di attivazione on-demand del tunnel IPsec.
+4. Il primo ping da PC-A1 verso Web Server spesso fallisce, mentre i successivi funzionano. Spiega il motivo tecnico di questo comportamento collegandolo al meccanismo di attivazione on-demand del tunnel IPsec.
 
-5. Esamina l'output di `show crypto ipsec sa` sul tuo router. Identifica i campi `#pkts encaps` e `#pkts decaps`. Dopo dieci ping da PC-A1 verso PC-B1, di quanto dovresti aspettarti che questi contatori siano aumentati? Perché entrambi aumentano invece di uno solo?
+5. Esamina l'output di `show crypto ipsec sa` sul tuo router. Identifica i campi `#pkts encaps` e `#pkts decaps`. Dopo dieci ping da PC-A1 verso Web Server, di quanto dovresti aspettarti che questi contatori siano aumentati? Perché entrambi aumentano invece di uno solo?
 
 6. Cos'è il `lifetime` della SA e perché la IPsec SA (Fase 2, 3600s) ha una durata più breve della IKE SA (Fase 1, 86400s)?
 
