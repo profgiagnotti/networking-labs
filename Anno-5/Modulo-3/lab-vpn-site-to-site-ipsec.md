@@ -76,9 +76,9 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Dispositivo | Modello PT | Quantità |
 |---|---|---|
-| Router A (Sede A) | Router-PT o 2911 | 1 |
-| Router B (Sede B) | Router-PT o 2911 | 1 |
-| Router ISP (Internet) | Router-PT o 2911 | 1 |
+| Router A (Sede A) | Router 1941 | 1 |
+| Router B (Sede B) | Router 1941 | 1 |
+| Router ISP (Internet) | Router 1941 | 1 |
 | Switch Sede A | 2960-24TT | 1 |
 | Switch Sede B | 2960-24TT | 1 |
 | PC Sede A | PC-PT | 2 |
@@ -90,14 +90,14 @@ Al termine di questo laboratorio sarai in grado di:
 |---|---|---|---|---|
 | PC-A1 | Fa0 | Switch-A | Fa0/1 | Dritto |
 | PC-A2 | Fa0 | Switch-A | Fa0/2 | Dritto |
-| Switch-A | Fa0/3 | Router A | Fa0/0 | Dritto |
-| Router A | Se2/0 | Router ISP | Se2/0 | Seriale |
-| Router ISP | Se3/0 | Router B | Se2/0 | Seriale |
-| Router B | Fa0/0 | Switch-B | Fa0/1 | Dritto |
-| Switch-B | Fa0/2 | PC-B1 | Fa0 | Dritto |
-| Switch-B | Fa0/3 | PC-B2 | Fa0 | Dritto |
+| Switch-A | Fa0/3 | Router A | G0/0 | Dritto |
+| Router A | G0/1 | Router ISP | G0/0 | Incrociato |
+| Router ISP | G0/1 | Router B | G0/1 | Incrociato |
+| Router B | G0/0 | Switch-B | Fa0/3 | Dritto |
+| Switch-B | Fa0/1 | PC-B1 | Fa0 | Dritto |
+| Switch-B | Fa0/2 | PC-B2 | Fa0 | Dritto |
 
-> ⚠️ Per il collegamento seriale in Packet Tracer: usa il cavo **Serial DCE** dal lato del Router ISP verso Router A. Il lato DCE richiede `clock rate`. Il cavo **Serial DTE** va sull'altro lato.
+
 
 ---
 
