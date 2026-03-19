@@ -126,6 +126,7 @@ RouterISP(config-if)# exit
 
 ! Routing con protocollo RIP v1 (per semplicità nell'attività di laboratorio)
 ! (nella realtà Internet non conosce gli IP privati — servirebbe il NAT, PAT)
+! (Alternativa -> rotte statiche)
 RouterISP(config)# router rip
 RouterISP(config)# network 100.0.0.0
 RouterISP(config)# network 200.0.0.0
@@ -160,6 +161,7 @@ RouterA(config-if)# no shutdown
 RouterA(config-if)# exit
 
 ! Routing con protocollo RIP v1 (per semplicità nell'attività di laboratorio)
+! (Alternativa -> rotta di default 0.0.0.0 0.0.0.0 100.0.0.2)
 RouterISP(config)# router rip
 RouterISP(config)# network 100.0.0.0
 RouterISP(config)# network 192.168.1.0
@@ -190,6 +192,7 @@ RouterB(config-if)# no shutdown
 RouterB(config-if)# exit
 
 ! Routing con protocollo RIP v1 (per semplicità nell'attività di laboratorio)
+! (Alternativa -> rotta di default 0.0.0.0 0.0.0.0 200.0.0.2)
 RouterISP(config)# router rip
 RouterISP(config)# network 200.0.0.0
 RouterISP(config)# network 192.168.2.0
