@@ -124,10 +124,11 @@ RouterISP(config-if)# ip address 200.0.0.1 255.255.255.252
 RouterISP(config-if)# no shutdown
 RouterISP(config-if)# exit
 
-! Rotte statiche verso le LAN private
-! (nella realtà Internet non conosce gli IP privati — qui serve per il laboratorio)
-! Rotta verso il link WAN di Router A
-RouterISP(config)# ip route 100.0.0.0 255.255.255.252 100.0.0.2
+! Routing con protocollo RIP v1 (per semplicità nell'attività di laboratorio)
+! (nella realtà Internet non conosce gli IP privati — servirebbe il NAT, PAT)
+RouterISP(config)# router rip
+RouterISP(config)# network 100.0.0.0
+RouterISP(config)# network 200.0.0.0
 
 ! Rotta verso il link WAN di Router B
 RouterISP(config)# ip route 200.0.0.0 255.255.255.252 200.0.0.2
@@ -158,8 +159,10 @@ RouterA(config-if)# description WAN-verso-ISP
 RouterA(config-if)# no shutdown
 RouterA(config-if)# exit
 
-! Rotta di default verso Internet (tramite ISP)
-RouterA(config)# ip route 0.0.0.0 0.0.0.0 100.0.0.1
+! Routing con protocollo RIP v1 (per semplicità nell'attività di laboratorio)
+RouterISP(config)# router rip
+RouterISP(config)# network 100.0.0.0
+RouterISP(config)# network 192.168.1.0
 
 RouterA(config)# end
 RouterA# write memory
@@ -186,8 +189,10 @@ RouterB(config-if)# description WAN-verso-ISP
 RouterB(config-if)# no shutdown
 RouterB(config-if)# exit
 
-! Rotta di default verso Internet (tramite ISP)
-RouterB(config)# ip route 0.0.0.0 0.0.0.0 200.0.0.1
+! Routing con protocollo RIP v1 (per semplicità nell'attività di laboratorio)
+RouterISP(config)# router rip
+RouterISP(config)# network 200.0.0.0
+RouterISP(config)# network 192.168.2.0
 
 RouterB(config)# end
 RouterB# write memory
