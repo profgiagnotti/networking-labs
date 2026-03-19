@@ -487,7 +487,7 @@ RouterA(config)#access-list 100 permit tcp any host 192.168.0.2 eq 443
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 25
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 110
 RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
-
+```
 
 
 #### ── BLOCCO ESPLICITO FTP DALL' ESTERNO e PERMESSI FTP DALL'INTERNO ──────────
