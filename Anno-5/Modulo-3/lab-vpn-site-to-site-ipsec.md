@@ -32,8 +32,8 @@ Al termine di questo laboratorio sarai in grado di:
 │       SEDE A               │         │       SEDE B               │
 │   LAN: 192.168.1.0/24      │         │   LAN: 192.168.2.0/24      │
 │                            │         │                            │
-│  [PC-A1] 192.168.1.10      │         │  [PC-B1] 192.168.2.10      │
-│  [PC-A2] 192.168.1.20      │         │  [PC-B2] 192.168.2.20      │
+│  [PC-A1] 192.168.1.10      │         │  [Web Server] 192.168.2.2  │
+│  [PC-A2] 192.168.1.20      │         │        |                   │
 │       |                    │         │        |                   │
 │  [Switch-A]                │         │  [Switch-B]                │
 │       | Fa0/3              |         |        | Fa0/3             |
@@ -57,8 +57,7 @@ Al termine di questo laboratorio sarai in grado di:
 |---|---|---|---|---|
 | PC-A1 | Fa0 | 192.168.1.10 | 255.255.255.0 | 192.168.1.1 |
 | PC-A2 | Fa0 | 192.168.1.20 | 255.255.255.0 | 192.168.1.1 |
-| PC-B1 | Fa0 | 192.168.2.10 | 255.255.255.0 | 192.168.2.1 |
-| PC-B2 | Fa0 | 192.168.2.20 | 255.255.255.0 | 192.168.2.1 |
+| Web Server | Fa0 | 192.168.2.2 | 255.255.255.0 | 192.168.2.1 |
 | Router A — verso LAN Sede A | G0/0 | 192.168.1.1 | 255.255.255.0 | — |
 | Router A — verso ISP | G0/1 | 100.0.0.2 | 255.255.255.252 | — |
 | Router B — verso LAN Sede B | G0/0 | 192.168.2.1 | 255.255.255.0 | — |
@@ -82,7 +81,7 @@ Al termine di questo laboratorio sarai in grado di:
 | Switch Sede A | 2960-24TT | 1 |
 | Switch Sede B | 2960-24TT | 1 |
 | PC Sede A | PC-PT | 2 |
-| PC Sede B | PC-PT | 2 |
+| Web Server | Server-PT | 1 |
 
 ### 1.2 — Cablaggio
 
@@ -94,8 +93,7 @@ Al termine di questo laboratorio sarai in grado di:
 | Router A | G0/1 | Router ISP | G0/0 | Incrociato |
 | Router ISP | G0/1 | Router B | G0/1 | Incrociato |
 | Router B | G0/0 | Switch-B | Fa0/3 | Dritto |
-| Switch-B | Fa0/1 | PC-B1 | Fa0 | Dritto |
-| Switch-B | Fa0/2 | PC-B2 | Fa0 | Dritto |
+| Switch-B | Fa0/1 | Web Server | Fa0 | Dritto |
 
 
 
@@ -205,15 +203,14 @@ RouterB# write memory
 
 **PC-A1**: IP `192.168.1.10` / SM `255.255.255.0` / GW `192.168.1.1`  
 **PC-A2**: IP `192.168.1.20` / SM `255.255.255.0` / GW `192.168.1.1`  
-**PC-B1**: IP `192.168.2.10` / SM `255.255.255.0` / GW `192.168.2.1`  
-**PC-B2**: IP `192.168.2.20` / SM `255.255.255.0` / GW `192.168.2.1`
+**Web Server**: IP `192.168.2.2` / SM `255.255.255.0` / GW `192.168.2.1`  
 
 ### Verifica connettività base (senza VPN)
 
 Da **PC-A1**: `Desktop → Command Prompt`
 ```
 ping 200.0.0.2    ! → IP pubblico Router B: deve rispondere ✅
-ping 192.168.2.10 ! → PC-B1: deve rispondere ✅ (PRIMA della VPN)
+ping 192.168.2.2  ! → Web Server: deve rispondere ✅ (PRIMA della VPN)
 ```
 
 > 📌 Assicurati che questi ping funzionino **prima** di configurare IPsec. Se non funzionano il problema è nel routing, non nella VPN.
