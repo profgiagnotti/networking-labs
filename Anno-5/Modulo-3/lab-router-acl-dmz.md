@@ -499,11 +499,11 @@ RouterA(config)#access-list 100 permit tcp any host 192.168.0.3 eq 143
 ! Nega TUTTO il traffico non autorizzato verso il server FTP
 
 RouterA(config)#access-list 100 remark === FTP INTERNO SOLO LAN ===
-RouterA(config)#deny tcp any host 192.168.1.2 eq 21
+RouterA(config)#access-list 100 deny tcp any host 192.168.1.2 eq 21
 
 ! Permetti il traffico dalla rete interna verso il server FTP
 
-RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
+RouterA(config)#access-list 100 permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 ```
 
 ### ── BLOCCO ESPLICITO DALL' ESTERNO verso la LAN ──────────
@@ -511,7 +511,7 @@ RouterA(config)#permit tcp 192.168.1.0 0.0.0.255 host 192.168.1.2 eq 21
 ! Blocchiamo tutti gli accessi diretti alla LAN interna
 
 RouterA(config)#access-list 100 remark === BLOCCO ACCESSI DIRETTI ALLA LAN ===
-RouterA(config)#deny ip any 192.168.1.0 0.0.0.255
+RouterA(config)#access-list 100 deny ip any 192.168.1.0 0.0.0.255
 ```
 
 
