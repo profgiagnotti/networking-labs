@@ -104,11 +104,17 @@ Al termine di questo laboratorio sarai in grado di:
 Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9 sui Router A e Router B:
 
 ```
+Router> enable
+Router# configure terminal
+Router(config)# hostname RouterA
 RouterA(config)# licence boot module c1900 technology-ackage security k9
 RouterA# wr mem
 RouterA# reload
 
 !idem per il Router B
+Router> enable
+Router# configure terminal
+Router(config)# hostname RouterB
 RouterB(config)# licence boot module c1900 technology-ackage security k9
 RouterB# wr mem
 RouterB# reload
@@ -175,9 +181,7 @@ RouterISP# write memory
 ### Router A — configurazione base
 
 ```
-Router> enable
-Router# configure terminal
-Router(config)# hostname RouterA
+
 
 ! Interfaccia LAN verso Sede A
 RouterA(config)# interface G0/0
@@ -206,9 +210,7 @@ RouterA# write memory
 ### Router B — configurazione base
 
 ```
-Router> enable
-Router# configure terminal
-Router(config)# hostname RouterB
+
 
 ! Interfaccia LAN verso Sede B
 RouterB(config)# interface G0/0
