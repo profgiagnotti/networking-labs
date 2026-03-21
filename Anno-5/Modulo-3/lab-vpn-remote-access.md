@@ -126,12 +126,47 @@ Al termine di questo laboratorio sarai in grado di:
 
 ## 📋 Step 2 — Configurazione base dei router
 
-### Router Internet
+Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9 sui Router A e Router B:
 
 ```
 Router> enable
 Router# configure terminal
+Router(config)# hostname RouterVPN
+RouterA(config)# licence boot module c1900 technology-ackage security k9
+RouterA# wr mem
+RouterA# reload
+
+!idem per il Router B
+Router> enable
+Router# configure terminal
 Router(config)# hostname RouterInternet
+RouterB(config)# licence boot module c1900 technology-ackage security k9
+RouterB# wr mem
+RouterB# reload
+```
+
+Se l'installazione è andata a buon fine il comando 
+```
+RouterA#show version  
+RouterB#show version 
+```
+
+dovrebbe mostrare:
+
+Technology Package License Information for Module:'c1900'
+```
+----------------------------------------------------------------
+Technology    Technology-package          Technology-package
+              Current       Type          Next reboot
+-----------------------------------------------------------------
+ipbase        ipbasek9      Permanent     ipbasek9
+security      securityk9    Evaluation    securityk9
+data          disable       None          None
+```
+
+### Router Internet
+
+```
 
 ! Interfaccia verso Router VPN
 RouterInternet(config)# interface G0/0
@@ -157,9 +192,6 @@ RouterInternet# write memory
 ### Router VPN Gateway — configurazione base
 
 ```
-Router> enable
-Router# configure terminal
-Router(config)# hostname RouterVPN
 
 ! Interfaccia LAN verso la rete aziendale
 RouterVPN(config)# interface G0/0
@@ -195,10 +227,6 @@ ping 10.0.0.1    ! → Router VPN WAN: deve rispondere ✅
 
 ## 📋 Step 3 — Configurazione del server VPN (EasyVPN Server) sul RouterVPN
 
-Prima di procedere dobbiamo installare il software securityk9:
-```
-RouterVPN(config)#license boot module c1900 technology-package securityk9
-```
 
 
 La VPN Remote Access su Cisco IOS si basa su **EasyVPN** — una versione semplificata che centralizza tutta la configurazione sul server.
