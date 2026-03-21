@@ -105,7 +105,13 @@ Prima di configurare il protocollo IPsec dobbiamo installare il software securit
 
 ```
 RouterA(config)# licence boot module c1900 technology-ackage security k9
+RouterA# wr mem
+RouterA# reload
+
+!idem per il Router B
 RouterB(config)# licence boot module c1900 technology-ackage security k9
+RouterB# wr mem
+RouterB# reload
 ```
 
 Se l'installazione è andata a buon fine il comando 
