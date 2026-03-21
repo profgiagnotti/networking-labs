@@ -99,7 +99,36 @@ Al termine di questo laboratorio sarai in grado di:
 
 ---
 
-## 📋 Step 2 — Configurazione base (prerequisito VPN)
+## 📋 Step 2 — Configurazione IPsec su Router A
+
+Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9 sui Router A e Router B:
+
+```
+RouterA(config)# licence boot module c1900 technology-ackage security k9
+RouterB(config)# licence boot module c1900 technology-ackage security k9
+```
+
+Se l'installazione è andata a buon fine il comando 
+```
+RouterA#show version  
+RouterB#show version 
+```
+
+dovrebbe mostrare:
+
+Technology Package License Information for Module:'c1900'
+```
+----------------------------------------------------------------
+Technology    Technology-package          Technology-package
+              Current       Type          Next reboot
+-----------------------------------------------------------------
+ipbase        ipbasek9      Permanent     ipbasek9
+security      securityk9    Evaluation    securityk9
+data          disable       None          None
+```
+
+
+## 📋 Step 3 — Configurazione base (prerequisito VPN)
 
 Prima di configurare IPsec, la rete deve essere operativa: interfacce configurate e routing funzionante.
 
@@ -229,33 +258,6 @@ ping 192.168.2.2  ! → Web Server: deve rispondere ✅ (PRIMA della VPN)
 
 ---
 
-## 📋 Step 3 — Configurazione IPsec su Router A
-
-Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9:
-
-```
-RouterA(config)# licence boot module c1900 technology-ackage security k9
-```
-
-Se l'installazione è andata a buon fine il comando 
-```
-RouterA#show version
-```
-
-dovrebbe mostrare:
-
-Technology Package License Information for Module:'c1900'
-```
-----------------------------------------------------------------
-Technology    Technology-package          Technology-package
-              Current       Type          Next reboot
------------------------------------------------------------------
-ipbase        ipbasek9      Permanent     ipbasek9
-security      securityk9    Evaluation    securityk9
-data          disable       None          None
-```
-
-
 
 La configurazione IPsec segue sempre quattro passi. Ogni passo corrisponde a un elemento della negoziazione IKE.
 
@@ -368,11 +370,7 @@ RouterA# write memory
 
 ## 📋 Step 4 — Configurazione IPsec su Router B
 
-Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9:
 
-```
-RouterB(config)# licence boot module c1900 technology-ackage security k9
-```
 
 La configurazione è **speculare** a Router A. Le differenze sono:
 - IP del peer: `200.0.0.1` (Router A)
