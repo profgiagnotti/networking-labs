@@ -250,14 +250,14 @@ RouterVPN(config)# crypto isakmp policy 10
 RouterVPN(config-isakmp)# encryption aes 256
 ! Cifratura del canale IKE di controllo
 
-RouterVPN(config-isakmp)# hash sha256
+RouterVPN(config-isakmp)# hash sha
 ! Hash per l'integrità dei messaggi IKE
 
 RouterVPN(config-isakmp)# authentication pre-share
 ! Autenticazione con chiave pre-condivisa
 ! In ambienti enterprise si usano certificati digitali (rsa-sig)
 
-RouterVPN(config-isakmp)# group 14
+RouterVPN(config-isakmp)# group 5
 ! Gruppo Diffie-Hellman 2048 bit
 
 RouterVPN(config-isakmp)# lifetime 28800
@@ -277,7 +277,7 @@ RouterVPN(config)# crypto isakmp client configuration group GRUPPO-REMOTI
 ! "GRUPPO-REMOTI" = nome del gruppo VPN
 ! Il client VPN dovrà inserire esattamente questo nome
 
-RouterVPN(config-isakmp-group)# key ChiaveGruppo!2024
+RouterVPN(config-isakmp-group)# key ChiaveGruppo!2026
 ! Chiave di gruppo (Group Password): il client deve conoscerla per autenticarsi
 ! È una prima autenticazione "di gruppo" — non identifica il singolo utente
 
@@ -285,46 +285,13 @@ RouterVPN(config-isakmp-group)# pool POOL-VPN-REMOTI
 ! Assegna al gruppo il pool di IP definito al Passo 1
 ! I client di questo gruppo riceveranno un IP da questo pool
 
-RouterVPN(config-isakmp-group)# acl 101
-! ACL che definisce quali risorse aziendali sono accessibili ai client VPN
-! La configuriamo subito dopo
-
-RouterVPN(config-isakmp-group)# dns 192.168.1.1
-! Server DNS da comunicare ai client VPN (opzionale)
-
 RouterVPN(config-isakmp-group)# exit
 ```
 
-### Passo 4 — ACL di accesso per i client VPN
+
+### Passo 4 — Profilo IPsec e crypto map dinamica
 
 ```
-! Questa ACL definisce il "split tunneling":
-! quale traffico deve passare nel tunnel VPN
-! e quale può andare direttamente su Internet
-RouterVPN(config)# access-list 101 permit ip 172.16.1.0 0.0.0.255 192.168.1.0 0.0.0.255
-! Traffico dal pool VPN (172.16.1.0/24) verso la LAN aziendale (192.168.1.0/24)
-! passa nel tunnel cifrato
-
-! Se vuoi che TUTTO il traffico del client passi nel tunnel (no split tunneling):
-! access-list 101 permit ip any any
-```
-
-### Passo 5 — Transform Set (Fase 2)
-
-```
-! Algoritmi per la protezione dei dati utente
-RouterVPN(config)# crypto ipsec transform-set TS-REMOTE-ACCESS esp-aes 256 esp-sha256-hmac
-RouterVPN(cfg-crypto-trans)# mode tunnel
-RouterVPN(cfg-crypto-trans)# exit
-```
-
-### Passo 6 — Profilo IPsec e crypto map dinamica
-
-```
-! IPsec Profile — lega il transform set per uso con la crypto map dinamica
-RouterVPN(config)# crypto ipsec profile PROFILO-REMOTI
-RouterVPN(ipsec-profile)# set transform-set TS-REMOTE-ACCESS
-RouterVPN(ipsec-profile)# exit
 
 ! Crypto Map DINAMICA — usata per client la cui IP non è noto in anticipo
 ! A differenza della Site-to-Site (IP fisso), i client remoti hanno IP variabile
@@ -356,8 +323,8 @@ RouterVPN(config)# aaa authorization network VPN-AUTHZ local
 ! Autorizzazione di rete tramite database locale
 
 ! Crea gli utenti VPN nel database locale
-RouterVPN(config)# username alice secret AlicePass!2024
-RouterVPN(config)# username bob   secret BobPass!2024
+RouterVPN(config)# username alice secret AlicePass!2026
+RouterVPN(config)# username bob   secret BobPass!2026
 ! Questi sono le credenziali PERSONALI di ciascun utente VPN
 ! (diversi dalle credenziali di gruppo definite al Passo 3)
 
