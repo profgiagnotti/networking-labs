@@ -20,6 +20,7 @@ Al termine di questo laboratorio sarai in grado di:
 - ✅ Configurare il PAT dinamico per permettere agli host LAN e DMZ di accedere a Internet
 - ✅ Configurare il NAT statico per rendere il web server in DMZ raggiungibile dall'esterno
 - ✅ Scrivere e applicare ACL sull'interfaccia outside dell'ASA
+- ✅ Scrivere e applicare ACL sull'interfaccia dmz dell'ASA (per consentire l'accesso dalla LAN)
 
 ---
 
@@ -33,15 +34,15 @@ Al termine di questo laboratorio sarai in grado di:
 │  │       DMZ        │           │         LAN          │    │
 │  │                  │           │                      │    │
 │  │  [WebServer]     │           │  [PC1] 192.168.1.10  │    │
-│  │  192.168.2.10    │           │  [PC2] 192.168.1.20  │    │
+│  │  172.16.0.2      │           │  [PC2] 192.168.1.20  │    │
 │  │       |          │           │  [SrvInt] 192.168.1.2│    │
 │  │  [Switch1]       │           │       |              │    │
 │  │       |          │           │  [Switch2]           │    │
 │  │  Fa0/2           │           │  Fa0/2               │    │
 │  └───────┬──────────┘           └────────┬─────────────┘    │
 │          │ Gig1/1                        │ Gig1/2           │
-│          └───────────[ASA 5506-X]────────┘                  │
-│                           │ Gig1/3                          │
+│          └───────────[ASA 5506-X]────────┘ (192.168.01.1)   │
+│  (172.16.0.1)             │ Gig1/3                          │
 │                      10.0.0.1                               │
 └───────────────────────────┼─────────────────────────────────┘
                             │ 10.0.0.2
@@ -61,7 +62,7 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Dispositivo | Interfaccia | Indirizzo IP | Subnet Mask | Gateway | Note |
 |---|---|---|---|---|---|
-| WebServer (DMZ) | Fa0 | 192.168.2.10 | 255.255.255.0 | 192.168.2.1 | |
+| WebServer (DMZ) | Fa0 | 172.16.0.2 | 255.255.0.0 | 172.16.0.1 | |
 | PC1 (LAN) | Fa0 | 192.168.1.10 | 255.255.255.0 | 192.168.1.1 | |
 | PC2 (LAN) | Fa0 | 192.168.1.21 | 255.255.255.0 | 192.168.1.1 | |
 | Server Interno (LAN) | Fa0 | 192.168.1.2 | 255.255.255.0 | 192.168.1.1 | |
@@ -105,7 +106,7 @@ Al termine di questo laboratorio sarai in grado di:
 | Router Internet | Fa0/0 | Switch0 (esterno) | Fa0/1 |
 | PC esterno | Fa0 | Switch0 (esterno) | Fa0/2 |
 
-### 1.3 — Connessione seriale o con cavo dritto ASA → Router
+### 1.3 — Connessione con cavo dritto ASA → Router
 
 | Da | Porta | A | Porta |
 |---|---|---|---|
@@ -124,15 +125,15 @@ Router> enable
 Router# configure terminal
 Router(config)# hostname RouterInternet
 
-! Interfaccia verso ASA (rete 150.10.0.0)
+! Interfaccia verso ASA (rete 10.0.0.0)
 RouterInternet(config)# interface FastEthernet1/0
-RouterInternet(config-if)# ip address 150.10.0.2 255.255.255.0
+RouterInternet(config-if)# ip address 10.0.0.2 255.0.0.0
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
 
-! Interfaccia verso rete esterna (rete 10.0.0.0)
+! Interfaccia verso rete esterna (rete 8.0.0.0)
 RouterInternet(config)# interface FastEthernet0/0
-RouterInternet(config-if)# ip address 10.0.0.1 255.0.0.0
+RouterInternet(config-if)# ip address 8.0.0.1 255.0.0.0
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
 
@@ -190,6 +191,20 @@ Clicca su ogni PC → **Desktop → IP Configuration**:
 | IP Address | 192.168.1.2 |
 | Subnet Mask | 255.255.255.0 |
 | Default Gateway | 192.168.1.1 |
+
+Attiva il servizio HTTP: **Services → HTTP → ON**
+
+Modifica la pagina `index.html` con un contenuto riconoscibile:
+```
+<!DOCTYPE html>
+<html>
+<head><title>Azienda - Web Server DMZ</title></head>
+<body>
+  <h1>Server Web Interno</h1>
+  <p>Questo server si trova nella LAN - IP: 192.168.1.2</p>
+</body>
+</html>
+```
 
 ### WebServer (DMZ)
 
@@ -291,7 +306,7 @@ L'ASA usa il meccanismo **object NAT** (o auto-NAT): si crea un oggetto di rete 
 ! Tutti i PC della rete 192.168.1.0/24 accedono a Internet
 ! con l'IP pubblico 10.0.0.1 e porte diverse
 ! ─────────────────────────────────────────────────
-ASA-Lab(config)# object network LAN-INTERNA
+ASA-Lab(config)# object network INSIDE_NET
 ASA-Lab(config-network-object)# subnet 192.168.1.0 255.255.255.0
 ASA-Lab(config-network-object)# nat (inside,outside) dynamic interface
 ASA-Lab(config-network-object)# exit
@@ -307,7 +322,7 @@ ASA-Lab(config-network-object)# exit
 
 ! ─────────────────────────────────────────────────
 ! NAT STATICO — il web server in DMZ è raggiungibile
-! dall'esterno all'IP pubblico 10.0.0.1
+! dall'esterno all'IP pubblico 10.0.0.100
 ! IP privato 172.16.0.2 ↔ IP pubblico 10.0.0.100
 ! (mappatura permanente e bidirezionale)
 ! ─────────────────────────────────────────────────
@@ -317,7 +332,7 @@ ASA-Lab(config-network-object)# nat (dmz,outside) static 10.0.0.100
 ASA-Lab(config-network-object)# exit
 ```
 
-> ⚠️ **Nota importante**: il NAT statico per il web server mappa l'intero IP pubblico 150.10.0.1 verso 192.168.2.10. Questo significa che qualsiasi traffico che arriva su 150.10.0.1 — su qualsiasi porta — viene girato al web server. Per limitare solo la porta 80, usare il **port forwarding** (vedi sezione avanzata in fondo).
+> ⚠️ **Nota importante**: il NAT statico per il web server mappa l'intero IP pubblico 10.0.0.1 verso 172.16.0.2. Questo significa che qualsiasi traffico che arriva su 10.0.0.100 — su qualsiasi porta — viene girato al web server. Per limitare solo la porta 80, usare il **port forwarding** (vedi sezione avanzata in fondo).
 
 ### Verifica NAT
 
@@ -357,7 +372,7 @@ Il traffico dall'interfaccia outside (security-level 0) verso inside e dmz (secu
 
 ```
 ! ─────────────────────────────────────────────────
-! ACL OUTSIDE — applicata al traffico in ingresso
+! ACL OUTSIDE-IN — applicata al traffico in ingresso
 ! da Internet verso la rete aziendale
 ! ─────────────────────────────────────────────────
 
@@ -378,15 +393,34 @@ ASA-Lab(config)# access-list OUTSIDE-IN extended permit tcp any host 10.0.0.100 
 ! Permette traffico HTTPS (porta 443) verso il web server
 ASA-Lab(config)# access-list OUTSIDE-IN extended permit tcp any host 10.0.0.100 eq 443
 
-! Nega esplicitamente tutto il resto
-! (la regola "deny any any" è implicita su ASA,
-! ma renderla esplicita attiva il logging)
-ASA-Lab(config)# access-list OUTSIDE-IN extended deny ip any any
-
 ! ─────────────────────────────────────────────────
 ! APPLICA L'ACL all'interfaccia outside in ingresso
 ! ─────────────────────────────────────────────────
 ASA-Lab(config)# access-group OUTSIDE-IN in interface outside
+
+ASA-Lab(config)# end
+ASA-Lab# write memory
+```
+
+---
+### 4.5 — Configurazione ACL sull'interfaccia dmz
+
+Il traffico dall'interfaccia inside (security-level 100) verso dmz (security-level più alto) dovrebbe essere **permesso di default** ma conviene esplicitarlo in modo da evitare che gli host interni non raggiungano il Web Server in dmz
+
+```
+! ─────────────────────────────────────────────────
+! ACL DMZ-IN — applicata al traffico in ingresso
+! da Lan interna verso la DMZ
+! ─────────────────────────────────────────────────
+
+! Permette traffico verso il web server
+! I client interni si connettono all'IP privato 172.16.0.2
+ASA-Lab(config)# access-list DMZ-IN extended permit ip 192.168.1.0 255.255.255.0 host 172.16.0.2
+
+! ─────────────────────────────────────────────────
+! APPLICA L'ACL all'interfaccia dmz in ingresso
+! ─────────────────────────────────────────────────
+ASA-Lab(config)# access-group DMZ-IN in interface dmz
 
 ASA-Lab(config)# end
 ASA-Lab# write memory
