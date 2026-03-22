@@ -68,7 +68,7 @@ Al termine di questo laboratorio sarai in grado di:
 | Server Interno (LAN) | Fa0 | 192.168.1.2 | 255.255.255.0 | 192.168.1.1 | |
 | PC esterno | Fa0 | 8.0.0.2 | 255.0.0.0 | 8.0.0.1 | |
 | ASA — interfaccia LAN | Gig1/2 | 192.168.1.1 | 255.255.255.0 | — | inside, SL 100 |
-| ASA — interfaccia DMZ | Gig1/2 | 172.16.0.1 | 255.255.255.0 | — | dmz, SL 50 |
+| ASA — interfaccia DMZ | Gig1/2 | 172.16.0.1 | 255.255.0.0 | — | dmz, SL 50 |
 | ASA — interfaccia WAN | Gig1/3 | 10.0.0.1 | 255.0.0.0 | — | outside, SL 0 |
 | Router Internet — verso ASA | Fa1/0 | 10.0.0.2 | 255.0.0.0 | — | |
 | Router Internet — verso esterno | Fa0/0 | 8.0.0.1 | 255.0.0.0 | — | |
@@ -213,7 +213,7 @@ Modifica la pagina `index.html` con un contenuto riconoscibile:
 | Campo | Valore |
 |---|---|
 | IP Address | 172.16.0.2 |
-| Subnet Mask | 255.255.255.0 |
+| Subnet Mask | 255.255.0.0 |
 | Default Gateway | 172.16.0.1 |
 
 Attiva il servizio HTTP: **Services → HTTP → ON**
