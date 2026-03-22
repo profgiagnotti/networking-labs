@@ -414,8 +414,7 @@ Il traffico dall'interfaccia inside (security-level 100) verso dmz (security-lev
 ! ─────────────────────────────────────────────────
 
 ! Permette traffico verso il web server
-! I client interni si connettono all'IP privato 172.16.0.2
-ASA-Lab(config)# access-list DMZ-IN extended permit ip 192.168.1.0 255.255.255.0 host 172.16.0.2
+ASA-Lab(config)# access-list DMZ-IN extended permit ip any any
 
 ! ─────────────────────────────────────────────────
 ! APPLICA L'ACL all'interfaccia dmz in ingresso
