@@ -403,7 +403,7 @@ ASA-Lab# write memory
 ```
 
 ---
-### 4.5 — Configurazione ACL sull'interfaccia dmz
+### 4.6 — Configurazione ACL sull'interfaccia dmz
 
 Il traffico dall'interfaccia inside (security-level 100) verso dmz (security-level più alto) dovrebbe essere **permesso di default** ma conviene esplicitarlo in modo da evitare che gli host interni non raggiungano il Web Server in dmz
 
