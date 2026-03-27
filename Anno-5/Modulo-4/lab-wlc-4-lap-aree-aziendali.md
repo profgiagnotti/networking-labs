@@ -31,10 +31,10 @@ Al termine di questo laboratorio sarai in grado di:
                     ┌──────────────────────────────────────────────┐
                     │              INTERNET SIMULATO               │
                     │                                              │
-                    │  [ISR331-Internet]  ─── [Switch-2960]       │
-                    │   Gig0/0/0                Fa0/1             │
-                    │  10.0.0.0/8            ┌──┴──┐              │
-                    │                   Fa0/2 │     │ Fa0/3       │
+                    │  [ISR331-Internet]  ─── [Switch-2960]        │
+                    │   Gig0/0/0                Fa0/1              │
+                    │  10.0.0.0/8            ┌──┴──┐               │
+                    │                   Fa0/2│     │ Fa0/3         │
                     │              [PC-Esterna]  [Server DNS-HTTP] │
                     │              10.0.0.10      10.0.0.254       │
                     └──────────────┬───────────────────────────────┘
@@ -48,9 +48,9 @@ Al termine di questo laboratorio sarai in grado di:
                     │  [Switch-Concentratore 2960]                 │
                     │   Fa0  ─── [Server DHCP 192.168.1.254]       │
                     │   Gig1 ─── [WLC-2504]  ─── Gig2 ─── [MGMT-PC]│
-                    │   Fa7/1                                       │
-                    │     │                                         │
-                    │     └─── LAP-AMM  LAP-TEC  LAP-MAG  LAP-SEG │
+                    │   Fa2/1     Fa3/1      Fa6/1       Fa7/1     │
+                    │     │         |          |           |       │
+                    │  LAP-AMM   LAP-TEC    LAP-MAG     LAP-SEG    │
                     └──────────────────────────────────────────────┘
 
 Aree funzionali (SSID):
