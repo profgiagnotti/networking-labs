@@ -67,16 +67,16 @@ Aree funzionali (SSID):
 
 | Dispositivo | Interfaccia | Indirizzo IP | Subnet Mask | Gateway / Note |
 |---|---|---|---|---|
-| Server DHCP (aziendale) | Fa0 | 192.168.1.254 | 255.255.255.0 | — |
-| WLC-2504 | Management | 192.168.1.10 | 255.255.255.0 | 192.168.1.254 |
-| MGMT-PC | Fa0 | (da DHCP o statico) | 255.255.255.0 | 192.168.1.254 |
+| Server DHCP (aziendale) | Fa0 | 192.168.1.254 | 255.255.255.0 | 192.168.1.1 |
+| WLC-2504 | Management | 192.168.1.10 | 255.255.255.0 | 192.168.1.1 |
+| MGMT-PC | Fa0 | 192.168.1.20 | 255.255.255.0 | 192.168.1.1 |
 | ISR331-Frontiera | Fa8/1 (→ Switch) | 192.168.1.1 | 255.255.255.0 | — |
 | ISR331-Frontiera | Gig0/0/1 (→ Internet) | 20.100.50.1 | 255.0.0.0 | — |
 | ISR331-Internet | Gig0/0/1 (→ Frontiera) | 20.100.50.2 | 255.0.0.0 | — |
 | ISR331-Internet | Gig0/0/0 (→ Switch Internet) | 10.0.0.1 | 255.0.0.0 | — |
 | Server DNS-HTTP | Fa0 | 10.0.0.254 | 255.0.0.0 | 10.0.0.1 |
 | PC Rete Esterna | Fa0 | 10.0.0.10 | 255.0.0.0 | 10.0.0.1 |
-| Smartphone (tutti) | Wi-Fi | (da DHCP WLC) | 255.255.255.0 | 192.168.1.254 |
+| Smartphone (tutti) | Wi-Fi | (da DHCP WLC) | 255.255.255.0 | 192.168.1.1 |
 
 > 📌 **DNS configurato su tutti i client**: `www.sito.it → 10.0.0.254` · `www.dhcp.it → 192.168.1.254` · `www.wlc.it → 192.168.1.10`
 
