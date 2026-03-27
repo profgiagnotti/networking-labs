@@ -149,11 +149,13 @@ Il Server-PT che funge da DHCP distribuirà indirizzi a tutti i client della ret
 
 ### 2.1 — Indirizzo IP del server
 
-Apri il Server-PT → scheda **Config** → **FastEthernet0**:
+Apri il Server-PT → scheda **Desktop** → **Ip Configuration**:
 
 ```
-IP Address:   192.168.1.254
-Subnet Mask:  255.255.255.0
+IP Address:       192.168.1.254
+Subnet Mask:      255.255.255.0
+Default Gateway:  192.168.1.1
+DNS Server:       10.0.0.254
 ```
 
 ### 2.2 — Configurazione servizio DHCP
@@ -162,7 +164,7 @@ Nella scheda **Services** → **DHCP**:
 
 ```
 Pool Name:       serverPool
-Default Gateway: 192.168.1.254
+Default Gateway: 192.168.1.1
 DNS Server:      10.0.0.254
 Start IP:        192.168.1.100
 Subnet Mask:     255.255.255.0
@@ -170,6 +172,29 @@ Max Users:       50
 ```
 
 > ⚠️ Segna anche l'indirizzo del WLC da escludere dal pool: il WLC userà `192.168.1.10` come Management IP — questo IP viene assegnato manualmente, non via DHCP.
+
+
+---
+
+## 📋 Step 3 — Configurazione del Server DNS-HTTP su Internet
+
+Apri il Server-PT della rete Internet (10.0.0.254):
+
+### Indirizzo IP
+
+Scheda **Desktop** → **Ip Configuration**::
+
+```
+IP Address:       10.0.0.254
+Subnet Mask:      255.0.0.0
+Default Gateway:  10.0.0.1
+DNS Server:       10.0.0.254
+```
+
+### Servizio HTTP
+
+Scheda **Services** → **HTTP**: verifica che il servizio sia **ON**.  
+Puoi personalizzare la pagina `index.html` con il contenuto che preferisci.
 
 ### 2.3 — Configurazione servizio DNS
 
@@ -180,31 +205,6 @@ Nella scheda **Services** → **DNS**, attiva il servizio e aggiungi i record A:
 | www.sito.it | A | 10.0.0.254 |
 | www.dhcp.it | A | 192.168.1.254 |
 | www.wlc.it | A | 192.168.1.10 |
-
----
-
-## 📋 Step 3 — Configurazione del Server DNS-HTTP su Internet
-
-Apri il Server-PT della rete Internet (10.0.0.254):
-
-### Indirizzo IP
-
-Scheda **Config** → **FastEthernet0**:
-
-```
-IP Address:   10.0.0.254
-Subnet Mask:  255.0.0.0
-Gateway:      10.0.0.1
-```
-
-### Servizio HTTP
-
-Scheda **Services** → **HTTP**: verifica che il servizio sia **ON**.  
-Puoi personalizzare la pagina `index.html` con il contenuto che preferisci.
-
-### Servizio DNS (opzionale ma consigliato)
-
-Aggiungi gli stessi record DNS del server aziendale così i PC sulla rete Internet possono risolvere i nomi.
 
 ---
 
