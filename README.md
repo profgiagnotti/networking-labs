@@ -34,7 +34,7 @@ Networking-labs/
     ├── Modulo-1/                   ✅ disponibile
     ├── Modulo-2/                   ✅ disponibile
     ├── Modulo-3/                   ✅ disponibile
-    ├── Modulo-4/                   🔜 in arrivo
+    ├── Modulo-4/                   ✅ disponibile
     ├── Modulo-5/                   🔜 in arrivo
     └── Modulo-6/                   🔜 in arrivo
 ```
@@ -103,6 +103,16 @@ Networking-labs/
 [lab-asa-dmz-nat-acl.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)<br>
 [lab-vpn-site-to-site-ipsec.pkt](./Anno-5/Modulo-3/lab-vpn-site-to-site-ipsec.pkt)<br>
 [lab-vpn-remote-access.pkt](./Anno-5/Modulo-3/lab-vpn-remote-access.pkt)<br>
+
+### Modulo 4 — Reti Wireless
+
+| Laboratorio | Argomento | Tool | Livello |
+|---|---|---|---|
+| [Lab Rete con WLC](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
+
+> 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
+[lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.pkt)<br>
+
 
 ---
 
