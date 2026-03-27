@@ -206,6 +206,17 @@ Nella scheda **Services** → **DNS**, attiva il servizio e aggiungi i record A:
 | www.dhcp.it | A | 192.168.1.254 |
 | www.wlc.it | A | 192.168.1.10 |
 
+### 2.3 — Configurazione iniziale WLC
+
+Nella scheda **Config** → **Management**:
+
+```
+IP Address:       192.168.1.10
+Subnet Mask:      255.255.255.0
+Default Gateway:  192.168.1.1
+DNS Server:       10.0.0.254
+```
+
 ---
 
 ## 📋 Step 4 — Configurazione dei router
@@ -288,7 +299,7 @@ Il WLC si configura tramite **interfaccia web HTTPS** — non da CLI. Per accede
 
 ### 5.1 — Prerequisiti
 
-- Il MGMT-PC deve avere un indirizzo IP nella rete `192.168.1.0/24` (ricevuto via DHCP dal Server-PT)
+- Il MGMT-PC deve avere un indirizzo IP (`192.168.1.20/24`)
 - Verifica la connettività: dal MGMT-PC apri il **Command Prompt** e digita:
 
 ```
@@ -302,7 +313,7 @@ Se il ping non risponde, verifica i cavi e la configurazione DHCP del server.
 Dal **MGMT-PC** → apri **Desktop** → **Web Browser**:
 
 ```
-URL: https://192.168.1.10
+URL: https://192.168.1.10   (oppure www.wlc.it)
 ```
 
 > ⚠️ Il protocollo è **https** (non http). Se la pagina non si apre, verifica che il WLC abbia ricevuto correttamente l'IP di management.
@@ -310,8 +321,8 @@ URL: https://192.168.1.10
 **Credenziali di accesso:**
 
 ```
-Username: psygnosys
-Password: Mg260676
+Username: cisco
+Password: Cisco@1234
 ```
 
 *(o le credenziali di default del WLC-2504 in Packet Tracer)*
@@ -371,11 +382,14 @@ Per ciascuna WLAN clicca **Add** (o il pulsante `+`) e compila:
 | Campo | Valore |
 |---|---|
 | WLAN ID | 2 |
-| Profile Name | Ufficio Tecnico |
-| SSID | Ufficio Tecnico |
+| Profile Name | UfficioTecnico |
+| SSID | UfficioTecnico |
+
+Nella scheda successiva (WLAN Edit) oppure cliccando sulla VLAN id configurare:
+
 | Status | **Enable** ✅ |
 | Security | **WPA2 PSK** |
-| Passphrase | *(a tua scelta — es. "UfficioTec2024")* |
+| Passphrase | *(a tua scelta — es. "UfficioTecnico")* |
 
 Clicca **Apply**.
 
@@ -386,9 +400,12 @@ Clicca **Apply**.
 | WLAN ID | 3 |
 | Profile Name | Magazzino |
 | SSID | Magazzino |
+
+Nella scheda successiva (WLAN Edit) oppure cliccando sulla VLAN id configurare:
+
 | Status | **Enable** ✅ |
 | Security | **WPA2 PSK** |
-| Passphrase | *(a tua scelta)* |
+| Passphrase | *(a tua scelta — es. "Magazzino")* |
 
 Clicca **Apply**.
 
@@ -399,9 +416,12 @@ Clicca **Apply**.
 | WLAN ID | 4 |
 | Profile Name | Segreteria |
 | SSID | Segreteria |
+
+Nella scheda successiva (WLAN Edit) oppure cliccando sulla VLAN id configurare:
+
 | Status | **Enable** ✅ |
 | Security | **WPA2 PSK** |
-| Passphrase | *(a tua scelta)* |
+| Passphrase | *(a tua scelta — es. "Segreteria")* |
 
 Clicca **Apply**.
 
@@ -417,33 +437,33 @@ Dalla dashboard WLC → scheda **WIRELESS** (o **Advanced**) → **AP Groups**:
 
 Clicca **Add Group** per ogni area:
 
-### Gruppo AMM (Amministrazione)
+### Gruppo Amministrazione 
 
-1. **Group Name**: AMM
+1. **Group Name**: Amministrazione
 2. Clicca **Add**
 3. Nella sezione **WLANs** del gruppo: clicca **Add** → seleziona **SSID: Amministrazione** → **ADD**
-4. Nella sezione **APs**: clicca **Add** → seleziona **LAP-AMM** → **ADD**
+4. Nella sezione **APs**: clicca **Add** → seleziona **LAP-Amministrazione** → **ADD**
 5. Clicca **Apply**
 
-### Gruppo TEC (Ufficio Tecnico)
+### Gruppo UfficioTecnico
 
-1. **Group Name**: TEC
+1. **Group Name**: UfficioTecnico
 2. WLAN assegnata: **Ufficio Tecnico**
-3. AP assegnato: **LAP-TEC**
+3. AP assegnato: **LAP-UfficioTecnico**
 4. Clicca **Apply**
 
-### Gruppo MAG (Magazzino)
+### Gruppo Magazzino
 
-1. **Group Name**: MAG
+1. **Group Name**: Magazzino
 2. WLAN assegnata: **Magazzino**
-3. AP assegnato: **LAP-MAG**
+3. AP assegnato: **LAP-Magazzino**
 4. Clicca **Apply**
 
-### Gruppo SEG (Segreteria)
+### Gruppo Segreteria
 
-1. **Group Name**: SEG
+1. **Group Name**: Segreteria
 2. WLAN assegnata: **Segreteria**
-3. AP assegnato: **LAP-SEG**
+3. AP assegnato: **LAP-Segreteria**
 4. Clicca **Apply**
 
 > ⚠️ **Se gli AP non compaiono nell'elenco**: significa che i LAP non hanno ancora stabilito il tunnel CAPWAP con il WLC. Verifica che tutti i LAP abbiano il Power Adapter installato e che raggiungano il WLC via ping.
