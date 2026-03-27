@@ -108,7 +108,7 @@ Networking-labs/
 
 | Laboratorio | Argomento | Tool | Livello |
 |---|---|---|---|
-| [Lab Rete con WLC](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab Rete con WLC](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.md) | Wireless LAN con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
 [lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.pkt)<br>
