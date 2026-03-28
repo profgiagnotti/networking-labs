@@ -39,11 +39,15 @@ Al termine di questo laboratorio sarai in grado di:
 │  MOBILE   200.100.50.0                │
 │                                       │
 │  [Central Office Server0]             │
-│        │ Fa0/0                        │
-│  [Router2] ──────── Gig0/1 ───────────┼──┐
-│        │ Fa0/1                        │  │
-└────────┼──────────────────────────────┘  │
-         │                                  │ Eth6
+|        │                              |
+|        │                              │
+|        │                              │
+│        │ Gig0/0                       │
+│  [Router] ──────── Gig0/1 ────────────┼───┐
+│        │ Gig0/2                       │   │
+└────────┼──────────────────────────────┘   │
+         │                                  |
+         |Fa0/1                             │ Eth6
 ┌────────┴──────────────┐    ┌──────────────┴──────────────────────┐
 │  ISP   10.0.0.0       │    │  WAN   200.100.51.0                 │
 │                       │    │                                     │
@@ -71,21 +75,22 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Dispositivo | Interfaccia | Indirizzo IP | Subnet Mask | Gateway |
 |---|---|---|---|---|
-| Smartphone0 | Wireless | 172.16.1.1 (DHCP) | 255.255.255.0 | 172.16.1.254 |
+| Smartphone0 | Wireless | (DHCP) | 255.255.255.0 | 172.16.1.254 |
 | Cell Tower0 | — | — | — | (configurato automaticamente) |
-| Central Office Server0 | Coax0/0 | 200.100.50.1 | 255.255.255.0 | — |
-| Router2 | Fa0/0 (→ CO Server) | 200.100.50.2 | 255.255.255.0 | — |
+| Central Office Server0 | Coax0/0 | 172.16.0.1 | 255.255.255.0 | — |
+| Central Office Server0 | Fa0/0 | (DHCP) | — | — |
+| Router2 | Gig0/0 (→ CO Server) | 200.100.50.1 | 255.255.255.0 | — |
 | Router2 | Gig0/1 (→ Cloud WAN) | 200.100.51.1 | 255.255.255.0 | — |
-| Router2 | Fa0/1 (→ Switch ISP) | 10.0.0.1 | 255.0.0.0 | — |
-| Cloud0 | Eth6 (→ Router2) | 200.100.51.2 | 255.255.255.0 | — |
+| Router2 | Gig0/2 (→ Switch ISP) | 10.0.0.1 | 255.0.0.0 | — |
+| Cloud0 | Eth6 (→ Router) | (configurato automaticamente)  | — | — |
 | Cloud0 | Coax7 (→ Cable Modem) | (interno Cloud) | — | — |
 | Cable Modem0 | 0/0 (→ Home Gateway) | (bridge) | — | — |
-| Home Gateway0 | Internet (0/0) | 192.168.25.1 | 255.255.255.0 | — |
-| Home Gateway0 | LAN | 192.168.25.254 | 255.255.255.0 | — |
-| Laptop0 | Wi-Fi | 192.168.25.x (DHCP) | 255.255.255.0 | 192.168.25.254 |
-| DNS Server | Fa0 | 10.0.0.2 | 255.0.0.0 | 10.0.0.1 |
-| IoT Server | Fa0 | 10.0.0.3 | 255.0.0.0 | 10.0.0.1 |
-| Dispositivi IoT (IoT0–IoT6) | Wi-Fi | 192.168.25.x (DHCP) | 255.255.255.0 | 192.168.25.254 |
+| Home Gateway0 | (DHCP) | — | — | — |
+| Home Gateway0 | LAN | 192.168.25.1 | 255.255.255.0 | — |
+| Laptop0 | Wi-Fi | (DHCP) | — | — |
+| DNS Server | Fa0 | 10.0.0.254 | 255.0.0.0 | 10.0.0.1 |
+| IoT Server | Fa0 | 10.0.0.253 | 255.0.0.0 | 10.0.0.1 |
+| Dispositivi IoT (IoT0–IoT6) | Wi-Fi | 192.168.25.x (DHCP) | 255.255.255.0 | 192.168.25.1 |
 
 > 📌 **Nota sulla rete cellulare**: in Packet Tracer il Cell Tower gestisce automaticamente l'indirizzamento nella rete SMART. Il Central Office Server funge da gateway tra la rete cellulare e la rete IP tradizionale.
 
@@ -156,10 +161,66 @@ Tutti i dispositivi nella HOME (Laptop, dispositivi IoT) si connettono **in moda
 > 📌 **Configurazione Cloud**: il Cloud-PT in Packet Tracer richiede di configurare le connessioni nelle sue schede interne. Verrà dettagliato nello Step 4.
 
 ---
+## 📋 Step 2 — Configurazione della rete MOBILE (Router e Central Office)
 
-## 📋 Step 2 — Configurazione della rete MOBILE (Central Office e Router)
+### 2.1 — Router — configurazione interfacce
 
-### 2.1 — Central Office Server0
+```
+Router> enable
+Router# configure terminal
+Router(config)# hostname Router
+
+! Interfaccia verso il Central Office Server (rete cellulare)
+Router(config)# interface GigabitEthernet0/0
+Router(config-if)# ip address 200.100.50.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+
+! Interfaccia verso il Cloud (WAN verso la HOME)
+Router(config)# interface GigabitEthernet0/1
+Router(config-if)# ip address 200.100.51.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+
+! Interfaccia verso lo switch ISP (DNS e IoT Server)
+Router(config)# interface GigabitEthernet0/2
+Router(config-if)# ip address 10.0.0.1 255.0.0.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+
+Router(config)# end
+Router# write memory
+```
+
+### 2.2 — Router — DHCP
+
+Impostiamo sul Router il servizio DHCP verso le reti MOBILE e WAN
+
+```
+! DHCP verso la rete Mobile
+Router# configure terminal
+Router(config)# interface GigabitEthernet0/2
+Router(config-if)# ip dhcp pool MOBILE
+Router(dhcp-config)# network 200.100.50.0 255.255.255.0
+Router(dhcp-config)# default router 200.100.50.1
+Router(dhcp-config)# dns-server 10.0.0.254
+Router(dhcp-config)# end
+
+! DHCP verso la rete WAN
+Router# configure terminal
+Router(config)# interface GigabitEthernet0/1
+Router(config-if)# ip dhcp pool WAN
+Router(dhcp-config)# network 200.100.51.0 255.255.255.0
+Router(dhcp-config)# default router 200.100.51.1
+Router(dhcp-config)# dns-server 10.0.0.254
+Router(dhcp-config)# end
+
+Router# write memory
+```
+
+---
+
+### 2.3 — Central Office Server0
 
 Il Central Office Server è il cuore della rete cellulare — gestisce le connessioni degli smartphone tramite la Cell Tower e li instrada verso la rete IP.
 
@@ -167,75 +228,45 @@ Clicca su **Central Office Server0** → scheda **Config**:
 
 **Interfaccia verso la Cell Tower (Coax0/0)**:
 ```
-IP Address:  200.100.50.1
+IP Address:  172.16.1.1
 Subnet Mask: 255.255.255.0
+```
+
+**Interfaccia verso il Router (Backbone)**:
+```
+Attivare il DHCP e verificare l'acquisizione dei parametri
 ```
 
 **Impostazioni DHCP per la rete cellulare SMART**:
 
 Nella scheda **Services** → **DHCP**:
 ```
-Pool Name:       cellularPool
-Default Gateway: 172.16.1.254
-DNS Server:      10.0.0.2
-Start IP:        172.16.1.1
+
+Start IP:        172.16.1.100
 Subnet Mask:     255.255.255.0
-Max Users:       20
+Max Users:       50
+DNS Server:      10.0.0.254
 ```
 
 > 📌 Il Central Office Server assegna IP agli smartphone nella rete `172.16.1.0/24` attraverso la Cell Tower.
 
-### 2.2 — Router2 — configurazione interfacce
 
+## 📋 Step 3 — Configurazione della Cell Tower
+
+Clicca su **Settings** → flag on **Allow External Access**:
+
+## 📋 Step 4 — Configurazione Smartphone
+
+Clicca su **Wireless0** → Port status **OFF** (non flaggare)
+Clicca su **3G/4G Cell1** → Clicca su **DHCP Refresh**:
+Verifica che venga acquisito l'IP e la subnet mask ad esempio:
 ```
-Router> enable
-Router# configure terminal
-Router(config)# hostname Router2
-
-! Interfaccia verso il Central Office Server (rete cellulare)
-Router2(config)# interface FastEthernet0/0
-Router2(config-if)# ip address 200.100.50.2 255.255.255.0
-Router2(config-if)# no shutdown
-Router2(config-if)# exit
-
-! Interfaccia verso il Cloud (WAN verso la HOME)
-Router2(config)# interface GigabitEthernet0/1
-Router2(config-if)# ip address 200.100.51.1 255.255.255.0
-Router2(config-if)# no shutdown
-Router2(config-if)# exit
-
-! Interfaccia verso lo switch ISP (DNS e IoT Server)
-Router2(config)# interface FastEthernet0/1
-Router2(config-if)# ip address 10.0.0.1 255.0.0.0
-Router2(config-if)# no shutdown
-Router2(config-if)# exit
-
-Router2(config)# end
-Router2# write memory
+Ip Address:  172.16.1.100
+Subnet Mask: 255.255.255.0
 ```
 
-### 2.3 — Router2 — routing statico
 
-Il router deve sapere come raggiungere la rete HOME (192.168.25.0/24) attraverso il Cloud e il Cable Modem.
-
-```
-Router2# configure terminal
-
-! Route statica verso la rete domestica HOME via Cloud/Cable Modem
-Router2(config)# ip route 192.168.25.0 255.255.255.0 200.100.51.2
-
-! Route statica verso la rete cellulare SMART via Central Office
-Router2(config)# ip route 172.16.1.0 255.255.255.0 200.100.50.1
-
-Router2(config)# end
-Router2# write memory
-```
-
-> 📌 **Alternativa con RIP**: se preferisci usare un protocollo di routing dinamico al posto delle route statiche, puoi configurare RIP su tutte le interfacce del Router2 e del Home Gateway. Per semplicità in questo lab usiamo route statiche.
-
----
-
-## 📋 Step 3 — Configurazione dei Server ISP
+## 📋 Step 4 — Configurazione dei Server ISP
 
 ### 3.1 — DNS Server (10.0.0.2)
 
