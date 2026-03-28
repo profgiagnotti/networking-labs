@@ -257,9 +257,9 @@ Clicca su **Settings** → flag on **Allow External Access**:
 
 ## 📋 Step 4 — Configurazione Smartphone
 
-Clicca su **Wireless0** → Port status **OFF** (non flaggare)
-Clicca su **3G/4G Cell1** → Clicca su **DHCP Refresh**:
-Verifica che venga acquisito l'IP e la subnet mask ad esempio:
+Clicca su **Wireless0** → Port status **OFF** (non flaggare)<br>
+Clicca su **3G/4G Cell1** → Clicca su **DHCP Refresh**:<br>
+Verifica che venga acquisito l'IP e la subnet mask ad esempio:<br>
 ```
 Ip Address:  172.16.1.100
 Subnet Mask: 255.255.255.0
