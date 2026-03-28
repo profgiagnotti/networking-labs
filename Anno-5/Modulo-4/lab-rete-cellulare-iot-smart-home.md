@@ -266,14 +266,14 @@ Subnet Mask: 255.255.255.0
 ```
 
 
-## 📋 Step 4 — Configurazione dei Server ISP
+## 📋 Step 5 — Configurazione dei Server ISP
 
-### 3.1 — DNS Server (10.0.0.2)
+### 3.1 — DNS Server (10.0.0.254)
 
 Clicca su **DNS Server** → scheda **Config** → **FastEthernet0**:
 
 ```
-IP Address:  10.0.0.2
+IP Address:  10.0.0.254
 Subnet Mask: 255.0.0.0
 Gateway:     10.0.0.1
 ```
@@ -283,18 +283,17 @@ Scheda **Services** → **DNS** — Attiva il servizio e aggiungi i record:
 | Name | Type | Address |
 |---|---|---|
 | iot.server.com | A | 10.0.0.3 |
-| home.gateway.com | A | 192.168.25.1 |
 
 > Il record DNS per il server IoT permette agli smartphone di trovare il server usando un nome invece di un IP.
 
-### 3.2 — IoT Server (10.0.0.3)
+### 3.2 — IoT Server (10.0.0.253)
 
 Il **Server IoT** è il componente più importante di questo lab: gestisce la registrazione e il controllo remoto di tutti i dispositivi IoT della HOME.
 
 Clicca su **IoT Server** → scheda **Config** → **FastEthernet0**:
 
 ```
-IP Address:  10.0.0.3
+IP Address:  10.0.0.253
 Subnet Mask: 255.0.0.0
 Gateway:     10.0.0.1
 ```
