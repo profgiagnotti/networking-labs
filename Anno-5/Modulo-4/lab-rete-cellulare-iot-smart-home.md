@@ -401,16 +401,17 @@ Password: 0123456789
 ## 📋 Step 6 — Configurazione del Laptop
 
 Il Laptop nella HOME può essere usato per verificare la connessione e per accedere all'interfaccia di gestione dell'Home Gateway.
+Clicca su **Laptop0** → scheda **Physical** → Spegni il Laptop e sostituisci la scheda Ethernet con la scheda WPC300N → Accendi il Laptop
 
 Clicca su **Laptop0** → scheda **Config** → **Wireless0**:
 
 ```
-SSID:     HomeNetwork
+SSID:     HomeGateway
 Security: WPA2-PSK
-Password: HomePass2024
+Password: 0123456789
 ```
 
-Seleziona **DHCP** per l'indirizzo IP — il Laptop riceverà un IP nel range `192.168.25.10 – 192.168.25.59`.
+Seleziona **DHCP** per l'indirizzo IP — il Laptop riceverà un IP nel range `192.168.25.100 – 192.168.25.149`.
 
 ---
 
@@ -427,29 +428,29 @@ Per ogni dispositivo IoT (IoT0–IoT6):
 3. Imposta:
 
 ```
-SSID:     HomeNetwork
+SSID:     HomeGateway
 Auth:     WPA2-PSK
-Password: HomePass2024
+Password: 0123456789
 ```
 
 4. Seleziona **DHCP** per l'indirizzo IP
-5. Verifica che il dispositivo riceva un IP nel range `192.168.25.10+`
+5. Verifica che il dispositivo riceva un IP nel range `192.168.25.100+`
 
 ### 7.2 — Registrazione sul Server IoT remoto
 
 Dopo la connessione Wi-Fi, ogni dispositivo deve essere registrato sul Server IoT:
 
 1. Clicca sul dispositivo IoT → scheda **Config**
-2. Cerca la sezione **IoT Server** o **Remote Server**
+2. Cerca la sezione **Remote Server**
 3. Compila i campi:
 
 ```
-Server Address: 10.0.0.3
+Server Address: www.iot.org
 Username:       admin
 Password:       admin
 ```
 
-4. Clicca **Connect** o **Register**
+
 
 > ✅ Quando la registrazione ha successo, il dispositivo appare nella lista del Server IoT.
 
@@ -506,19 +507,22 @@ Tutti i ping devono rispondere prima di procedere con l'IoT Manager.
 
 L'**IoT Manager** è l'app sullo smartphone che permette di visualizzare e controllare i dispositivi IoT registrati sul server remoto.
 
-Clicca su **Smartphone0** → **Desktop** → **IoT Monitor** (o **IoT Manager**):
+Clicca su **Smartphone0** → **Desktop** → **IoT Monitor**:
 
 1. Nella schermata di login inserisci:
 
 ```
-Server Address: 10.0.0.3
+Server Address: www.iot.org
+
+Al primo accesso richiede la registrazione:
+
 Username:       admin
 Password:       admin
 ```
 
 2. Clicca **Login** / **Connect**
 
-3. Se la connessione ha successo, vedrai la lista di tutti i dispositivi IoT registrati (IoT0–IoT6)
+Inizialmente la maschera è vuota ma se su ogni dispositivo IoT si clicca **Config** → **IoTServer** → **Connect** vedrai la lista di tutti i dispositivi IoT registrati (IoT0–IoT6)
 
 4. Per ogni dispositivo puoi:
    - Visualizzare lo **stato attuale** (acceso/spento, aperto/chiuso, rilevato/non rilevato)
