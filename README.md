@@ -36,7 +36,7 @@ Networking-labs/
     ├── Modulo-3/                   ✅ disponibile
     ├── Modulo-4/                   ✅ disponibile
     ├── Modulo-5/                   🔜 in arrivo
-    └── Modulo-6/                   🔜 in arrivo
+    
 ```
 
 ---
