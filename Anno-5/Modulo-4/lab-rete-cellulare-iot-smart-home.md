@@ -268,7 +268,7 @@ Subnet Mask: 255.255.255.0
 
 ## 📋 Step 5 — Configurazione dei Server ISP
 
-### 3.1 — DNS Server (10.0.0.254)
+### 5.1 — DNS Server (10.0.0.254)
 
 Clicca su **DNS Server** → scheda **Config** → **FastEthernet0**:
 
@@ -282,7 +282,7 @@ Scheda **Services** → **DNS** — Attiva il servizio e aggiungi i record:
 
 | Name | Type | Address |
 |---|---|---|
-| iot.server.com | A | 10.0.0.3 |
+| iot.server.com | A | 10.0.0.253 |
 
 > Il record DNS per il server IoT permette agli smartphone di trovare il server usando un nome invece di un IP.
 
