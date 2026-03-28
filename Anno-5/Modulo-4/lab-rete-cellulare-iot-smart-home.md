@@ -302,11 +302,9 @@ Scheda **Services** → **IoT**:
 
 ```
 Status: ON (attiva il servizio)
-Username: admin
-Password: admin
 ```
 
-> ⚠️ **Annota le credenziali** username e password del server IoT — le userai per registrare i dispositivi e accedere dall'IoT Manager dello smartphone.
+> ⚠️ **le credenziali** Quando verranno configurati i dispositivi IoT vedremo in questa maschera usernme e password 
 
 ---
 
