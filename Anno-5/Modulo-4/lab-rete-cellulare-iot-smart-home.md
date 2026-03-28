@@ -79,9 +79,9 @@ Al termine di questo laboratorio sarai in grado di:
 | Cell Tower0 | — | — | — | (configurato automaticamente) |
 | Central Office Server0 | Coax0/0 | 172.16.0.1 | 255.255.255.0 | — |
 | Central Office Server0 | Fa0/0 | (DHCP) | — | — |
-| Router2 | Gig0/0 (→ CO Server) | 200.100.50.1 | 255.255.255.0 | — |
-| Router2 | Gig0/1 (→ Cloud WAN) | 200.100.51.1 | 255.255.255.0 | — |
-| Router2 | Gig0/2 (→ Switch ISP) | 10.0.0.1 | 255.0.0.0 | — |
+| Router | Gig0/0 (→ CO Server) | 200.100.50.1 | 255.255.255.0 | — |
+| Router | Gig0/1 (→ Cloud WAN) | 200.100.51.1 | 255.255.255.0 | — |
+| Router | Gig0/2 (→ Switch ISP) | 10.0.0.1 | 255.0.0.0 | — |
 | Cloud0 | Eth6 (→ Router) | (configurato automaticamente)  | — | — |
 | Cloud0 | Coax7 (→ Cable Modem) | (interno Cloud) | — | — |
 | Cable Modem0 | 0/0 (→ Home Gateway) | (bridge) | — | — |
@@ -136,9 +136,9 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Da | Porta | A | Porta | Tipo cavo |
 |---|---|---|---|---|
-| Central Office Server0 | Fa0/0 | Router2 | Fa0/0 | Dritto |
-| Router2 | Gig0/1 | Cloud0 | Eth6 | Dritto |
-| Router2 | Fa0/1 | Switch ISP | Fa0/1 | Dritto |
+| Central Office Server0 | Fa0/0 | Router | Fa0/0 | Dritto |
+| Router | Gig0/1 | Cloud0 | Eth6 | Dritto |
+| Router | Fa0/1 | Switch ISP | Fa0/1 | Dritto |
 
 #### Area WAN → HOME
 
@@ -199,8 +199,7 @@ Impostiamo sul Router il servizio DHCP verso le reti MOBILE e WAN
 ```
 ! DHCP verso la rete Mobile
 Router# configure terminal
-Router(config)# interface GigabitEthernet0/2
-Router(config-if)# ip dhcp pool MOBILE
+Router(config)# ip dhcp pool MOBILE
 Router(dhcp-config)# network 200.100.50.0 255.255.255.0
 Router(dhcp-config)# default router 200.100.50.1
 Router(dhcp-config)# dns-server 10.0.0.254
@@ -208,8 +207,7 @@ Router(dhcp-config)# end
 
 ! DHCP verso la rete WAN
 Router# configure terminal
-Router(config)# interface GigabitEthernet0/1
-Router(config-if)# ip dhcp pool WAN
+Router(config)# ip dhcp pool WAN
 Router(dhcp-config)# network 200.100.51.0 255.255.255.0
 Router(dhcp-config)# default router 200.100.51.1
 Router(dhcp-config)# dns-server 10.0.0.254
@@ -286,7 +284,7 @@ Scheda **Services** → **DNS** — Attiva il servizio e aggiungi i record:
 
 > Il record DNS per il server IoT permette agli smartphone di trovare il server usando un nome invece di un IP.
 
-### 3.2 — IoT Server (10.0.0.253)
+### 5.2 — IoT Server (10.0.0.253)
 
 Il **Server IoT** è il componente più importante di questo lab: gestisce la registrazione e il controllo remoto di tutti i dispositivi IoT della HOME.
 
@@ -308,9 +306,9 @@ Status: ON (attiva il servizio)
 
 ---
 
-## 📋 Step 4 — Configurazione del Cloud e del Cable Modem
+## 📋 Step 6 — Configurazione del Cloud e del Cable Modem
 
-### 4.1 — Cloud-PT
+### 6.1 — Cloud-PT
 
 Il Cloud simula la rete Internet che collega la rete cellulare (MOBILE) alla rete domestica (HOME). Va configurato internamente per instradare il traffico tra le due interfacce.
 
@@ -320,7 +318,7 @@ Nella sezione **Cable** aggiungi (cliccando su ADD) le connessioni:
 
 | Interfaccia ingresso | Interfaccia uscita |
 |---|---|
-| Eth6 (da Router2) | Coax7 (verso Cable Modem) |
+| Eth6 (da Router) | Coax7 (verso Cable Modem) |
 
 > 📌 In Packet Tracer il Cloud-PT funziona come un bridge/switch tra le interfacce configurate. Assicurati che Eth6 e Coax7 siano associate nella stessa "connection" interna del Cloud.
 
@@ -329,7 +327,7 @@ Nella sezione **Cable** aggiungi (cliccando su ADD) le connessioni:
 2. Seleziona **Cable** nel menu a sinistra
 4. Clicca **Add**
 
-### 4.2 — Cable Modem-PT
+### 6.2 — Cable Modem-PT
 
 Il Cable Modem fa da bridge tra la rete coassiale del Cloud e la porta Ethernet dell'Home Gateway.
 
@@ -344,13 +342,13 @@ Clicca su **Cable Modem0** → scheda **Config**:
 
 ---
 
-## 📋 Step 5 — Configurazione dell'Home Gateway
+## 📋 Step 7 — Configurazione dell'Home Gateway
 
 L'**Home Gateway** (modello DLC10d in PT) svolge tre funzioni: router verso Internet, access point Wi-Fi per i dispositivi domestici, e server DHCP per la rete HOME.
 
 Clicca su **Home Gateway0** → scheda **Config**:
 
-### 5.1 — Interfaccia Internet (WAN)
+### 7.1 — Interfaccia Internet (WAN)
 
 ```
 Connection Type: DHCP  (riceve IP dal Cable Modem/Cloud)
@@ -361,7 +359,7 @@ Subnet Mask: 255.255.255.0
 
 > ⚠️ In alcuni scenari PT l'Home Gateway riceve l'IP WAN automaticamente via DHCP dal Cloud. In altri va configurato manualmente. Verifica cosa funziona nella tua versione.
 
-### 5.2 — Interfaccia LAN (rete domestica)
+### 7.2 — Interfaccia LAN (rete domestica)
 
 Scheda **Config** → **LAN**:
 
@@ -370,7 +368,7 @@ IP Address:  192.168.25.1
 Subnet Mask: 255.255.255.0
 ```
 
-### 5.3 — DHCP per la rete HOME
+### 7.3 — DHCP per la rete HOME
 
 Scheda **Config** → **Internet**:
 Abilitare il DHCP e verificare che venga acquisita la configurazione:
@@ -382,7 +380,7 @@ Default Gateway:   200.100.51.1
 DNS Server:        10.0.0.254
 ```
 
-### 5.4 — Rete Wi-Fi domestica
+### 7.4 — Rete Wi-Fi domestica
 
 Scheda **Config** → **Wireless**:
 
@@ -398,7 +396,7 @@ Password: 0123456789
 
 ---
 
-## 📋 Step 6 — Configurazione del Laptop
+## 📋 Step 8 — Configurazione del Laptop
 
 Il Laptop nella HOME può essere usato per verificare la connessione e per accedere all'interfaccia di gestione dell'Home Gateway.
 Clicca su **Laptop0** → scheda **Physical** → Spegni il Laptop e sostituisci la scheda Ethernet con la scheda WPC300N → Accendi il Laptop
@@ -415,11 +413,11 @@ Seleziona **DHCP** per l'indirizzo IP — il Laptop riceverà un IP nel range `1
 
 ---
 
-## 📋 Step 7 — Configurazione dei dispositivi IoT
+## 📋 Step 9 — Configurazione dei dispositivi IoT
 
 Ogni dispositivo IoT deve essere connesso alla rete Wi-Fi dell'Home Gateway e poi registrato sul Server IoT remoto. Ripeti questa procedura per ciascuno dei 7 dispositivi.
 
-### 7.1 — Connessione alla rete Wi-Fi
+### 9.1 — Connessione alla rete Wi-Fi
 
 Per ogni dispositivo IoT (IoT0–IoT6):
 
@@ -436,7 +434,7 @@ Password: 0123456789
 4. Seleziona **DHCP** per l'indirizzo IP
 5. Verifica che il dispositivo riceva un IP nel range `192.168.25.100+`
 
-### 7.2 — Registrazione sul Server IoT remoto
+### 9.2 — Registrazione sul Server IoT remoto
 
 Dopo la connessione Wi-Fi, ogni dispositivo deve essere registrato sul Server IoT:
 
@@ -454,7 +452,7 @@ Password:       admin
 
 > ✅ Quando la registrazione ha successo, il dispositivo appare nella lista del Server IoT.
 
-### 7.3 — Riepilogo dispositivi IoT da configurare
+### 9.3 — Riepilogo dispositivi IoT da configurare
 
 | Dispositivo | Nome PT | Tipo | Funzione |
 |---|---|---|---|
@@ -468,11 +466,11 @@ Password:       admin
 
 ---
 
-## 📋 Step 8 — Configurazione dello Smartphone
+## 📋 Step 10 — Configurazione dello Smartphone
 
 Lo smartphone si connette via rete cellulare e deve poter raggiungere il Server IoT per controllare i dispositivi HOME da remoto.
 
-### 8.1 — Connessione alla rete cellulare
+### 10.1 — Connessione alla rete cellulare
 
 Clicca su **Smartphone0** → scheda **Config** → **Wireless (Cellular)**:
 
@@ -483,7 +481,7 @@ Clicca su **Smartphone0** → scheda **Config** → **Wireless (Cellular)**:
 
 Seleziona **DHCP** — lo smartphone riceverà un IP dalla rete cellulare nel range `172.16.1.x` tramite il Central Office Server.
 
-### 8.2 — Verifica connettività
+### 10.2 — Verifica connettività
 
 Clicca su **Smartphone0** → **Desktop** → **Command Prompt**:
 
@@ -491,7 +489,7 @@ Clicca su **Smartphone0** → **Desktop** → **Command Prompt**:
 ! Verifica IP ricevuto
 ipconfig
 
-! Ping verso il Server IoT (percorso completo: cellulare → Router2 → IoT Server)
+! Ping verso il Server IoT (percorso completo: cellulare → Router → IoT Server)
 ping 10.0.0.3
 
 ! Ping verso il DNS Server
@@ -503,7 +501,7 @@ ping 192.168.25.254
 
 Tutti i ping devono rispondere prima di procedere con l'IoT Manager.
 
-### 8.3 — Configurazione IoT Manager
+### 10.3 — Configurazione IoT Manager
 
 L'**IoT Manager** è l'app sullo smartphone che permette di visualizzare e controllare i dispositivi IoT registrati sul server remoto.
 
@@ -531,21 +529,21 @@ Inizialmente la maschera è vuota ma se su ogni dispositivo IoT si clicca **Conf
 
 ---
 
-## 📋 Step 9 — Verifica completa end-to-end
+## 📋 Step 11 — Verifica completa end-to-end
 
-### Test 1 — Ping dal Router2 verso tutti i segmenti
+### Test 1 — Ping dal Router verso tutti i segmenti
 
 ```
-Router2# ping 10.0.0.2
+Router# ping 10.0.0.2
 ! Risposta attesa: !!!!! (5 successi)
 
-Router2# ping 10.0.0.3
+Router# ping 10.0.0.3
 ! Risposta attesa: !!!!!
 
-Router2# ping 192.168.25.254
+Router# ping 192.168.25.254
 ! Risposta attesa: !!!!!
 
-Router2# ping 200.100.50.1
+Router# ping 200.100.50.1
 ! Risposta attesa: !!!!!
 ```
 
@@ -555,7 +553,7 @@ Smartphone → Desktop → Command Prompt:
 
 ```
 ping 10.0.0.3
-! Il percorso completo: Smartphone → Cell Tower → CO Server → Router2 → IoT Server
+! Il percorso completo: Smartphone → Cell Tower → CO Server → Router → IoT Server
 
 ping 192.168.25.254
 ! Raggiunge l'Home Gateway della rete domestica
@@ -589,19 +587,19 @@ http://10.0.0.2
 | Problema | Causa probabile | Soluzione |
 |---|---|---|
 | Smartphone non riceve IP | Cell Tower non configurata o CO Server non attivo | Verifica la connessione Coax tra Cell Tower e CO Server; controlla il pool DHCP nel CO Server |
-| Ping da Smartphone verso `10.0.0.3` fallisce | Route mancante in Router2 | Verifica `show ip route` su Router2 — devono esserci route verso `10.0.0.0` e `192.168.25.0` |
+| Ping da Smartphone verso `10.0.0.3` fallisce | Route mancante in Router | Verifica `show ip route` su Router — devono esserci route verso `10.0.0.0` e `192.168.25.0` |
 | IoT Manager non si connette al server | IoT Server non raggiungibile o credenziali errate | Verifica ping verso `10.0.0.3`; controlla username/password nel servizio IoT del server |
 | I dispositivi IoT non compaiono nell'IoT Manager | Registrazione incompleta o IP IoT Server sbagliato | Rientra in ogni dispositivo IoT e riverifica la sezione "Remote Server" con `10.0.0.3` |
 | Cloud non instrada il traffico | Connessione Eth6 ↔ Coax7 non configurata nel Cloud | Apri Cloud0 → Config → Cable/DSL → verifica che le due interfacce siano associate |
 | Home Gateway non distribuisce IP | Servizio DHCP non attivo o range errato | Scheda Config del Gateway → DHCP → verifica Status ON e range `192.168.25.10` |
 | Dispositivi IoT non si connettono al Wi-Fi | SSID o password errati | Verifica che SSID e password corrispondano esattamente a quelli dell'Home Gateway |
-| Ping verso `192.168.25.x` fallisce da Router2 | Route verso HOME mancante | `ip route 192.168.25.0 255.255.255.0 200.100.51.2` su Router2 |
+| Ping verso `192.168.25.x` fallisce da Router | Route verso HOME mancante | `ip route 192.168.25.0 255.255.255.0 200.100.51.2` su Router |
 
 ---
 
 ## 💡 Comandi di verifica utili
 
-### Sul Router2
+### Sul Router
 
 ```
 ! Verifica routing table completa
@@ -642,7 +640,7 @@ ping 192.168.25.254
    └─ IP: 200.100.50.1
    └─ DHCP per rete cellulare SMART (172.16.1.0/24)
 
-3. Router2
+3. Router
    └─ Fa0/0 → 200.100.50.2 (verso CO Server)
    └─ Gig0/1 → 200.100.51.1 (verso Cloud/WAN)
    └─ Fa0/1 → 10.0.0.1 (verso Switch ISP)
