@@ -316,7 +316,7 @@ Il Cloud simula la rete Internet che collega la rete cellulare (MOBILE) alla ret
 
 Clicca su **Cloud0** → scheda **Config**:
 
-Nella sezione **DSL** o **Cable** aggiungi le connessioni:
+Nella sezione **Cable** aggiungi (cliccando su ADD) le connessioni:
 
 | Interfaccia ingresso | Interfaccia uscita |
 |---|---|
@@ -326,8 +326,7 @@ Nella sezione **DSL** o **Cable** aggiungi le connessioni:
 
 **Procedura**:
 1. Apri Cloud0 → scheda **Config**
-2. Seleziona **DSL** o **Cable** nel menu a sinistra
-3. In **Provider Network**: collega `Coax7` ↔ `Eth6`
+2. Seleziona **Cable** nel menu a sinistra
 4. Clicca **Add**
 
 ### 4.2 — Cable Modem-PT
@@ -367,19 +366,20 @@ Subnet Mask: 255.255.255.0
 Scheda **Config** → **LAN**:
 
 ```
-IP Address:  192.168.25.254
+IP Address:  192.168.25.1
 Subnet Mask: 255.255.255.0
 ```
 
 ### 5.3 — DHCP per la rete HOME
 
-Scheda **Config** → **DHCP**:
+Scheda **Config** → **Internet**:
+Abilitare il DHCP e verificare che venga acquisita la configurazione:
 
 ```
-Status:          ON
-Start IP:        192.168.25.10
-Maximum Users:   50
-DNS Server:      10.0.0.2
+IP Address:        200.100.51.2
+Subnet Mask:       255.255.255.0
+Default Gateway:   200.100.51.1
+DNS Server:        10.0.0.254
 ```
 
 ### 5.4 — Rete Wi-Fi domestica
@@ -387,28 +387,14 @@ DNS Server:      10.0.0.2
 Scheda **Config** → **Wireless**:
 
 ```
-SSID:     HomeNetwork
+SSID:     HomeGateway
 Security: WPA2-PSK
-Password: HomePass2024
+Password: 0123456789
 ```
 
 > 📌 Tutti i dispositivi IoT e il Laptop useranno questo SSID per connettersi alla rete domestica.
 
-### 5.5 — Route verso Internet
 
-L'Home Gateway deve sapere come raggiungere la rete cellulare (per il ritorno dei pacchetti) e la rete ISP:
-
-Scheda **Config** → **Routing** → aggiungi route statiche:
-
-```
-Network:     10.0.0.0
-Mask:        255.0.0.0
-Next Hop:    192.168.25.1  (o l'IP WAN ricevuto)
-
-Network:     200.100.51.0
-Mask:        255.255.255.0
-Next Hop:    192.168.25.1
-```
 
 ---
 
