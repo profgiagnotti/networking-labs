@@ -29,29 +29,40 @@ Al termine di questo laboratorio sarai in grado di:
 ```
 ┌───────────────────────────────────────┐
 │           RETE AZIENDALE              │
-│       LAN: 192.168.1.0/24             │
+│       LAN: 172.16.0.0/16              │
 │                                       │
-│  [PC-LAN1] 192.168.1.10               │
-│  [Server]  192.168.1.100              │
+│                                       │
+│  [WEB Server]  172.16.0.2             │
 │       |                               │
 │  [Switch LAN]                         |
-|       | Fa0/0                         |
+|       | Fa1/1                         |
 |       |                               │
-│       | G0/0 — 192.168.1.1            │
+│       | G0/1 — 172.16.0.1             │
 │  [Router VPN Gateway]                 │
-│       | G0/1 — 10.0.0.1               │
+│       | G0/0 — 98.100.25.24           │
 └───────────────────┬───────────────────┘
                     │
               (Internet simulato)
                     │
-              10.0.0.2 | G0/0
+       98.100.25.25 | Fa0/0
            [Router Internet]
-              G0/1 | 203.0.113.1
+              Se3/0 | 85.120.2.28
                     │
-              [Switch Remoto]
-                    │
-           [PC-REMOTO] 203.0.113.10
-           (il dipendente da casa)
+┌───────────────────────────────────────┐
+│        [Router domestico]             │
+│        Se2/0 — 85.120.2.27            |
+|                   |  Fa0/0            |
+|                   |                   |
+│                   | Fa0/1             │
+│             [Switch LAN]              |
+|                   | Fa1/1             |
+|                   |                   │
+│      [Home Worker] 192.168.0.2        │
+|                                       |
+|                                       |
+│           RETE DOMESTICA              │
+│         LAN: 192.168.0.0/24           |   
+└───────────────────────────────────────┘
 ```
 
 ---
@@ -60,23 +71,24 @@ Al termine di questo laboratorio sarai in grado di:
 
 | Dispositivo | Interfaccia | Indirizzo IP | Subnet Mask | Gateway |
 |---|---|---|---|---|
-| PC-LAN1 (rete aziendale) | Fa0 | 192.168.1.10 | 255.255.255.0 | 192.168.1.1 |
-| Server (rete aziendale) | Fa0 | 192.168.1.100 | 255.255.255.0 | 192.168.1.1 |
-| Router VPN — verso LAN | G0/0 | 192.168.1.1 | 255.255.255.0 | — |
-| Router VPN — verso Internet | G0/1 | 10.0.0.1 | 255.255.255.252 | — |
-| Router Internet — verso VPN | G0/0 | 10.0.0.2 | 255.255.255.252 | — |
-| Router Internet — verso remoto | G0/1 | 203.0.113.1 | 255.255.255.0 | — |
-| PC-REMOTO (dipendente remoto) | Fa0 | 203.0.113.10 | 255.255.255.0 | 203.0.113.1 |
+| Home Worker (rete domestica) | Fa0 | 192.168.0.2 | 255.255.255.0 | 192.168.0.1 |
+| Web Server (rete aziendale) | Fa0 | 172.16.0.2 | 255.255.0.0 | 172.16.0.1 |
+| Router domestico verso LAN | Fa0/0 | 192.168.0.1 | 255.255.255.0 | — |
+| Router domestico verso Internet| Se2/0 | 85.120.2.27 | 255.0.0.0 | — |
+| Router VPN — verso azienda | G0/0 | 172.16.0.1 | 255.255.0.0 | — |
+| Router VPN — verso Internet | G0/1 | 98.100.25.24 | 255.0.0.0 | — |
+| Router Internet — verso azienda | Fa0/0 | 98.100.25.25 | 255.0.0.0 | — |
+| Router Internet — verso remoto | Se3/0 | 85.120.2.28 | 255.0.0.0 | — |
 
 **Pool VPN** (indirizzi assegnati ai client VPN remoti):
 
 | Parametro | Valore |
 |---|---|
-| Nome pool | POOL-VPN-REMOTI |
-| Rete | 172.16.1.0/24 |
-| Range | 172.16.1.10 — 172.16.1.50 |
+| Nome pool | VPN-pool |
+| Rete | 172.16.32.0/24 |
+| Range | 172.16.32.101 — 172.16.32.200 |
 
-> 📌 Il pool VPN usa una rete distinta dalla LAN aziendale (192.168.1.0/24). Quando il PC-REMOTO si connette, riceverà un IP in 172.16.1.x e potrà comunicare con i dispositivi della LAN 192.168.1.0/24.
+> 📌 Il pool VPN usa una rete distinta dalla LAN aziendale (172.16.0.0/16). Quando il PC HomeWorker si connette, riceverà un IP in 172.16.32.x e potrà comunicare con i dispositivi della LAN 172.16.0.0/16.
 
 ---
 
@@ -87,30 +99,30 @@ Al termine di questo laboratorio sarai in grado di:
 | Dispositivo | Modello PT | Quantità |
 |---|---|---|
 | Router VPN Gateway | Router 1941 | 1 |
-| Router Internet | Router 1941 | 1 |
+| Router Internet | Router PT | 1 |
+| Router Domestico | Router PT | 1 |
 | Switch LAN aziendale | 2960-24TT | 1 |
 | Switch rete remota | 2960-24TT | 1 |
-| PC-LAN1 (rete aziendale) | PC-PT | 1 |
-| Server (rete aziendale) | Server-PT | 1 |
-| PC-REMOTO | PC-PT | 1 |
+| PC-Home Worker (rete LAN) | PC-PT | 1 |
+| Web Server (rete aziendale) | Server-PT | 1 |
 
 ### 1.2 — Cablaggio
 
 | Da | Porta | A | Porta | Tipo cavo |
 |---|---|---|---|---|
-| PC-LAN1 | Fa0 | Switch LAN | Fa0/1 | Dritto |
-| Server | Fa0 | Switch LAN | Fa0/2 | Dritto |
-| Switch LAN | Fa0/3 | Router VPN | G0/0 | Dritto |
-| Router VPN | G0/1 | Router Internet | G0/0 | Incrociato |
-| Router Internet | G0/1 | Switch Remoto | Fa0/1 | Dritto |
-| Switch Remoto | Fa0/2 | PC-REMOTO | Fa0 | Dritto |
+| PC-Home Worker | Fa0 | Switch LAN | Fa1/1 | Dritto |
+| Switch LAN | Fa0/1 | Router Domestico | Fa0/0 | Dritto |
+| Router Domestico | Se2/0 | Router Internet | Se3/0 | Seriale |
+| Router Internet | Fa0/0 | Router Aziendale | G0/0 | Incrociato |
+| Router Aziendale | G0/1 | Switch Remoto | Fa1/1 | Dritto |
+| Switch Remoto | Fa0/1 | Web Server | Fa0 | Dritto |
 
 ### 1.3 — Configurazione dispositivi finali
 
-**PC-LAN1**: IP `192.168.1.10` / SM `255.255.255.0` / GW `192.168.1.1`
+**PC-Home Worker**: IP `192.168.0.2` / SM `255.255.255.0` / GW `192.168.0.1`
 
 **Server aziendale**:
-- IP `192.168.1.100` / SM `255.255.255.0` / GW `192.168.1.1`
+- IP `172.16.0.2` / SM `255.255.0.0` / GW `172.16.0.1`
 - Attiva **HTTP**: Services → HTTP → ON
 - Modifica `index.html`:
 ```html
@@ -120,13 +132,11 @@ Al termine di questo laboratorio sarai in grado di:
 </body></html>
 ```
 
-**PC-REMOTO**: IP `203.0.113.10` / SM `255.255.255.0` / GW `203.0.113.1`
-
 ---
 
 ## 📋 Step 2 — Configurazione base dei router
 
-Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9 sui Router A e Router B:
+Prima di configurare il protocollo IPsec dobbiamo installare il software securityk9 sul Router Aziendale:
 
 ```
 Router> enable
@@ -136,13 +146,6 @@ RouterA(config)# licence boot module c1900 technology-ackage security k9
 RouterA# wr mem
 RouterA# reload
 
-!idem per il Router B
-Router> enable
-Router# configure terminal
-Router(config)# hostname RouterInternet
-RouterB(config)# licence boot module c1900 technology-ackage security k9
-RouterB# wr mem
-RouterB# reload
 ```
 
 Se l'installazione è andata a buon fine il comando 
@@ -169,21 +172,52 @@ data          disable       None          None
 ```
 
 ! Interfaccia verso Router VPN
-RouterInternet(config)# interface G0/0
-RouterInternet(config-if)# ip address 10.0.0.2 255.255.255.252
+Router> enable
+Router# configure terminal
+Router(config)# hostname RouterInternet
+RouterInternet(config)# interface Fa0/0
+RouterInternet(config-if)# ip address 98.100.25.25 255.0.0.0
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
 
 ! Interfaccia verso la rete del PC remoto
-RouterInternet(config)# interface G0/1
-RouterInternet(config-if)# ip address 203.0.113.1 255.255.255.0
+RouterInternet(config)# interface Se3/0
+RouterInternet(config-if)# ip address 85.120.2.28 255.0.0.0
 RouterInternet(config-if)# no shutdown
 RouterInternet(config-if)# exit
 
-! Rotta verso la LAN aziendale (per instradare le risposte ai client VPN)
-RouterInternet(config)# ip route 192.168.1.0 255.255.255.0 10.0.0.1
-! Rotta verso il pool VPN (per le risposte agli IP assegnati ai client remoti)
-RouterInternet(config)# ip route 172.16.1.0 255.255.255.0 10.0.0.1
+! Rotte dinamiche con RIP
+RouterInternet(config)# router rip
+RouterInternet(config)# network 85.0.0.0
+RouterInternet(config)# network 98.0.0.0
+
+RouterInternet(config)# end
+RouterInternet# write memory
+```
+
+### Router Domestico
+
+```
+
+! Interfaccia verso Router Internet
+Router> enable
+Router# configure terminal
+Router(config)# hostname RouterLAN
+RouterLAN(config)# interface Fa0/0
+RouterLAN(config-if)# ip address 192.168.0.1 255.255.255.0
+RouterLAN(config-if)# no shutdown
+RouterLAN(config-if)# exit
+
+! Interfaccia verso Router Internet
+RouterInternet(config)# interface Se2/0
+RouterInternet(config-if)# ip address 85.120.2.27 255.0.0.0
+RouterInternet(config-if)# no shutdown
+RouterInternet(config-if)# exit
+
+! Rotte dinamiche con RIP
+RouterInternet(config)# router rip
+RouterInternet(config)# network 85.0.0.0
+RouterInternet(config)# network 192.168.0.0
 
 RouterInternet(config)# end
 RouterInternet# write memory
@@ -194,21 +228,21 @@ RouterInternet# write memory
 ```
 
 ! Interfaccia LAN verso la rete aziendale
-RouterVPN(config)# interface G0/0
-RouterVPN(config-if)# ip address 192.168.1.1 255.255.255.0
-RouterVPN(config-if)# description LAN-Aziendale
+RouterVPN(config)# interface G0/1
+RouterVPN(config-if)# ip address 172.16.0.1 255.255.0.0
 RouterVPN(config-if)# no shutdown
 RouterVPN(config-if)# exit
 
 ! Interfaccia WAN verso Internet
 RouterVPN(config)# interface G0/1
-RouterVPN(config-if)# ip address 10.0.0.1 255.255.255.252
-RouterVPN(config-if)# description WAN-Internet
+RouterVPN(config-if)# ip address 98.100.25.24 255.0.0.0
 RouterVPN(config-if)# no shutdown
 RouterVPN(config-if)# exit
 
-! Rotta di default verso Internet
-RouterVPN(config)# ip route 0.0.0.0 0.0.0.0 10.0.0.2
+! Rotte dinamiche con RIP
+RouterInternet(config)# router rip
+RouterInternet(config)# network 98.0.0.0
+RouterInternet(config)# network 172.16.0.0
 
 RouterVPN(config)# end
 RouterVPN# write memory
@@ -218,10 +252,8 @@ RouterVPN# write memory
 
 Dal **PC-REMOTO**: `Desktop → Command Prompt`
 ```
-ping 10.0.0.1    ! → Router VPN WAN: deve rispondere ✅
+ping 98.100.25.24    ! → Router VPN WAN: deve rispondere ✅
 ```
-
-> 📌 La LAN aziendale (192.168.1.x) NON deve essere raggiungibile dal PC-REMOTO prima della VPN. Questo è corretto — la VPN serve esattamente per questo.
 
 ---
 
@@ -236,17 +268,41 @@ La VPN Remote Access su Cisco IOS si basa su **EasyVPN** — una versione sempli
 ```
 ! Definisce il range di IP che il server VPN assegnerà ai client remoti
 ! Questi IP permettono al client di "appartenere" alla rete aziendale
-RouterVPN(config)# ip local pool POOL-VPN-REMOTI 172.16.1.10 172.16.1.50
-! "POOL-VPN-REMOTI" = nome del pool (riferimento nei passi successivi)
-! 172.16.1.10 = primo IP assegnabile
-! 172.16.1.50 = ultimo IP assegnabile
-! Supporta fino a 41 client VPN contemporanei
+RouterVPN(config)# ip local pool VPN-pool 172.16.32.101 172.16.32.200
+! "VPN-pool" = nome del pool (riferimento nei passi successivi)
+! 172.16.32.101 = primo IP assegnabile
+! 172.16.32.200 = ultimo IP assegnabile
+! Supporta fino a 100 client VPN contemporanei
 ```
 
-### Passo 2 — ISAKMP Policy (Fase 1)
+### Passo 2 — Configurazione AAA per autenticazione locale
 
 ```
-RouterVPN(config)# crypto isakmp policy 10
+! AAA (Authentication Authorization Accounting)
+! Definisce come il server VPN autentica gli utenti
+RouterVPN(config)# aaa new-model
+! Abilita il modello AAA
+
+RouterVPN(config)# aaa authentication login VPN-client local
+! "VPN-client" = nome della lista di autenticazione
+! "local" = usa il database locale del router (non RADIUS/TACACS)
+
+RouterVPN(config)# aaa authorization network VPN-ATS local
+! Autorizzazione di rete tramite database locale
+
+! Crea gli utenti VPN nel database locale
+RouterVPN(config)# username mario secret mario
+RouterVPN(config)# username luigi   secret luigi
+! Questi sono le credenziali PERSONALI di ciascun utente VPN
+! (diversi dalle credenziali di gruppo definite al Passo 3)
+
+
+```
+
+### Passo 3 — ISAKMP Policy (Fase 1)
+
+```
+RouterVPN(config)# crypto isakmp policy 1
 RouterVPN(config-isakmp)# encryption aes 256
 ! Cifratura del canale IKE di controllo
 
@@ -260,28 +316,28 @@ RouterVPN(config-isakmp)# authentication pre-share
 RouterVPN(config-isakmp)# group 5
 ! Gruppo Diffie-Hellman 2048 bit
 
-RouterVPN(config-isakmp)# lifetime 28800
-! SA IKE dura 8 ore (28800 secondi)
-! Più breve rispetto alla Site-to-Site (24h) perché le sessioni remoto
+RouterVPN(config-isakmp)# lifetime 7200
+! SA IKE dura 2 ore (7200 secondi)
+! Più breve rispetto alla Site-to-Site (24h) perché le sessioni remote
 ! sono in genere più corte
 
 RouterVPN(config-isakmp)# exit
 ```
 
-### Passo 3 — Gruppo ISAKMP con credenziali VPN
+### Passo 4 — Gruppo ISAKMP con credenziali VPN
 
 ```
 ! Il "gruppo" definisce le credenziali e i parametri per i client remoti
 ! Un client VPN si autentica fornendo il nome del gruppo e la chiave
-RouterVPN(config)# crypto isakmp client configuration group GRUPPO-REMOTI
-! "GRUPPO-REMOTI" = nome del gruppo VPN
+RouterVPN(config)# crypto isakmp client configuration group VPN-HOME
+! "VPN-HOME" = nome del gruppo VPN
 ! Il client VPN dovrà inserire esattamente questo nome
 
-RouterVPN(config-isakmp-group)# key ChiaveGruppo!2026
+RouterVPN(config-isakmp-group)# key homevpngroupsecret
 ! Chiave di gruppo (Group Password): il client deve conoscerla per autenticarsi
 ! È una prima autenticazione "di gruppo" — non identifica il singolo utente
 
-RouterVPN(config-isakmp-group)# pool POOL-VPN-REMOTI
+RouterVPN(config-isakmp-group)# pool VPN-pool
 ! Assegna al gruppo il pool di IP definito al Passo 1
 ! I client di questo gruppo riceveranno un IP da questo pool
 
@@ -289,61 +345,32 @@ RouterVPN(config-isakmp-group)# exit
 ```
 
 
-### Passo 4 — Profilo IPsec e crypto map dinamica
+### Passo 5 — Creazione policy per isakmp (IKE) per stabilire la SA
 
 ```
+RouterVPN(config)# crypto ipsec transform-set VPNipsec esp-aes esp-sha-hmac
 
 ! Crypto Map DINAMICA — usata per client la cui IP non è noto in anticipo
 ! A differenza della Site-to-Site (IP fisso), i client remoti hanno IP variabile
-RouterVPN(config)# crypto dynamic-map DYNMAP-REMOTI 10
-RouterVPN(config-crypto-map)# set transform-set TS-REMOTE-ACCESS
+RouterVPN(config)# crypto dynamic-map VPNdynset 10
+RouterVPN(config-crypto-map)# set transform-set VPNipsec
 RouterVPN(config-crypto-map)# reverse-route
 ! reverse-route: aggiunge automaticamente la rotta verso il client nel routing table
 RouterVPN(config-crypto-map)# exit
 
-! Crypto Map STATICA che include la mappa dinamica
-RouterVPN(config)# crypto map VPN-SERVER-MAP 10 ipsec-isakmp dynamic DYNMAP-REMOTI
-! La mappa statica "VPN-SERVER-MAP" riferisce alla mappa dinamica "DYNMAP-REMOTI"
-! Le connessioni in arrivo da client con IP non predefiniti usano la mappa dinamica
+! Crypto Map STATICA per il client
+RouterVPN(config)# crypto map VPNstaticmap client configuration address respond
+RouterVPN(config)# crypto map VPNstaticmap client authentication list VPN-client
+RouterVPN(config)# crypto map VPNstaticmap isakmp authorization list VPN-HOME
+RouterVPN(config)# crypto map VPNstaticmap 1 ipsec-isakmp dynamic VPNdynset
 ```
 
-### Passo 7 — Configurazione AAA per autenticazione locale
+
+### Passo 6 — Applica la crypto map all'interfaccia WAN
 
 ```
-! AAA (Authentication Authorization Accounting)
-! Definisce come il server VPN autentica gli utenti
-RouterVPN(config)# aaa new-model
-! Abilita il modello AAA
-
-RouterVPN(config)# aaa authentication login VPN-AUTHN local
-! "VPN-AUTHN" = nome della lista di autenticazione
-! "local" = usa il database locale del router (non RADIUS/TACACS)
-
-RouterVPN(config)# aaa authorization network VPN-AUTHZ local
-! Autorizzazione di rete tramite database locale
-
-! Crea gli utenti VPN nel database locale
-RouterVPN(config)# username alice secret AlicePass!2026
-RouterVPN(config)# username bob   secret BobPass!2026
-! Questi sono le credenziali PERSONALI di ciascun utente VPN
-! (diversi dalle credenziali di gruppo definite al Passo 3)
-
-! Collega AAA alla configurazione del client VPN
-RouterVPN(config)# crypto isakmp profile PROFILO-CLIENT
-RouterVPN(conf-isa-prof)# match identity group GRUPPO-REMOTI
-! Applica questo profilo ai client che si identificano con il gruppo "GRUPPO-REMOTI"
-RouterVPN(conf-isa-prof)# client authentication list VPN-AUTHN
-RouterVPN(conf-isa-prof)# isakmp authorization list VPN-AUTHZ
-RouterVPN(conf-isa-prof)# client configuration address respond
-! Il server risponde alle richieste di indirizzo IP dai client
-RouterVPN(conf-isa-prof)# exit
-```
-
-### Passo 8 — Applica la crypto map all'interfaccia WAN
-
-```
-RouterVPN(config)# interface Serial2/0
-RouterVPN(config-if)# crypto map VPN-SERVER-MAP
+RouterVPN(config)# interface G0/0
+RouterVPN(config-if)# crypto map VPNstaticmap
 ! Attiva la VPN sull'interfaccia WAN
 ! Tutte le connessioni IPsec in arrivo vengono gestite da questa map
 
@@ -354,7 +381,7 @@ RouterVPN# write memory
 
 ---
 
-## 📋 Step 4 — Configurazione del client VPN sul PC-REMOTO
+## 📋 Step 7 — Configurazione del client VPN sul PC-REMOTO
 
 In Packet Tracer il client VPN si configura nel pannello del PC.
 
@@ -364,23 +391,24 @@ In Packet Tracer il client VPN si configura nel pannello del PC.
 
 | Campo | Valore |
 |---|---|
-| Server IP | `10.0.0.1` (IP WAN del Router VPN) |
-| Username | `alice` |
-| Password | `AlicePass!2024` |
-| Group Name | `GRUPPO-REMOTI` |
-| Group Key | `ChiaveGruppo!2024` |
+| GROUPNAME | `VPN-HOME` |
+| GROUP KEY | `homevpngroupsecret` |
+| HOST | `98.100.25.24` (IP WAN del Router VPN) |
+| Username | `mario` |
+| Password | `mario` |
+
 
 4. Clicca **Connect**
 
 Se la configurazione è corretta, vedrai:
 - **Status: Connected**
-- Il PC-REMOTO riceverà un IP nel range 172.16.1.10–172.16.1.50
+- Il PC-REMOTO riceverà un IP nel range 172.16.32.101–172.16.32.200
 
 > ⚠️ **Nota Packet Tracer**: la versione del client VPN integrato in PT può variare. In alcune versioni si usa Desktop → VPN Client, in altre le impostazioni sono in Desktop → IP Configuration. Consulta la versione specifica di PT in uso.
 
 ---
 
-## 📋 Step 5 — Verifica della connessione VPN
+## 📋 Step 8 — Verifica della connessione VPN
 
 ### Verifica sul server VPN
 
@@ -391,8 +419,8 @@ RouterVPN# show crypto isakmp sa
 
 Output atteso:
 ```
-dst         src         state    conn-id  slot  status
-10.0.0.1    203.0.113.10  QM_IDLE    1      0    ACTIVE
+dst                 src         state           conn-id  slot  status
+192.168.0.2     98.100.25.24    QM_IDLE           1063    0    ACTIVE
 ```
 
 ```
@@ -400,33 +428,8 @@ dst         src         state    conn-id  slot  status
 RouterVPN# show crypto ipsec sa
 ```
 
-```
-! Mostra gli utenti VPN connessi e gli IP assegnati
-RouterVPN# show crypto session
-```
 
-Output esempio:
-```
-Crypto session current status
-Interface: Serial2/0
-Session status: UP-ACTIVE
-Peer: 203.0.113.10 port 500
-  IKE SA: local 10.0.0.1/500 remote 203.0.113.10/500 Active
-  IPSEC FLOW: permit ip 172.16.1.0/255.255.255.0 192.168.1.0/255.255.255.0
-```
 
-```
-! Mostra gli IP assegnati dal pool VPN
-RouterVPN# show ip local pool POOL-VPN-REMOTI
-```
-
-Output esempio:
-```
-Pool          Begin           End             Free    In use
-POOL-VPN-REMOTI  172.16.1.10     172.16.1.50      40      1
-```
-
-`In use: 1` significa che un client ha ricevuto un IP dal pool.
 
 ### Verifica dal PC-REMOTO
 
@@ -434,46 +437,26 @@ Dopo la connessione VPN, dal **PC-REMOTO**: `Desktop → Command Prompt`
 
 ```
 ipconfig
-! Mostra la configurazione IP: dovresti vedere sia l'IP reale (203.0.113.10)
-! che l'IP VPN assegnato (172.16.1.x)
+! Mostra la configurazione IP: dovresti vedere sia l'IP reale (192.168.0.2)
+! che l'IP VPN assegnato (172.16.32.x)
 
-ping 192.168.1.100
+ping 172.16.0.2
 ! → Server aziendale: deve rispondere ✅
 ! Questo ping usa il tunnel VPN
 
-ping 192.168.1.10
-! → PC-LAN1: deve rispondere ✅
 ```
 
 Dal **PC-REMOTO**: `Desktop → Web Browser`
 ```
-http://192.168.1.100
+http://172.16.0.2
 ! La pagina del server aziendale deve apparire ✅
 ! Questo è il test definitivo: il client remoto accede alla rete interna
 ```
 
-### Test di isolamento — prima della VPN
-
-Disconnetti la VPN sul PC-REMOTO e ripeti i test:
-```
-ping 192.168.1.100    ! → DEVE FALLIRE ❌
-```
-Questo conferma che la rete interna è accessibile **solo tramite VPN**.
 
 ---
 
-## 📋 Step 6 — Tabella riepilogativa dei test
 
-| Test | Da | Verso | VPN | Risultato atteso |
-|---|---|---|---|---|
-| Ping IP pubblico VPN | PC-REMOTO | 10.0.0.1 | ❌ Disconnessa | ✅ OK (routing normale) |
-| Ping server interno | PC-REMOTO | 192.168.1.100 | ❌ Disconnessa | ❌ FALLISCE |
-| Ping server interno | PC-REMOTO | 192.168.1.100 | ✅ Connessa | ✅ OK (tramite tunnel) |
-| Browser server interno | PC-REMOTO | 192.168.1.100 | ✅ Connessa | ✅ Pagina appare |
-| Ping client VPN → LAN | PC-LAN1 | 172.16.1.10 (IP VPN alice) | ✅ Connessa | ✅ OK |
-| IKE SA attiva | Router VPN | show crypto isakmp sa | ✅ Connessa | QM_IDLE |
-
----
 
 ## 📋 Riepilogo comandi di configurazione server VPN
 
@@ -481,26 +464,30 @@ Questo conferma che la rete interna è accessibile **solo tramite VPN**.
 ! ── POOL IP PER CLIENTI VPN ──────────────────────────────────────────
 ip local pool <NOME-POOL> <IP-START> <IP-END>
 
+! ── AAA E UTENTI ──────────────────────────────────────────────────────
+aaa new-model
+aaa authentication login <LISTA-AUTH> local
+aaa authorization network <LISTA-AUTHZ> local
+username <UTENTE> secret <PASSWORD>
+
 ! ── ISAKMP POLICY ─────────────────────────────────────────────────────
 crypto isakmp policy <PRIORITA>
  encryption aes 256
- hash sha256
+ hash sha
  authentication pre-share
- group 14
- lifetime 28800
+ group 5
+ lifetime 7200
 
 ! ── GRUPPO VPN CON CREDENZIALI ────────────────────────────────────────
 crypto isakmp client configuration group <NOME-GRUPPO>
  key <CHIAVE-GRUPPO>
  pool <NOME-POOL>
- acl <NUM-ACL>
- dns <IP-DNS>
 
-! ── ACL SPLIT TUNNELING ───────────────────────────────────────────────
+! ── ACL SPLIT TUNNELING ─────────────────────────────────────────────── opzionale
 access-list <NUM-ACL> permit ip <POOL-VPN> <WILDCARD> <LAN-AZIENDALE> <WILDCARD>
 
 ! ── TRANSFORM SET ─────────────────────────────────────────────────────
-crypto ipsec transform-set <NOME-TS> esp-aes 256 esp-sha256-hmac
+crypto ipsec transform-set <NOME-TS> esp-aes esp-sha-hmac
  mode tunnel
 
 ! ── CRYPTO MAP DINAMICA ───────────────────────────────────────────────
@@ -508,20 +495,13 @@ crypto dynamic-map <NOME-DYNMAP> 10
  set transform-set <NOME-TS>
  reverse-route
 
-crypto map <NOME-MAP> 10 ipsec-isakmp dynamic <NOME-DYNMAP>
+! ── CRYPTO MAP STATICA ───────────────────────────────────────────────
+crypto map VPNstaticmap client configuration address respond
+crypto map VPNstaticmap client authentication list <LISTA>
+crypto map VPNstaticmap isakmp authorization list <LISTA>
+crypto map VPNstaticmap 1 ipsec-isakmp dynamic VPNdynset
 
-! ── AAA E UTENTI ──────────────────────────────────────────────────────
-aaa new-model
-aaa authentication login <LISTA-AUTH> local
-aaa authorization network <LISTA-AUTHZ> local
-username <UTENTE> secret <PASSWORD>
 
-! ── PROFILO ISAKMP ────────────────────────────────────────────────────
-crypto isakmp profile <NOME-PROFILO>
- match identity group <NOME-GRUPPO>
- client authentication list <LISTA-AUTH>
- isakmp authorization list <LISTA-AUTHZ>
- client configuration address respond
 
 ! ── APPLICAZIONE INTERFACCIA ──────────────────────────────────────────
 interface <INTERFACCIA-WAN>
@@ -530,7 +510,6 @@ interface <INTERFACCIA-WAN>
 ! ── VERIFICA ──────────────────────────────────────────────────────────
 show crypto isakmp sa
 show crypto ipsec sa
-show crypto session
 show ip local pool <NOME-POOL>
 show crypto isakmp client configuration group <NOME-GRUPPO>
 ```
@@ -539,17 +518,15 @@ show crypto isakmp client configuration group <NOME-GRUPPO>
 
 ## 📋 Domande di verifica
 
-1. Nella VPN Remote Access hai configurato un **pool di indirizzi** (172.16.1.10–50) diverso dalla LAN aziendale (192.168.1.0/24). Perché è necessario usare una rete distinta invece di assegnare IP dalla stessa subnet della LAN?
+1. Nella VPN Remote Access hai configurato un **pool di indirizzi** (172.16.32.101–200) diverso dalla LAN aziendale (172.16.0.0/16). Perché è necessario usare una rete distinta invece di assegnare IP dalla stessa subnet della LAN?
 
-2. Qual è la differenza tra le **credenziali di gruppo** (`key ChiaveGruppo!2024`) e le **credenziali utente** (`username alice secret AlicePass!2024`)? A quale scopo serve ciascuna?
+2. Qual è la differenza tra le **credenziali di gruppo** (`key xxxxx`) e le **credenziali utente** (`username / secret`)? A quale scopo serve ciascuna?
 
-3. Nel laboratorio hai usato una **crypto map dinamica** (`crypto dynamic-map`), diversamente dalla VPN Site-to-Site che usava una crypto map statica. Spiega perché nella Remote Access è necessaria la mappa dinamica.
+3. Cos'è il **split tunneling** ed è implementato attraverso l'ACL? Modifica la configurazione per abilitarlo e descrivi i pro e contro delle due scelte.
 
-4. Cos'è il **split tunneling** e come è implementato attraverso l'ACL 101? Modifica la configurazione per disabilitarlo (tutto il traffico nel tunnel) e descrivi i pro e contro delle due scelte.
+4. Il comando `show ip local pool xxxxx` mostra `In use: 0` anche dopo che il client si è connesso. Elenca almeno tre possibili cause e come diagnosticarle.
 
-5. Il comando `show ip local pool POOL-VPN-REMOTI` mostra `In use: 0` anche dopo che il client si è connesso. Elenca almeno tre possibili cause e come diagnosticarle.
-
-6. Confronta la VPN **Site-to-Site** configurata nel laboratorio precedente con questa **Remote Access**: quali componenti di configurazione sono comuni a entrambe? Quali sono presenti solo in una delle due?
+5. Confronta la VPN **Site-to-Site** configurata nel laboratorio precedente con questa **Remote Access**: quali componenti di configurazione sono comuni a entrambe? Quali sono presenti solo in una delle due?
 
 ---
 
