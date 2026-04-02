@@ -82,7 +82,7 @@ Networking-labs/
 |---|---|---|---|---|
 | [Video - Introduzione a Cisco Packet Tracer](https://youtu.be/ct9k9iw_uIQ) | Modulo 4 | Lezione 2 | Networking Video | ⭐ Base |
 | [Video - Esploriamo la modalità logica e fisica con Packet Tracer](https://youtu.be/ukrslNn8DJE) | Modulo 4 | Lezione 2 | Networking Video | ⭐ Base |
-| [Esercizi svolti su segnali e modulazioni](./Anno-3/Modulo-4/Lezione-7/Esercizi_svolti_segnali_e_modulazioni.pdf) | Modulo 4 | Lezione 7 | Networking Video | ⭐ Base |
+| [Esercizi svolti su segnali e modulazioni](./Anno-3/Modulo-4/Lezione-7/Segnali_e_modulazioni.pdf) | Modulo 4 | Lezione 7 | Networking Video | ⭐ Base |
 
 
 > 📦 Il file `Comandi_base.pkt` di Packet Tracer è disponibile nella stessa cartella: [Comandi_base.pkt](./Anno-3/Modulo-4/Lezione-2/Comandi_base.pkt)
