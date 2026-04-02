@@ -57,9 +57,9 @@ Networking-labs/
 
 ### Modulo 2 — Il microprocessore 8086
 
-| Laboratorio | Modulo | Argomento | Livello |
-|---|---|---|---|
-| [Esercizi svolti Assembly 8086](./Anno-3/Modulo-2/Esercizi_Assembly_8086.zip) | Modulo 2 | Assembly 8086 | ⭐ Base |
+| Laboratorio | Modulo | Lezione | Argomento | Livello |
+|---|---|---|---|---|
+| [Esercizi svolti Assembly 8086](./Anno-3/Modulo-2/Lezione-8/Esercizi_Assembly_8086) | Modulo 2 | Lezione 8 | Assembly 8086 | ⭐ Base |
 
 ### Modulo 3 — Physical Computing
 
