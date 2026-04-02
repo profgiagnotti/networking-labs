@@ -34,8 +34,8 @@ Networking-labs/
     ├── Modulo-1/                   ✅ disponibile
     ├── Modulo-2/                   ✅ disponibile
     ├── Modulo-3/                   ✅ disponibile
-    ├── Modulo-4/                   ✅ disponibile
-    └── Modulo-5/                   🔜 in arrivo
+    └── Modulo-4/                   ✅ disponibile
+    
 
 ```
 
@@ -148,16 +148,19 @@ Networking-labs/
 [lab-vpn-site-to-site-ipsec.pkt](./Anno-5/Modulo-3/Lezione-7/lab-vpn-site-to-site-ipsec.pkt)<br>
 [lab-vpn-remote-access.pkt](./Anno-5/Modulo-3/Lezione-7/lab-vpn-remote-access.pkt)<br>
 
+
 ### Modulo 4 — Reti Wireless
 
-| Laboratorio | Argomento | Tool | Livello |
-|---|---|---|---|
-| [Lab Rete con WLC](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.md) | Wireless LAN con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab Rete cellulare Iot e Smart-Home](./Anno-5/Modulo-4/lab-rete-cellulare-iot-smart-home.md) | Smart home controllata da remoto | Packet Tracer | ⭐⭐⭐ Avanzato |
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Video - Rete con WLC](#) | Modulo 4 | Lezione-5 | Rete con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab Rete con WLC](./Anno-5/Modulo-4/Lezione-5/lab-wlc-4-lap-aree-aziendali.md) | Wireless LAN con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - Rete cellulare Iot e Smart-Home](#) | Modulo 5 | Lezione-7 | Rete cellulare Iot e Smart-Home | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab Rete cellulare Iot e Smart-Home](./Anno-5/Modulo-4/Lezione-7/lab-rete-cellulare-iot-smart-home.md) | Smart home controllata da remoto | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
-[lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/lab-wlc-4-lap-aree-aziendali.pkt)<br>
-[lab-rete-cellulare-iot-smart-home.pkt](./Anno-5/Modulo-4/lab-rete-cellulare-iot-smart-home.pkt)<br>
+[lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/Lezione-5/lab-wlc-4-lap-aree-aziendali.pkt)<br>
+[lab-rete-cellulare-iot-smart-home.pkt](./Anno-5/Modulo-4/Lezione-7/lab-rete-cellulare-iot-smart-home.pkt)<br>
 
 
 ---
