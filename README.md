@@ -110,14 +110,16 @@ Networking-labs/
 
 > 📦 Il file `.pkt` di Packet Tracer è disponibile nella stessa cartella: [lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.pkt)
 
+
 ### Modulo 2 — Sicurezza informatica e crittografia
 
-| Laboratorio | Argomento | Tool | Livello |
-|---|---|---|---|
-| [Lab Wireshark e attacchi TCP/IP](./Anno-5/Modulo-2/lab-wireshark-attacchi-tcp-ip.md) | SYN Flood, ARP Poisoning, port scan | Wireshark, nmap, hping3 | ⭐⭐⭐ Avanzato |
-| [Lab Crittografia AES](./Anno-5/Modulo-2/lab-openssl-aes.md) | AES-128/256, CBC, GCM, effetto valanga | OpenSSL | ⭐⭐ Intermedio |
-| [Lab Crittografia RSA](./Anno-5/Modulo-2/lab-openssl-rsa.md) | RSA, sistema ibrido RSA+AES | OpenSSL | ⭐⭐⭐ Avanzato |
-| [Lab Hash e certificati](./Anno-5/Modulo-2/lab-hash-certificati.md) | SHA-256, firma digitale, X.509, PKI | OpenSSL | ⭐⭐⭐ Avanzato |
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Lab Wireshark e attacchi TCP/IP](./Anno-5/Modulo-2/Lezione-2/lab-wireshark-attacchi-tcp-ip.md) | Modulo 2 | Lezione 2 | SYN Flood, ARP Poisoning, port scan | Wireshark, nmap, hping3 | ⭐⭐⭐ Avanzato |
+| [Lab Crittografia AES](./Anno-5/Modulo-2/Lezione-6/lab-openssl-aes.md) | AES-128/256, CBC, GCM, effetto valanga | Modulo 2 | Lezione 6 | OpenSSL | ⭐⭐ Intermedio |
+| [Lab Crittografia RSA](./Anno-5/Modulo-2/Lezione-7/lab-openssl-rsa.md) | Modulo 2 | Lezione 7 | RSA, sistema ibrido RSA+AES | OpenSSL | ⭐⭐⭐ Avanzato |
+| [Lab Hash e certificati](./Anno-5/Modulo-2/Lezione-8/lab-hash-certificati.md) | Modulo 2 | Lezione 8 | SHA-256, firma digitale, X.509, PKI | OpenSSL | ⭐⭐⭐ Avanzato |
+
 
 ### Modulo 3 — Sicurezza perimetrale
 
