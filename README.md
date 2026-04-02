@@ -63,10 +63,16 @@ Networking-labs/
 
 ### Modulo 3 — Physical Computing
 
-| Laboratorio | Modulo | Argomento | Livello |
-|---|---|---|---|
-| [Esercizi svolti con Arduino in Tinkercad](./Anno-3/Modulo-3/Progetti_Arduino_con_Tinkercad.zip) | Modulo 3 | Arduino | ⭐ Base |
-| [Link alla playlist Arduino in Tinkercad](https://www.youtube.com/playlist?list=PLf_HZLvsFWLrkudbN-cmbfvRvKMdF2H_s) | Modulo 3 | Arduino | ⭐ Base |
+| Laboratorio | Modulo | Lezione | Argomento | Livello |
+|---|---|---|---|---|
+| [Arduino con Tinkercad](./Anno-3/Modulo-3/Lezione-5/Progetti_Arduino_con_Tinkercad) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - blink di un LED](https://youtu.be/QSM3sEQxKKw) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - blink alternato di due LED](https://youtu.be/ihV6KXj1L7w) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - pulsante che attiva UN LED](https://youtu.be/pysADf-wzKk) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - pulsante come interruttore](https://youtu.be/oFhZJLEmgKQ) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - pulsante con blink alternato di due LED](https://youtu.be/Fbiz4GXbmUQ) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - potenziometro e fotoresistenza](https://youtu.be/LMqKnal-G7g) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
+| [Video - fotoresistenza con tre LED](https://youtu.be/TI_bsqGqa3k) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
 
 ### Modulo 4 — Introduzione al networking
 | Laboratorio | Modulo | Argomento | Livello |
