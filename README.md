@@ -123,23 +123,23 @@ Networking-labs/
 
 ### Modulo 3 — Sicurezza perimetrale
 
-| Laboratorio | Argomento | Tool | Livello |
-|---|---|---|---|
-| [Lab ACL Standard](./Anno-5/Modulo-3/lab-acl-standard-esercizi.md) | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab ACL Estese](./Anno-5/Modulo-3/lab-acl-estese-esercizio.md) | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab DMZ con router](./Anno-5/Modulo-3/lab-router-acl-dmz.md) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab DMZ con ASA 5506](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.md) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab VPN Site to Site](./Anno-5/Modulo-3/lab-vpn-site-to-site-ipsec.md) | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab VPN Remote Access](./Anno-5/Modulo-3/lab-vpn-remote-access.md) | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Lab ACL Standard](./Anno-5/Modulo-3/Lezione-3/lab-acl-standard-esercizi.md) | Modulo 3 | Lezione 3| ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab ACL Estese](./Anno-5/Modulo-3/Lezione-4/lab-acl-estese-esercizio.md) | Modulo 3 | Lezione 4 | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab DMZ con router](./Anno-5/Modulo-3/Lezione-5/lab-router-acl-dmz.md) | Modulo 3 | Lezione 5 | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab DMZ con ASA 5506](./Anno-5/Modulo-3/Lezione-5/lab-asa-dmz-nat-acl.md) | Modulo 3 | Lezione 5 | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab VPN Site to Site](./Anno-5/Modulo-3/Lezione-7/lab-vpn-site-to-site-ipsec.md) | Modulo 3 | Lezione 7| VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab VPN Remote Access](./Anno-5/Modulo-3/Lezione-7/lab-vpn-remote-access.md) | Modulo 3 | Lezione 7 | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
-[lab-acl-standard-esercizi1.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi1.pkt)<br>
-[lab-acl-standard-esercizi2.pkt](./Anno-5/Modulo-3/lab-acl-standard-esercizi2.pkt)<br>
-[lab-acl-estese-esercizio.pkt](./Anno-5/Modulo-3/lab-acl-estese-esercizio.pkt)<br>
-[lab-router-acl-dmz.pkt](./Anno-5/Modulo-3/lab-router-acl-dmz.pkt)<br>
-[lab-asa-dmz-nat-acl.pkt](./Anno-5/Modulo-3/lab-asa-dmz-nat-acl.pkt)<br>
-[lab-vpn-site-to-site-ipsec.pkt](./Anno-5/Modulo-3/lab-vpn-site-to-site-ipsec.pkt)<br>
-[lab-vpn-remote-access.pkt](./Anno-5/Modulo-3/lab-vpn-remote-access.pkt)<br>
+[lab-acl-standard-esercizi1.pkt](./Anno-5/Modulo-3/Lezione-3/lab-acl-standard-esercizi1.pkt)<br>
+[lab-acl-standard-esercizi2.pkt](./Anno-5/Modulo-3/Lezione-3/lab-acl-standard-esercizi2.pkt)<br>
+[lab-acl-estese-esercizio.pkt](./Anno-5/Modulo-3/Lezione-4/lab-acl-estese-esercizio.pkt)<br>
+[lab-router-acl-dmz.pkt](./Anno-5/Modulo-3/Lezione-5/lab-router-acl-dmz.pkt)<br>
+[lab-asa-dmz-nat-acl.pkt](./Anno-5/Modulo-3/Lezione-5/lab-asa-dmz-nat-acl.pkt)<br>
+[lab-vpn-site-to-site-ipsec.pkt](./Anno-5/Modulo-3/Lezione-7/lab-vpn-site-to-site-ipsec.pkt)<br>
+[lab-vpn-remote-access.pkt](./Anno-5/Modulo-3/Lezione-7/lab-vpn-remote-access.pkt)<br>
 
 ### Modulo 4 — Reti Wireless
 
