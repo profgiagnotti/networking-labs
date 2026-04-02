@@ -55,11 +55,13 @@ Networking-labs/
 | [Smontaggio di un PC](./Anno-3/Modulo-1/Lezione-9/smontaggio-PC/Lab-smontaggio-di-un-PC.pdf) | Modulo 1 | Lezione 9 | Smontaggio di un PC | ⭐ Base |
 | [Montaggio di un PC](./Anno-3/Modulo-1/Lezione-9/montaggio-PC/Lab-montaggio-di-un-PC.pdf) | Modulo 1 |Lezione 9 |  Assemblaggio PC | ⭐ Base |
 
+
 ### Modulo 2 — Il microprocessore 8086
 
 | Laboratorio | Modulo | Lezione | Argomento | Livello |
 |---|---|---|---|---|
 | [Esercizi svolti Assembly 8086](./Anno-3/Modulo-2/Lezione-8/Esercizi_Assembly_8086) | Modulo 2 | Lezione 8 | Assembly 8086 | ⭐ Base |
+
 
 ### Modulo 3 — Physical Computing
 
@@ -75,14 +77,15 @@ Networking-labs/
 | [Video - fotoresistenza con tre LED](https://youtu.be/TI_bsqGqa3k) | Modulo 3 | Lezione-5 | Arduino | ⭐ Base |
 
 ### Modulo 4 — Introduzione al networking
-| Laboratorio | Modulo | Argomento | Livello |
-|---|---|---|---|
-| [Video - Introduzione a Cisco Packet Tracer](https://youtu.be/ct9k9iw_uIQ) | Modulo 4 | Networking Video | ⭐ Base |
-| [Video - Esploriamo la modalità logica e fisica con Packet Tracer](https://youtu.be/ukrslNn8DJE) | Modulo 4 | Networking Video | ⭐ Base |
-| [Esercizi svolti su segnali e modulazioni](./Anno-3/Modulo-4/Esercizi_svolti_segnali_e_modulazioni.pdf) | Modulo 4 | Networking Video | ⭐ Base |
+
+| Laboratorio | Modulo | Lezione | Argomento | Livello |
+|---|---|---|---|---|
+| [Video - Introduzione a Cisco Packet Tracer](https://youtu.be/ct9k9iw_uIQ) | Modulo 4 | Lezione 2 | Networking Video | ⭐ Base |
+| [Video - Esploriamo la modalità logica e fisica con Packet Tracer](https://youtu.be/ukrslNn8DJE) | Modulo 4 | Lezione 2 | Networking Video | ⭐ Base |
+| [Esercizi svolti su segnali e modulazioni](./Anno-3/Modulo-4/Lezione-7/Esercizi_svolti_segnali_e_modulazioni.pdf) | Modulo 4 | Lezione 7 | Networking Video | ⭐ Base |
 
 
-> 📦 Il file `Comandi_base.pkt` di Packet Tracer è disponibile nella stessa cartella: [Comandi_base.pkt](./Anno-3/Modulo-4/Comandi_base.pkt)
+> 📦 Il file `Comandi_base.pkt` di Packet Tracer è disponibile nella stessa cartella: [Comandi_base.pkt](./Anno-3/Modulo-4/Lezione-2/Comandi_base.pkt)
 ---
 
 ## 📂 Anno 4 — Reti locali e protocolli
