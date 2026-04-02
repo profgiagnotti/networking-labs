@@ -153,13 +153,13 @@ Networking-labs/
 
 | Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
 |---|---|---|---|---|---|
-| [Video - Rete con WLC](#) | Modulo 4 | Lezione-5 | Rete con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab Rete con WLC](./Anno-5/Modulo-4/Lezione-5/lab-wlc-4-lap-aree-aziendali.md) | Wireless LAN con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - Rete con WLC](#) | Modulo 4 | Lezione-4 | Rete con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab Rete con WLC](./Anno-5/Modulo-4/Lezione-4/lab-wlc-4-lap-aree-aziendali.md) | Wireless LAN con WLC | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Video - Rete cellulare Iot e Smart-Home](#) | Modulo 5 | Lezione-7 | Rete cellulare Iot e Smart-Home | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab Rete cellulare Iot e Smart-Home](./Anno-5/Modulo-4/Lezione-7/lab-rete-cellulare-iot-smart-home.md) | Smart home controllata da remoto | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
-[lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/Lezione-5/lab-wlc-4-lap-aree-aziendali.pkt)<br>
+[lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/Lezione-4/lab-wlc-4-lap-aree-aziendali.pkt)<br>
 [lab-rete-cellulare-iot-smart-home.pkt](./Anno-5/Modulo-4/Lezione-7/lab-rete-cellulare-iot-smart-home.pkt)<br>
 
 
