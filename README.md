@@ -49,7 +49,7 @@ Networking-labs/
 |---|---|---|---|---|
 | [Esercizi svolti calcolo tempi di esecuzione istruzioni](./Anno-3/Modulo-1/Lezione-2/Calcolo_dei_tempi_di_esecuzione_istruzioni.pdf) | Modulo 1 | Lezione 2 | Calcolo tempi di esecuzione istruzioni | ⭐ Base |
 | [Esercizi svolti sulle memorie cache](./Anno-3/Modulo-1/Lezione-3/Esercizi_Memorie_Cache/Esercizi_sulle_memorie_cache.pdf) | Modulo 1 | Lezione 3 | Memorie Cache | ⭐ Base |
-| [Esercizi svolti sulle pipeline](./Anno-3/Modulo-1/Lezione-3/Esercizi_pipeline/Esercizi_pipeline.pdf) | Modulo 1 | Lezione 3 | Pipeline | ⭐ Base |
+| [Esercizi svolti sulle pipeline](./Anno-3/Modulo-1/Lezione-3/Esercizi_Pipeline/Esercizi_pipeline.pdf) | Modulo 1 | Lezione 3 | Pipeline | ⭐ Base |
 | [Esercizi svolti sulle memorie](./Anno-3/Modulo-1/Lezione-6/Esercizi_sulle_memorie.pdf) | Modulo 1 | Lezione 6 | Memorie | ⭐ Base |
 | [Esercizi svolti sulle operazioni di lettura](./Anno-3/Modulo-1/Lezione-7/Esercizi_operazione_READ.pdf) | Modulo 1 | Lezione 7 | Operazioni di lettura dalla memoria | ⭐ Base |
 | [Smontaggio di un PC](./Anno-3/Modulo-1/Lezione-9/smontaggio-PC/Lab-smontaggio-di-un-PC.pdf) | Modulo 1 | Lezione 9 | Smontaggio di un PC | ⭐ Base |
