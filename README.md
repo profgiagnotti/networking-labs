@@ -43,13 +43,18 @@ Networking-labs/
 
 ## 📂 Anno 3 — Sistemi di elaborazione e architetture
 
+### Modulo 1 — Hardware dei sistemi di elaborazione
+
 | Laboratorio | Modulo | Argomento | Livello |
 |---|---|---|---|
 | [Smontaggio di un PC](./Anno-3/Modulo-1/smontaggio-PC/Lab-smontaggio-di-un-PC.pdf) | Modulo 1 | Smontaggio di un PC | ⭐ Base |
 | [Montaggio di un PC](./Anno-3/Modulo-1/montaggio-PC/Lab-montaggio-di-un-PC.pdf) | Modulo 1 | Assemblaggio PC | ⭐ Base |
-| *Prossimamente* | Modulo 2 | — | — |
-| *Prossimamente* | Modulo 3 | — | — |
-| *Prossimamente* | Modulo 4 | — | — |
+
+### Modulo 2 — Il microprocessore 8086
+
+| Laboratorio | Modulo | Argomento | Livello |
+|---|---|---|---|
+| [Esercizi svolti Assembly 8086](./Anno-3/Modulo-2/Esercizi_Assembly_8086) | Modulo 2 | Assembly 8086 | ⭐ Base |
 
 ---
 
