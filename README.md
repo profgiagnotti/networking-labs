@@ -63,6 +63,18 @@ Networking-labs/
 | [Esercizi svolti con Arduino in Tinkercad](./Anno-3/Modulo-3/Progetti_Arduino_con_Tinkercad.zip) | Modulo 3 | Arduino | ⭐ Base |
 | [Link alla playlist Arduino in Tinkercad](https://www.youtube.com/playlist?list=PLf_HZLvsFWLrkudbN-cmbfvRvKMdF2H_s) | Modulo 3 | Arduino | ⭐ Base |
 
+### Modulo 4 — Introduzione al networking
+| Laboratorio | Modulo | Argomento | Livello |
+|---|---|---|---|
+| [Video - Introduzione a Cisco Packet Tracer](https://youtu.be/ct9k9iw_uIQ) | Modulo 4 | Networking Video | ⭐ Base |
+| [Video - Esploriamo la modalità logica e fisica con Packet Tracer](https://youtu.be/ukrslNn8DJE) | Modulo 4 | Networking Video | ⭐ Base |
+| [Video - Esploriamo la modalità logica e fisica con Packet Tracer](https://youtu.be/ukrslNn8DJE) | Modulo 4 | Networking Video | ⭐ Base |
+| [Esercizi svolti su segnali e modulazioni](./Anno-3/Modulo-4/Esercizi_svolti_segnali_e_modulazioni.pdf) | Modulo 4 | Networking Video | ⭐ Base |
+
+
+
+
+> 📦 Il file `Comandi_base.pkt` di Packet Tracer è disponibile nella stessa cartella: [Comandi_base.pkt](./Anno-3/Modulo-4/Comandi_base.pkt)
 ---
 
 ## 📂 Anno 4 — Reti locali e protocolli
