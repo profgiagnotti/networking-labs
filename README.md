@@ -46,7 +46,7 @@ Networking-labs/
 ### Modulo 1 — Hardware dei sistemi di elaborazione
 
 | Laboratorio | Modulo | Lezione | Argomento | Livello |
-|---|---|---|---|
+|---|---|---|---|---|
 | [Esercizi svolti calcolo tempi di esecuzione istruzioni](./Anno-3/Modulo-1/Lezione-2/Calcolo_dei_tempi_di_esecuzione_istruzioni.pdf) | Modulo 1 | Lezione 2 | Calcolo tempi di esecuzione istruzioni | ⭐ Base |
 | [Esercizi svolti sulle memorie cache](./Anno-3/Modulo-1/Lezione-3/Esercizi_Memorie_Cache/Esercizi_sulle_memorie_cache.pdf) | Modulo 1 | Lezione 3 | Memorie Cache | ⭐ Base |
 | [Esercizi svolti sulle pipeline](./Anno-3/Modulo-1/Lezione-3/Esercizi_pipeline/Esercizi_pipeline.pdf) | Modulo 1 | Lezione 3 | Pipeline | ⭐ Base |
