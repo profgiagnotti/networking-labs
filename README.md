@@ -21,7 +21,7 @@ Networking-labs/
 │
 ├── Anno-3/                         ← Sistemi di elaborazione e fondamenti
 │   ├── Modulo-1/                   ✅ disponibile
-│   ├── Modulo-2/                   🔜 in arrivo
+│   ├── Modulo-2/                   ✅ disponibile
 │   ├── Modulo-3/                   🔜 in arrivo
 │   └── Modulo-4/                   🔜 in arrivo
 │
@@ -54,7 +54,7 @@ Networking-labs/
 
 | Laboratorio | Modulo | Argomento | Livello |
 |---|---|---|---|
-| [Esercizi svolti Assembly 8086](./Anno-3/Modulo-2/Esercizi_Assembly_8086) | Modulo 2 | Assembly 8086 | ⭐ Base |
+| [Esercizi svolti Assembly 8086](./Anno-3/Modulo-2/Esercizi_Assembly_8086.zip) | Modulo 2 | Assembly 8086 | ⭐ Base |
 
 ---
 
