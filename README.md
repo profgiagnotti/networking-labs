@@ -23,7 +23,7 @@ Networking-labs/
 │   ├── Modulo-1/                   ✅ disponibile
 │   ├── Modulo-2/                   ✅ disponibile
 │   ├── Modulo-3/                   ✅ disponibile
-│   └── Modulo-4/                   🔜 in arrivo
+│   └── Modulo-4/                   ✅ disponibile
 │
 ├── Anno-4/                         ← Reti locali e protocolli
 │   ├── Modulo-1/                   🔜 in arrivo
