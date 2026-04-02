@@ -102,13 +102,13 @@ Networking-labs/
 
 ### Modulo 1 — Protocolli applicativi TCP/IP
 
-| Laboratorio | Argomento | Tool | Livello |
-|---|---|---|---|
-| [Lab API REST con Postman](./Anno-5/Modulo-1/lab-api-rest-postman-jsonplaceholder.md) | HTTP, REST, JSON | Postman | ⭐⭐ Intermedio |
-| [Lab FTP con FileZilla](./Anno-5/Modulo-1/lab-ftp-filezilla-server-client.md) | FTP, FileZilla, XAMPP | FileZilla | ⭐⭐ Intermedio |
-| [Lab Servizi Internet](./Anno-5/Modulo-1/lab-packet-tracer-servizi-internet.md) | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Lab API REST con Postman](./Anno-5/Modulo-1/Lezione-5/lab-api-rest-postman-jsonplaceholder.md) | HTTP, REST, JSON | Postman | ⭐⭐ Intermedio |
+| [Lab FTP con FileZilla](./Anno-5/Modulo-1/Lezione-9/lab-ftp-filezilla-server-client.md) | FTP, FileZilla, XAMPP | FileZilla | ⭐⭐ Intermedio |
+| [Lab Servizi Internet](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.md) | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
 
-> 📦 Il file `.pkt` di Packet Tracer è disponibile nella stessa cartella: [lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-1/lab-packet-tracer-servizi-internet.pkt)
+> 📦 Il file `.pkt` di Packet Tracer è disponibile nella stessa cartella: [lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.pkt)
 
 ### Modulo 2 — Sicurezza informatica e crittografia
 
