@@ -134,7 +134,9 @@ Networking-labs/
 | [Lab DMZ con router](./Anno-5/Modulo-3/Lezione-5/lab-router-acl-dmz.md) | Modulo 3 | Lezione 5 | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Video - DMZ con ASA 5506](https://youtu.be/CQSzNi3omtI) | Modulo 3 | Lezione-5 | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con ASA 5506](./Anno-5/Modulo-3/Lezione-5/lab-asa-dmz-nat-acl.md) | Modulo 3 | Lezione 5 | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - VPN Site to Site](#) | Modulo 3 | Lezione-7 | VPN Site-to-site| Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab VPN Site to Site](./Anno-5/Modulo-3/Lezione-7/lab-vpn-site-to-site-ipsec.md) | Modulo 3 | Lezione 7| VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - VPN Remote access](#) | Modulo 3 | Lezione-7 | VPN Remote access | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab VPN Remote Access](./Anno-5/Modulo-3/Lezione-7/lab-vpn-remote-access.md) | Modulo 3 | Lezione 7 | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
