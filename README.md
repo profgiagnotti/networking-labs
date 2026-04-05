@@ -133,7 +133,16 @@ Networking-labs/
 | [Esercizi Routing statico](./Anno-4/Modulo-2/Lezione-10/Routing-statico.pdf) | Modulo 2 | Lezione 10 | Routing statico | — | ⭐⭐ Intermedio |
 | [Esercizi Routing statico IPv6](./Anno-4/Modulo-2/Lezione-10/Routing-statico-IPv6.pdf) | Modulo 2 | Lezione 10 | Routing statico IPv6| — | ⭐⭐ Intermedio |
 | [Esercizi Routing statico subnetting VLAN IPv6](./Anno-4/Modulo-2/Lezione-10/Routing-statico-VLAN-subnetting-IPV6.pdf) | Modulo 2 | Lezione 10 | Esercizi Routing statico subnetting VLAN IPv6| — | ⭐⭐ Intermedio |
-| [Video - Routing statico subnetting VLAN IPv6](https://youtu.be/vsRw-F476jA) | Modulo 2 | Lezion 10 | Routing statico subnetting VLAN IPv6 | Packet Tracer | ⭐⭐ Intermedio | 
+| [Video - Routing statico subnetting VLAN IPv6](https://youtu.be/vsRw-F476jA) | Modulo 2 | Lezion 10 | Routing statico subnetting VLAN IPv6 | Packet Tracer | ⭐⭐ Intermedio |
+| [Esercizi RIP](./Anno-4/Modulo-2/Lezione-11/Routing-RIP.pdf) | Modulo 2 | Lezione 11 | RIP | — | ⭐⭐ Intermedio | 
+| [Video - RIP](https://youtu.be/jKfYZijgSiw) | Modulo 2 | Lezion 11 | RIP | Packet Tracer | ⭐⭐ Intermedio |
+| [Esercizi RIPv2](./Anno-4/Modulo-2/Lezione-11/Routing-RIPv2.pdf) | Modulo 2 | Lezione 11 | RIP v2 | — | ⭐⭐ Intermedio | 
+| [Video - RIPv2](https://youtu.be/spuwnRVruLY) | Modulo 2 | Lezion 11 | RIP v2 | Packet Tracer | ⭐⭐ Intermedio |
+| [Esercizi RIPnG](./Anno-4/Modulo-2/Lezione-11/Routing-RIPng.pdf) | Modulo 2 | Lezione 11 | RIP nG | — | ⭐⭐ Intermedio | 
+| [Esercizi OSPF Single AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pdf) | Modulo 2 | Lezione 11 | OSPF SA | — | ⭐⭐⭐ Avanzato | 
+| [Esercizi OSPF Multi AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-Area.pdf) | Modulo 2 | Lezione 11 | OSPF MA | — | ⭐⭐⭐ Avanzato |
+| [Video - OSPF v2](https://youtu.be/R4ZoNCICUtI) | Modulo 2 | Lezion 11 | OSPF | Packet Tracer | ⭐⭐⭐ Avanzato | 
+| [Video - OSPF v2 multi area](https://youtu.be/4cYGJ1huUUc) | Modulo 2 | Lezion 11 | OSPF multi area | Packet Tracer | ⭐⭐⭐ Avanzato | 
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
 [subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
@@ -153,6 +162,12 @@ Networking-labs/
 [Routing-statico.pkt](./Anno-4/Modulo-2/Lezione-10/Routing-statico.pkt)<br>
 [Routing-statico-IPv6.pkt](./Anno-4/Modulo-2/Lezione-10/Routing-statico-IPv6.pkt)<br>
 [Routing-statico-subnetting-VLAN-IPv6.pkt](./Anno-4/Modulo-2/Lezione-10/Routing-statico-subnetting-VLAN-IPv6.pkt)<br>
+[Routing-RIP.pkt](./Anno-4/Modulo-2/Lezione-11/Routing-RIP.pkt)<br>
+[Routing-RIPv2.pkt](./Anno-4/Modulo-2/Lezione-11/Routing-RIPv2.pkt)<br>
+[Routing-RIPng.pkt](./Anno-4/Modulo-2/Lezione-11/Routing-RIPng.pkt)<br>
+[ROAS_RIP.pkt](./Anno-4/Modulo-2/Lezione-11/ROAS-RIP.pkt)<br>
+[OSPF-Single-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pkt)<br>
+[OSPF-Multi-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-Area.pkt)<br>
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
