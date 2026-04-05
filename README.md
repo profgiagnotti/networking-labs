@@ -27,8 +27,7 @@ Networking-labs/
 │
 ├── Anno-4/                         ← Reti locali e protocolli
 │   ├── Modulo-1/                   ✅ disponibile
-│   ├── Modulo-2/                   ✅ disponibile
-│   └── Modulo-3/                   🔜 in arrivo
+│   └── Modulo-2/                   ✅ disponibile
 │
 └── Anno-5/                         ← Reti avanzate e livello applicativo
     ├── Modulo-1/                   ✅ disponibile
@@ -116,12 +115,34 @@ Networking-labs/
 | [Esercizi subnetting](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Esercizi subnetting maschera fissa](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting-maschera-fissa.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Esercizi VLSM](./Anno-4/Modulo-2/Lezione-3/Esercizi-VLSM.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
-| [Video - subnetting maschera fissa](https://youtu.be/Lxzo5pxIRIA) | Modulo 2 | Lezione-3 | subnetting | Packet Tracer | ⭐⭐ Intermedio |
-| [Video - subnetting VLSM](https://youtu.be/Bd-ifMcab4I) | Modulo 2 | Lezione-3 | subnetting VLSM | Packet Tracer | ⭐⭐ Intermedio |  
+| [Video - subnetting maschera fissa](https://youtu.be/Lxzo5pxIRIA) | Modulo 2 | Lezione 3 | subnetting | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - subnetting VLSM](https://youtu.be/Bd-ifMcab4I) | Modulo 2 | Lezione-3 | subnetting VLSM | Packet Tracer | ⭐⭐ Intermedio | 
+| [Esercizi CIDR](./Anno-4/Modulo-2/Lezione-4/Esercizi svolti CIDR.pdf) | Modulo 2 | Lezione 3 | CIDR | — | ⭐⭐ Intermedio |
+| [Video - CIDR](https://youtu.be/kFOWu616cMk) | Modulo 2 | Lezion 4 | CIDR | Packet Tracer | ⭐⭐ Intermedio |  
+| [Esercizi IPv6 A](./Anno-4/Modulo-2/Lezione-5/Esercizi-IPv6-a.pdf) | Modulo 2 | Lezione 5 | IPv6 | — | ⭐⭐ Intermedio |
+| [Esercizi IPv6 B](./Anno-4/Modulo-2/Lezione-5/Esercizi-IPv6-b.pdf) | Modulo 2 | Lezione 5 | IPv6 | — | ⭐⭐ Intermedio |
+| [Video - IPv6](https://youtu.be/L3YY7LhN1Y0) | Modulo 2 | Lezion 5 | IPv6 | Packet Tracer | ⭐⭐ Intermedio | 
+| [Esercizi ARP ICMP](./Anno-4/Modulo-2/Lezione-7/Esercizi-protocolli-ARP-ICMP.pdf) | Modulo 2 | Lezione 7 | ARP ICMP | — | ⭐⭐ Intermedio |
+| [Esercizi VLAN untagged](./Anno-4/Modulo-2/Lezione-9/VLAN-untagged.pdf) | Modulo 2 | Lezione 9 | VLAN | — | ⭐⭐ Intermedio |
+| [Esercizi VLAN tagged](./Anno-4/Modulo-2/Lezione-9/VLAN-tagged.pdf) | Modulo 2 | Lezione 9 | VLAN | — | ⭐⭐ Intermedio |
+| [Esercizi Inter-VLAN](./Anno-4/Modulo-2/Lezione-9/Inter-vlan-tradizionale.pdf) | Modulo 2 | Lezione 9 | Inter-VLAN | — | ⭐⭐ Intermedio |
+| [Esercizi Router on a stick](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick.pdf) | Modulo 2 | Lezione 9 | ROAS | — | ⭐⭐ Intermedio |
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
 [subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
-[VLSM.pkt](./Anno-4/Modulo-2/Lezione-3/VLSM.pkt)
+[VLSM.pkt](./Anno-4/Modulo-2/Lezione-3/VLSM.pkt)<br>
+[CIDR.pkt](./Anno-4/Modulo-2/Lezione-4/CIDR.pkt)<br>
+[Esercizio-IPv6.pkt](./Anno-4/Modulo-2/Lezione-5/Esercizio-IPv6.pkt)<br>
+[IPv6-dual-stack.pkt](./Anno-4/Modulo-2/Lezione-5/IPv6-dual-stack.pkt)<br>
+[Esercizio-proposto-IPv6-dual-stack.pkt](./Anno-4/Modulo-2/Lezione-5/Esercizio-proposto-IPv6-dual-stack.pkt)<br>
+[VLAN-untagged.pkt](./Anno-4/Modulo-2/Lezione-9/VLAN-untagged.pkt)<br>
+[VLAN-tagged.pkt](./Anno-4/Modulo-2/Lezione-9/VLAN-tagged.pkt)<br>
+[STP.pkt](./Anno-4/Modulo-2/Lezione-9/STP.pkt)<br>
+[VLAN-STP.pkt](./Anno-4/Modulo-2/Lezione-9/VLAN-STP.pkt)<br>
+[Inter-VLAN-tradizionale.pkt](./Anno-4/Modulo-2/Lezione-9/Inter-VLAN-tradizionale.pkt)<br>
+[Inter-Vlan-tradizionale2.pkt](./Anno-4/Modulo-2/Lezione-9/Inter-Vlan-tradizionale2.pkt)<br>
+[Router-on-a-stick.pkt](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick.pkt)<br>
+[Router-on-a-stick2.pkt](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick2.pkt)<br>
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
