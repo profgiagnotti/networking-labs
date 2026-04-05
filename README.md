@@ -90,11 +90,13 @@ Networking-labs/
 
 ## 📂 Anno 4 — Reti locali e protocolli
 
-| Laboratorio | Modulo | Argomento | Livello |
-|---|---|---|---|
-| *Prossimamente* | Modulo 1 | — | — |
-| *Prossimamente* | Modulo 2 | — | — |
-| *Prossimamente* | Modulo 3 | — | — |
+### Modulo 1 — TCP/IP Livello Accesso alla rete
+
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Esercizi Livello Data Link](./Anno-4/Modulo-1/Lezione-4/Esercizi-svolti-livello-data-link.pdf) | Modulo 1 | Lezione 4 | Livello Data-link | — | ⭐ Base |
+| [Esercizi Switch](./Anno-4/Modulo-1/Lezione-8/Esercizi-switch.pdf) | Modulo 1 | Lezione 8 | Livello Data-link | — | ⭐ Base |
+| [IOS Cisco pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pdf) | Modulo 1 | Lezione 8 | Attività Pka | Packet Tracer | ⭐ Base |
 
 ---
 
