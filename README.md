@@ -98,7 +98,8 @@ Networking-labs/
 | [Esercizi Switch](./Anno-4/Modulo-1/Lezione-8/Esercizi-switch.pdf) | Modulo 1 | Lezione 8 | Livello Data-link | — | ⭐ Base |
 | [IOS Cisco pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pdf) | Modulo 1 | Lezione 8 | Attività Pka | Packet Tracer | ⭐ Base |
 | [Video - comandi di base IOS](https://youtu.be/-PEHf-2DpEE) | Modulo 1 | Lezione-8 | comandi Cisco | Packet Tracer | ⭐ Base |
-| [Video - switch configurazione base](https://youtu.be/Wmi0jq8rFDM) | Modulo 1 | Lezione-8 | configurazione base switch | Packet Tracer | ⭐ Base |
+| [Video - switch configurazione clock](https://youtu.be/Wmi0jq8rFDM) | Modulo 1 | Lezione-8 | configurazione clock switch | Packet Tracer | ⭐ Base |
+| [Video - switch configurazione base](https://youtu.be/PModRIp_StM) | Modulo 1 | Lezione-8 | configurazione base switch | Packet Tracer | ⭐ Base |
 | [Video - rete wireless](https://youtu.be/1jQHDTKDhWg) | Modulo 1 | Lezione-9 | rete wireless | Packet Tracer | ⭐ Base |
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt e .pka`: <br>
