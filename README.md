@@ -142,7 +142,8 @@ Networking-labs/
 | [Esercizi OSPF Single AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pdf) | Modulo 2 | Lezione 11 | OSPF SA | — | ⭐⭐⭐ Avanzato | 
 | [Esercizi OSPF Multi AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-Area.pdf) | Modulo 2 | Lezione 11 | OSPF MA | — | ⭐⭐⭐ Avanzato |
 | [Video - OSPF v2](https://youtu.be/R4ZoNCICUtI) | Modulo 2 | Lezion 11 | OSPF | Packet Tracer | ⭐⭐⭐ Avanzato | 
-| [Video - OSPF v2 multi area](https://youtu.be/4cYGJ1huUUc) | Modulo 2 | Lezion 11 | OSPF multi area | Packet Tracer | ⭐⭐⭐ Avanzato | 
+| [Video - OSPF v2 multi area](https://youtu.be/4cYGJ1huUUc) | Modulo 2 | Lezion 11 | OSPF multi area | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Esercizi BGP](./Anno-4/Modulo-2/Lezione-12/BGP.pdf) | Modulo 2 | Lezione 12 | BGP | — | ⭐⭐⭐ Avanzato | 
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
 [subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
@@ -168,6 +169,8 @@ Networking-labs/
 [ROAS_RIP.pkt](./Anno-4/Modulo-2/Lezione-11/ROAS-RIP.pkt)<br>
 [OSPF-Single-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pkt)<br>
 [OSPF-Multi-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-area.pkt)<br>
+[BGP.pkt](./Anno-4/Modulo-2/Lezione-12/BGP.pkt)<br>
+[BGP+OSPF+RIPng.pkt](./Anno-4/Modulo-2/Lezione-12/BGP+OSPF+RIPng.pkt)<br>
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
