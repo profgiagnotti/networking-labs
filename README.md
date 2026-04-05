@@ -125,8 +125,11 @@ Networking-labs/
 | [Esercizi ARP ICMP](./Anno-4/Modulo-2/Lezione-7/Esercizi-protocolli-ARP-ICMP.pdf) | Modulo 2 | Lezione 7 | ARP ICMP | — | ⭐⭐ Intermedio |
 | [Esercizi VLAN untagged](./Anno-4/Modulo-2/Lezione-9/VLAN-untagged.pdf) | Modulo 2 | Lezione 9 | VLAN | — | ⭐⭐ Intermedio |
 | [Esercizi VLAN tagged](./Anno-4/Modulo-2/Lezione-9/VLAN-tagged.pdf) | Modulo 2 | Lezione 9 | VLAN | — | ⭐⭐ Intermedio |
+| [Video - VLAN](https://youtu.be/QQbrw1cu4-Q) | Modulo 2 | Lezion 9 | VLAN | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi Inter-VLAN](./Anno-4/Modulo-2/Lezione-9/Inter-vlan-tradizionale.pdf) | Modulo 2 | Lezione 9 | Inter-VLAN | — | ⭐⭐ Intermedio |
+| [Video - Inter-VLAN](https://youtu.be/wXx0gxrfsIE) | Modulo 2 | Lezion 9 | Inter-VLAN | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi Router on a stick](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick.pdf) | Modulo 2 | Lezione 9 | ROAS | — | ⭐⭐ Intermedio |
+| [Video - Router on a stick](https://youtu.be/E0NNTQpbXFs) | Modulo 2 | Lezion 9 | ROAS | Packet Tracer | ⭐⭐ Intermedio | 
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
 [subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
