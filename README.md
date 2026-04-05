@@ -117,7 +117,7 @@ Networking-labs/
 | [Esercizi VLSM](./Anno-4/Modulo-2/Lezione-3/Esercizi-VLSM.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Video - subnetting maschera fissa](https://youtu.be/Lxzo5pxIRIA) | Modulo 2 | Lezione 3 | subnetting | Packet Tracer | ⭐⭐ Intermedio |
 | [Video - subnetting VLSM](https://youtu.be/Bd-ifMcab4I) | Modulo 2 | Lezione-3 | subnetting VLSM | Packet Tracer | ⭐⭐ Intermedio | 
-| [Esercizi CIDR](./Anno-4/Modulo-2/Lezione-4/Esercizi svolti CIDR.pdf) | Modulo 2 | Lezione 3 | CIDR | — | ⭐⭐ Intermedio |
+| [Esercizi CIDR](./Anno-4/Modulo-2/Lezione-4/Esercizi-CIDR.pdf) | Modulo 2 | Lezione 3 | CIDR | — | ⭐⭐ Intermedio |
 | [Video - CIDR](https://youtu.be/kFOWu616cMk) | Modulo 2 | Lezion 4 | CIDR | Packet Tracer | ⭐⭐ Intermedio |  
 | [Esercizi IPv6 A](./Anno-4/Modulo-2/Lezione-5/Esercizi-IPv6-a.pdf) | Modulo 2 | Lezione 5 | IPv6 | — | ⭐⭐ Intermedio |
 | [Esercizi IPv6 B](./Anno-4/Modulo-2/Lezione-5/Esercizi-IPv6-b.pdf) | Modulo 2 | Lezione 5 | IPv6 | — | ⭐⭐ Intermedio |
