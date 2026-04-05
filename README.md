@@ -97,6 +97,7 @@ Networking-labs/
 | [Esercizi Livello Data Link](./Anno-4/Modulo-1/Lezione-4/Esercizi-svolti-livello-data-link.pdf) | Modulo 1 | Lezione 4 | Livello Data-link | — | ⭐ Base |
 | [Esercizi Switch](./Anno-4/Modulo-1/Lezione-8/Esercizi-switch.pdf) | Modulo 1 | Lezione 8 | Livello Data-link | — | ⭐ Base |
 | [IOS Cisco pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pdf) | Modulo 1 | Lezione 8 | Attività Pka | Packet Tracer | ⭐ Base |
+| [Video - comandi di base IOS](https://youtu.be/-PEHf-2DpEE) | Modulo 1 | Lezione-8 | comandi Cisco | Packet Tracer | ⭐ Base |
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt e .pka`: <br>
 [visualizza-MAC-Table.pkt](./Anno-4/Modulo-1/Lezione-8/visualizza-MAC-Table.pkt)<br>
