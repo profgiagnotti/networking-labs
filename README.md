@@ -116,7 +116,8 @@ Networking-labs/
 | [Esercizi subnetting](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Esercizi subnetting maschera fissa](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting-maschera-fissa.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Esercizi VLSM](./Anno-4/Modulo-2/Lezione-3/Esercizi-VLSM.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
-
+| [Video - subnetting maschera fissa](https://youtu.be/Lxzo5pxIRIA) | Modulo 2 | Lezione-3 | subnetting | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - subnetting VLSM](https://youtu.be/Bd-ifMcab4I) | Modulo 2 | Lezione-3 | subnetting VLSM | Packet Tracer | ⭐⭐ Intermedio |  
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
 [subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
