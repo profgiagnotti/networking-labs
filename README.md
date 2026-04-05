@@ -26,8 +26,8 @@ Networking-labs/
 │   └── Modulo-4/                   ✅ disponibile
 │
 ├── Anno-4/                         ← Reti locali e protocolli
-│   ├── Modulo-1/                   🔜 in arrivo
-│   ├── Modulo-2/                   🔜 in arrivo
+│   ├── Modulo-1/                   ✅ disponibile
+│   ├── Modulo-2/                   ✅ disponibile
 │   └── Modulo-3/                   🔜 in arrivo
 │
 └── Anno-5/                         ← Reti avanzate e livello applicativo
@@ -98,7 +98,8 @@ Networking-labs/
 | [Esercizi Switch](./Anno-4/Modulo-1/Lezione-8/Esercizi-switch.pdf) | Modulo 1 | Lezione 8 | Livello Data-link | — | ⭐ Base |
 | [IOS Cisco pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pdf) | Modulo 1 | Lezione 8 | Attività Pka | Packet Tracer | ⭐ Base |
 
-> 📦 Nella stessa cartella sono disponibili i file `.pkt e .pka`: [visualizza-MAC-Table.pkt](./Anno-4/Modulo-1/Lezione-8/visualizza-MAC-Table.pkt)<br>
+> 📦 Nella stessa cartella sono disponibili i file `.pkt e .pka`: <br>
+[visualizza-MAC-Table.pkt](./Anno-4/Modulo-1/Lezione-8/visualizza-MAC-Table.pkt)<br>
 [peer-to-peer-con-hub.pkt](./Anno-4/Modulo-1/Lezione-8/peer-to-peer-con-hub.pkt)<br>
 [navigate-the-ios.pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pka)<br>
 ---
