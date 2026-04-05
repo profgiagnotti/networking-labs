@@ -167,7 +167,7 @@ Networking-labs/
 [Routing-RIPng.pkt](./Anno-4/Modulo-2/Lezione-11/Routing-RIPng.pkt)<br>
 [ROAS_RIP.pkt](./Anno-4/Modulo-2/Lezione-11/ROAS-RIP.pkt)<br>
 [OSPF-Single-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pkt)<br>
-[OSPF-Multi-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-Area.pkt)<br>
+[OSPF-Multi-Area.pkt](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-area.pkt)<br>
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
