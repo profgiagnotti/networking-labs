@@ -130,6 +130,10 @@ Networking-labs/
 | [Video - Inter-VLAN](https://youtu.be/wXx0gxrfsIE) | Modulo 2 | Lezion 9 | Inter-VLAN | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi Router on a stick](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick.pdf) | Modulo 2 | Lezione 9 | ROAS | — | ⭐⭐ Intermedio |
 | [Video - Router on a stick](https://youtu.be/E0NNTQpbXFs) | Modulo 2 | Lezion 9 | ROAS | Packet Tracer | ⭐⭐ Intermedio | 
+| [Esercizi Routing statico](./Anno-4/Modulo-2/Lezione-10/Routing-statico.pdf) | Modulo 2 | Lezione 10 | Routing statico | — | ⭐⭐ Intermedio |
+| [Esercizi Routing statico IPv6](./Anno-4/Modulo-2/Lezione-10/Routing-statico-IPv6.pdf) | Modulo 2 | Lezione 10 | Routing statico IPv6| — | ⭐⭐ Intermedio |
+| [Esercizi Routing statico subnetting VLAN IPv6](./Anno-4/Modulo-2/Lezione-10/Routing-statico-VLAN-subnetting-IPV6.pdf) | Modulo 2 | Lezione 10 | Esercizi Routing statico subnetting VLAN IPv6| — | ⭐⭐ Intermedio |
+| [Video - Routing statico subnetting VLAN IPv6](https://youtu.be/vsRw-F476jA) | Modulo 2 | Lezion 10 | Routing statico subnetting VLAN IPv6 | Packet Tracer | ⭐⭐ Intermedio | 
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
 [subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
@@ -146,6 +150,9 @@ Networking-labs/
 [Inter-Vlan-tradizionale2.pkt](./Anno-4/Modulo-2/Lezione-9/Inter-Vlan-tradizionale2.pkt)<br>
 [Router-on-a-stick.pkt](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick.pkt)<br>
 [Router-on-a-stick2.pkt](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick2.pkt)<br>
+[Routing-statico.pkt](./Anno-4/Modulo-2/Lezione-10/Routing-statico.pkt)<br>
+[Routing-statico-IPv6.pkt](./Anno-4/Modulo-2/Lezione-10/Routing-statico-IPv6.pkt)<br>
+[Routing-statico-subnetting-VLAN-IPv6.pkt](./Anno-4/Modulo-2/Lezione-10/Routing-statico-subnetting-VLAN-IPv6.pkt)<br>
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
