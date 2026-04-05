@@ -98,6 +98,9 @@ Networking-labs/
 | [Esercizi Switch](./Anno-4/Modulo-1/Lezione-8/Esercizi-switch.pdf) | Modulo 1 | Lezione 8 | Livello Data-link | — | ⭐ Base |
 | [IOS Cisco pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pdf) | Modulo 1 | Lezione 8 | Attività Pka | Packet Tracer | ⭐ Base |
 
+> 📦 Nella stessa cartella sono disponibili i file `.pkt e .pka`: [visualizza-MAC-Table.pkt](./Anno-4/Modulo-1/Lezione-8/visualizza-MAC-Table.pkt)<br>
+[peer-to-peer-con-hub.pkt](./Anno-4/Modulo-1/Lezione-8/peer-to-peer-con-hub.pkt)<br>
+[navigate-the-ios.pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pka)<br>
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
@@ -112,7 +115,6 @@ Networking-labs/
 | [Lab Servizi Internet](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.md) | Modulo 1 | Lezione 9 | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
 
 > 📦 Il file `.pkt` di Packet Tracer è disponibile nella stessa cartella: [lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.pkt)
-
 
 ### Modulo 2 — Sicurezza informatica e crittografia
 
