@@ -107,6 +107,20 @@ Networking-labs/
 [peer-to-peer-con-hub.pkt](./Anno-4/Modulo-1/Lezione-8/peer-to-peer-con-hub.pkt)<br>
 [navigate-the-ios.pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pka)<br>
 [reti-Wireless.pkt](./Anno-4/Modulo-1/Lezione-9/reti-Wireless.pkt)<br>
+
+### Modulo 2 — TCP/IP Livello Network
+
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Esercizi Indirizzamento IPv4](./Anno-4/Modulo-2/Lezione-2/Esercizi-svolti-indirizzi-IP.pdf) | Modulo 2 | Lezione 2 | indirizzamento IPv4 | — | ⭐⭐ Intermedio |
+| [Esercizi subnetting](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
+| [Esercizi subnetting maschera fissa](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting-maschera-fissa.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
+| [Esercizi VLSM](./Anno-4/Modulo-2/Lezione-3/Esercizi-VLSM.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
+
+
+> 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
+[subnetting-fisso.pkt](./Anno-4/Modulo-2/Lezione-3/subnetting-fisso.pkt)<br>
+[VLSM.pkt](./Anno-4/Modulo-2/Lezione-3/VLSM.pkt)
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
