@@ -137,7 +137,7 @@ Networking-labs/
 | [Esercizi RIP](./Anno-4/Modulo-2/Lezione-11/Routing-RIP.pdf) | Modulo-2 | Lezione-11 | RIP | — | ⭐⭐ Intermedio | 
 | [Video - RIP](https://youtu.be/jKfYZijgSiw) | Modulo-2 | Lezione-11 | RIP | Packet Tracer | ⭐⭐ Intermedio |
 | [Esercizi RIPv2](./Anno-4/Modulo-2/Lezione-11/Routing-RIPv2.pdf) | Modulo-2 | Lezione-11 | RIP v2 | — | ⭐⭐ Intermedio | 
-| [Video - RIPv2](https://youtu.be/spuwnRVruLY) | Modulo 2 | Lezione 11 | RIP v2 | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - RIPv2](https://youtu.be/spuwnRVruLY) | Modulo-2 | Lezione-11 | RIP v2 | Packet Tracer | ⭐⭐ Intermedio |
 | [Esercizi RIPnG](./Anno-4/Modulo-2/Lezione-11/Routing-RIPng.pdf) | Modulo-2 | Lezione-11 | RIP nG | — | ⭐⭐ Intermedio | 
 | [Esercizi OSPF Single AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pdf) | Modulo-2 | Lezione-11 | OSPF SA | — | ⭐⭐⭐ Avanzato | 
 | [Esercizi OSPF Multi AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-Area.pdf) | Modulo-2 | Lezione-11 | OSPF MA | — | ⭐⭐⭐ Avanzato |
@@ -202,7 +202,7 @@ Networking-labs/
 |---|---|---|---|---|---|
 | [Video - ACL Standard](https://youtu.be/SMLr4ckL6sk) | Modulo-3 | Lezione-3 | ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab ACL Standard](./Anno-5/Modulo-3/Lezione-3/lab-acl-standard-esercizi.md) | Modulo-3 | Lezione-3| ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Video - ACL Estese](https://youtu.be/-ncK40hNUB0) | Modulo 3 | Lezione-4 | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - ACL Estese](https://youtu.be/-ncK40hNUB0) | Modulo-3 | Lezione-4 | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab ACL Estese](./Anno-5/Modulo-3/Lezione-4/lab-acl-estese-esercizio.md) | Modulo-3 | Lezione-4 | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Video - DMZ con router](https://youtu.be/sqeKoiwf0Pw) | Modulo 3 | Lezione-5 | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con router](./Anno-5/Modulo-3/Lezione-5/lab-router-acl-dmz.md) | Modulo-3 | Lezione-5 | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
