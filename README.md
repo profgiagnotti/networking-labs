@@ -96,10 +96,10 @@ Networking-labs/
 | [Esercizi Livello Data Link](./Anno-4/Modulo-1/Lezione-4/Esercizi-svolti-livello-data-link.pdf) | Modulo 1 | Lezione 4 | Livello Data-link | — | ⭐ Base |
 | [Esercizi Switch](./Anno-4/Modulo-1/Lezione-8/Esercizi-switch.pdf) | Modulo 1 | Lezione 8 | Livello Data-link | — | ⭐ Base |
 | [IOS Cisco pka](./Anno-4/Modulo-1/Lezione-8/navigate-the-ios.pdf) | Modulo 1 | Lezione 8 | Attività Pka | Packet Tracer | ⭐ Base |
-| [Video - comandi di base IOS](https://youtu.be/-PEHf-2DpEE) | Modulo 1 | Lezione-8 | comandi Cisco | Packet Tracer | ⭐ Base |
-| [Video - switch configurazione clock](https://youtu.be/Wmi0jq8rFDM) | Modulo 1 | Lezione-8 | configurazione clock switch | Packet Tracer | ⭐ Base |
-| [Video - switch configurazione base](https://youtu.be/PModRIp_StM) | Modulo 1 | Lezione-8 | configurazione base switch | Packet Tracer | ⭐ Base |
-| [Video - rete wireless](https://youtu.be/1jQHDTKDhWg) | Modulo 1 | Lezione-9 | rete wireless | Packet Tracer | ⭐ Base |
+| [Video - comandi di base IOS](https://youtu.be/-PEHf-2DpEE) | Modulo 1 | Lezione 8 | comandi Cisco | Packet Tracer | ⭐ Base |
+| [Video - switch configurazione clock](https://youtu.be/Wmi0jq8rFDM) | Modulo 1 | Lezione 8 | configurazione clock switch | Packet Tracer | ⭐ Base |
+| [Video - switch configurazione base](https://youtu.be/PModRIp_StM) | Modulo 1 | Lezione 8 | configurazione base switch | Packet Tracer | ⭐ Base |
+| [Video - rete wireless](https://youtu.be/1jQHDTKDhWg) | Modulo 1 | Lezione 9 | rete wireless | Packet Tracer | ⭐ Base |
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt e .pka`: <br>
 [visualizza-MAC-Table.pkt](./Anno-4/Modulo-1/Lezione-8/visualizza-MAC-Table.pkt)<br>
@@ -116,33 +116,33 @@ Networking-labs/
 | [Esercizi subnetting maschera fissa](./Anno-4/Modulo-2/Lezione-3/Esercizi-subnetting-maschera-fissa.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Esercizi VLSM](./Anno-4/Modulo-2/Lezione-3/Esercizi-VLSM.pdf) | Modulo 2 | Lezione 3 | subnetting | — | ⭐⭐ Intermedio |
 | [Video - subnetting maschera fissa](https://youtu.be/Lxzo5pxIRIA) | Modulo 2 | Lezione 3 | subnetting | Packet Tracer | ⭐⭐ Intermedio |
-| [Video - subnetting VLSM](https://youtu.be/Bd-ifMcab4I) | Modulo 2 | Lezione-3 | subnetting VLSM | Packet Tracer | ⭐⭐ Intermedio | 
-| [Esercizi CIDR](./Anno-4/Modulo-2/Lezione-4/Esercizi-CIDR.pdf) | Modulo 2 | Lezione 3 | CIDR | — | ⭐⭐ Intermedio |
-| [Video - CIDR](https://youtu.be/kFOWu616cMk) | Modulo 2 | Lezion 4 | CIDR | Packet Tracer | ⭐⭐ Intermedio |  
+| [Video - subnetting VLSM](https://youtu.be/Bd-ifMcab4I) | Modulo 2 | Lezione 3 | subnetting VLSM | Packet Tracer | ⭐⭐ Intermedio | 
+| [Esercizi CIDR](./Anno-4/Modulo-2/Lezione-4/Esercizi-CIDR.pdf) | Modulo 2 | Lezione 4 | CIDR | — | ⭐⭐ Intermedio |
+| [Video - CIDR](https://youtu.be/kFOWu616cMk) | Modulo 2 | Lezione 4 | CIDR | Packet Tracer | ⭐⭐ Intermedio |  
 | [Esercizi IPv6 A](./Anno-4/Modulo-2/Lezione-5/Esercizi-IPv6-a.pdf) | Modulo 2 | Lezione 5 | IPv6 | — | ⭐⭐ Intermedio |
 | [Esercizi IPv6 B](./Anno-4/Modulo-2/Lezione-5/Esercizi-IPv6-b.pdf) | Modulo 2 | Lezione 5 | IPv6 | — | ⭐⭐ Intermedio |
-| [Video - IPv6](https://youtu.be/L3YY7LhN1Y0) | Modulo 2 | Lezion 5 | IPv6 | Packet Tracer | ⭐⭐ Intermedio | 
+| [Video - IPv6](https://youtu.be/L3YY7LhN1Y0) | Modulo 2 | Lezione 5 | IPv6 | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi ARP ICMP](./Anno-4/Modulo-2/Lezione-7/Esercizi-protocolli-ARP-ICMP.pdf) | Modulo 2 | Lezione 7 | ARP ICMP | — | ⭐⭐ Intermedio |
 | [Esercizi VLAN untagged](./Anno-4/Modulo-2/Lezione-9/VLAN-untagged.pdf) | Modulo 2 | Lezione 9 | VLAN | — | ⭐⭐ Intermedio |
 | [Esercizi VLAN tagged](./Anno-4/Modulo-2/Lezione-9/VLAN-tagged.pdf) | Modulo 2 | Lezione 9 | VLAN | — | ⭐⭐ Intermedio |
-| [Video - VLAN](https://youtu.be/QQbrw1cu4-Q) | Modulo 2 | Lezion 9 | VLAN | Packet Tracer | ⭐⭐ Intermedio | 
+| [Video - VLAN](https://youtu.be/QQbrw1cu4-Q) | Modulo 2 | Lezione 9 | VLAN | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi Inter-VLAN](./Anno-4/Modulo-2/Lezione-9/Inter-vlan-tradizionale.pdf) | Modulo 2 | Lezione 9 | Inter-VLAN | — | ⭐⭐ Intermedio |
-| [Video - Inter-VLAN](https://youtu.be/wXx0gxrfsIE) | Modulo 2 | Lezion 9 | Inter-VLAN | Packet Tracer | ⭐⭐ Intermedio | 
+| [Video - Inter-VLAN](https://youtu.be/wXx0gxrfsIE) | Modulo 2 | Lezione 9 | Inter-VLAN | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi Router on a stick](./Anno-4/Modulo-2/Lezione-9/Router-on-a-stick.pdf) | Modulo 2 | Lezione 9 | ROAS | — | ⭐⭐ Intermedio |
-| [Video - Router on a stick](https://youtu.be/E0NNTQpbXFs) | Modulo 2 | Lezion 9 | ROAS | Packet Tracer | ⭐⭐ Intermedio | 
+| [Video - Router on a stick](https://youtu.be/E0NNTQpbXFs) | Modulo 2 | Lezione 9 | ROAS | Packet Tracer | ⭐⭐ Intermedio | 
 | [Esercizi Routing statico](./Anno-4/Modulo-2/Lezione-10/Routing-statico.pdf) | Modulo 2 | Lezione 10 | Routing statico | — | ⭐⭐ Intermedio |
 | [Esercizi Routing statico IPv6](./Anno-4/Modulo-2/Lezione-10/Routing-statico-IPv6.pdf) | Modulo 2 | Lezione 10 | Routing statico IPv6| — | ⭐⭐ Intermedio |
 | [Esercizi Routing statico subnetting VLAN IPv6](./Anno-4/Modulo-2/Lezione-10/Routing-statico-VLAN-subnetting-IPV6.pdf) | Modulo 2 | Lezione 10 | Esercizi Routing statico subnetting VLAN IPv6| — | ⭐⭐ Intermedio |
-| [Video - Routing statico subnetting VLAN IPv6](https://youtu.be/vsRw-F476jA) | Modulo 2 | Lezion 10 | Routing statico subnetting VLAN IPv6 | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - Routing statico subnetting VLAN IPv6](https://youtu.be/vsRw-F476jA) | Modulo 2 | Lezione 10 | Routing statico subnetting VLAN IPv6 | Packet Tracer | ⭐⭐ Intermedio |
 | [Esercizi RIP](./Anno-4/Modulo-2/Lezione-11/Routing-RIP.pdf) | Modulo 2 | Lezione 11 | RIP | — | ⭐⭐ Intermedio | 
-| [Video - RIP](https://youtu.be/jKfYZijgSiw) | Modulo 2 | Lezion 11 | RIP | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - RIP](https://youtu.be/jKfYZijgSiw) | Modulo 2 | Lezione 11 | RIP | Packet Tracer | ⭐⭐ Intermedio |
 | [Esercizi RIPv2](./Anno-4/Modulo-2/Lezione-11/Routing-RIPv2.pdf) | Modulo 2 | Lezione 11 | RIP v2 | — | ⭐⭐ Intermedio | 
-| [Video - RIPv2](https://youtu.be/spuwnRVruLY) | Modulo 2 | Lezion 11 | RIP v2 | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - RIPv2](https://youtu.be/spuwnRVruLY) | Modulo 2 | Lezione 11 | RIP v2 | Packet Tracer | ⭐⭐ Intermedio |
 | [Esercizi RIPnG](./Anno-4/Modulo-2/Lezione-11/Routing-RIPng.pdf) | Modulo 2 | Lezione 11 | RIP nG | — | ⭐⭐ Intermedio | 
 | [Esercizi OSPF Single AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Single-Area.pdf) | Modulo 2 | Lezione 11 | OSPF SA | — | ⭐⭐⭐ Avanzato | 
 | [Esercizi OSPF Multi AREA](./Anno-4/Modulo-2/Lezione-11/OSPF-Multi-Area.pdf) | Modulo 2 | Lezione 11 | OSPF MA | — | ⭐⭐⭐ Avanzato |
-| [Video - OSPF v2](https://youtu.be/R4ZoNCICUtI) | Modulo 2 | Lezion 11 | OSPF | Packet Tracer | ⭐⭐⭐ Avanzato | 
-| [Video - OSPF v2 multi area](https://youtu.be/4cYGJ1huUUc) | Modulo 2 | Lezion 11 | OSPF multi area | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - OSPF v2](https://youtu.be/R4ZoNCICUtI) | Modulo 2 | Lezione 11 | OSPF | Packet Tracer | ⭐⭐⭐ Avanzato | 
+| [Video - OSPF v2 multi area](https://youtu.be/4cYGJ1huUUc) | Modulo 2 | Lezione 11 | OSPF multi area | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Esercizi BGP](./Anno-4/Modulo-2/Lezione-12/BGP.pdf) | Modulo 2 | Lezione 12 | BGP | — | ⭐⭐⭐ Avanzato | 
 
 > 📦 Nella stessa cartella sono disponibili i file `.pkt`: <br>
