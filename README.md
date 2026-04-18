@@ -245,6 +245,12 @@ Networking-labs/
 [lab-wlc-4-lap-aree-aziendali.pkt](./Anno-5/Modulo-4/Lezione-4/lab-wlc-4-lap-aree-aziendali.pkt)<br>
 [lab-rete-cellulare-iot-smart-home.pkt](./Anno-5/Modulo-4/Lezione-7/lab-rete-cellulare-iot-smart-home.pkt)<br>
 
+### Modulo 5 — Cloud Computing
+
+| Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
+|---|---|---|---|---|---|
+| [Lab Cloud Computing](./Anno-5/Modulo-5/Lezione-4/lab-cloud-computing.md) | Modulo-5 | Lezione-4 | Cloud | Virtual box | ⭐⭐⭐ Avanzato | 
+
 
 ---
 
