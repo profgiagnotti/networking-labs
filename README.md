@@ -177,9 +177,9 @@ Networking-labs/
 
 | Laboratorio | Modulo | Lezione | Argomento | Tool | Livello |
 |---|---|---|---|---|---|
-| [LAB - tcp/udp Wireshark](./Anno-4/Modulo-3/Anno-4/Modulo-3/Lezione-9/lab-tcp-udp-wireshark.md) | Modulo-3 | Lezione-9 | Livello Transport | Wireshark | ⭐ Base |
-| [LAB - tcp/udp netstat](./Anno-4/Modulo-3/Anno-4/Modulo-3/Lezione-9/Anno-4/Modulo-3/Lezione-9/Anno-4/Modulo-3/Lezione-9/lab-connessioni-netstat.md) | Modulo-3 | Lezione-9 | Livello Transport | - | ⭐ Base |
-| [LAB - tcp/udp netcat](./Anno-4/Modulo-3/Anno-4/Modulo-3/Lezione-9/Anno-4/Modulo-3/Lezione-9/Anno-4/Modulo-3/Lezione-9/Anno-4/Modulo-3/Lezione-9/lab-simulazione-tcp-udp-con-netcat.md) | Modulo-3 | Lezione-9 | Livello Transport | - | ⭐ Base |
+| [LAB - tcp/udp Wireshark](.Anno-4/Modulo-3/Lezione-9/lab-tcp-udp-wireshark.md) | Modulo-3 | Lezione-9 | Livello Transport | Wireshark | ⭐ Base |
+| [LAB - tcp/udp netstat](.Anno-4/Modulo-3/Lezione-9/lab-connessioni-netstat.md) | Modulo-3 | Lezione-9 | Livello Transport | - | ⭐ Base |
+| [LAB - tcp/udp netcat](./Anno-4/Modulo-3/Lezione-9/lab-simulazione-tcp-udp-con-netcat.md) | Modulo-3 | Lezione-9 | Livello Transport | - | ⭐ Base |
 ---
 
 ## 📂 Anno 5 — Reti avanzate e livello applicativo
