@@ -7,7 +7,7 @@
 ![Strumenti](https://img.shields.io/badge/strumenti-Postman%20%7C%20Thunder%20Client-4A9EFF?style=flat-square)
 
 > Laboratorio pratico sul livello applicativo TCP/IP — Anno 5, Modulo 1  
-> 🌐 Teoria collegata: [profgiagnotti.it](https://profgiagnotti.it/corsi/networking/)
+> 🌐 Teoria collegata: [profgiagnotti.altervista.org](https://profgiagnotti.altervista.org/metodi-htttp-e-codifica-url/)
 
 ---
 
