@@ -190,7 +190,7 @@ Networking-labs/
 |---|---|---|---|---|---|
 | [Lab API REST con Postman](./Anno-5/Modulo-1/Lezione-5/lab-api-rest-postman-jsonplaceholder.md) | Modulo-1 | [Lezione-5](https://profgiagnotti.altervista.org/codici-di-stato-cookie-sessioni-ed-evoluzione-http/) | HTTP, REST, JSON | Postman | ⭐⭐ Intermedio |
 | [Lab FTP con FileZilla](./Anno-5/Modulo-1/Lezione-9/lab-ftp-filezilla-server-client.md) | Modulo-1 | [Lezione-9](https://profgiagnotti.altervista.org/ftp-rtp-e-riepilogo-protocolli/) | FTP, FileZilla, XAMPP | FileZilla | ⭐⭐ Intermedio |
-| [Video - Servizi Internet](https://youtu.be/a8sPn6m4-SI) | Modulo-1 | [Lezione-9]() | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
+| [Video - Servizi Internet](https://youtu.be/a8sPn6m4-SI) | Modulo-1 | [Lezione-9](https://profgiagnotti.altervista.org/ftp-rtp-e-riepilogo-protocolli/) | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
 | [Lab Servizi Internet](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.md) | Modulo-1 | [Lezione-9](https://profgiagnotti.altervista.org/ftp-rtp-e-riepilogo-protocolli/) | DHCP, DNS, HTTP, FTP, SMTP/POP3 | Packet Tracer | ⭐⭐ Intermedio |
 
 > 📦 Il file `.pkt` di Packet Tracer è disponibile nella stessa cartella: [lab-packet-tracer-servizi-internet.pkt](./Anno-5/Modulo-1/Lezione-9/lab-packet-tracer-servizi-internet.pkt)
