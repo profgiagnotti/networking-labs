@@ -217,9 +217,9 @@ Networking-labs/
 | [Lab DMZ con router](./Anno-5/Modulo-3/Lezione-5/lab-router-acl-dmz.md) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Video - DMZ con ASA 5506](https://youtu.be/CQSzNi3omtI) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con ASA 5506](./Anno-5/Modulo-3/Lezione-5/lab-asa-dmz-nat-acl.md) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Video - VPN Site to Site](#) | Modulo-3 | [Lezione-7]() | VPN Site-to-site| Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Lab VPN Site to Site](./Anno-5/Modulo-3/Lezione-7/lab-vpn-site-to-site-ipsec.md) | Modulo-3 | [Lezione-8](https://profgiagnotti.altervista.org/ipsec-protocollo-modalita-operative-e-negoziazione/) | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Video - VPN Remote access](#) | Modulo-3 | [Lezione-7](https://profgiagnotti.altervista.org/introduzione-alle-vpn-concetti-classificazione-e-architetture/)| VPN Remote access | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - VPN Site to Site](#) | Modulo-3 | [Lezione-7](https://profgiagnotti.altervista.org/ipsec-protocollo-modalita-operative-e-negoziazione/) | VPN Site-to-site| Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Lab VPN Site to Site](./Anno-5/Modulo-3/Lezione-7/lab-vpn-site-to-site-ipsec.md) | Modulo-3 | [Lezione-7](https://profgiagnotti.altervista.org/ipsec-protocollo-modalita-operative-e-negoziazione/) | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - VPN Remote access](#) | Modulo-3 | [Lezione-6](https://profgiagnotti.altervista.org/introduzione-alle-vpn-concetti-classificazione-e-architetture/)| VPN Remote access | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab VPN Remote Access](./Anno-5/Modulo-3/Lezione-7/lab-vpn-remote-access.md) | Modulo-3 | [Lezione-6](https://profgiagnotti.altervista.org/introduzione-alle-vpn-concetti-classificazione-e-architetture/) | VPN | Packet Tracer | ⭐⭐⭐ Avanzato |
 
 > 📦 I file `.pkt` di Packet Tracer sono disponibili nella stessa cartella: <br>
