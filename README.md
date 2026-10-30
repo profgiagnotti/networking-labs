@@ -213,7 +213,7 @@ Networking-labs/
 | [Lab ACL Standard](./Anno-5/Modulo-3/Lezione-3/lab-acl-standard-esercizi.md) | Modulo-3 | [Lezione-4](https://profgiagnotti.altervista.org/acl-concetti-wildcard-mask-e-acl-standard/)| ACL Standard | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Video - ACL Estese](https://youtu.be/-ncK40hNUB0) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab ACL Estese](./Anno-5/Modulo-3/Lezione-4/lab-acl-estese-esercizio.md) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | ACL Estese | Packet Tracer | ⭐⭐⭐ Avanzato |
-| [Video - DMZ con router](https://youtu.be/sqeKoiwf0Pw) | Modulo 3 | [Lezione-5]() | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
+| [Video - DMZ con router](https://youtu.be/sqeKoiwf0Pw) | Modulo 3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con router](./Anno-5/Modulo-3/Lezione-5/lab-router-acl-dmz.md) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, 2 router, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Video - DMZ con ASA 5506](https://youtu.be/CQSzNi3omtI) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
 | [Lab DMZ con ASA 5506](./Anno-5/Modulo-3/Lezione-5/lab-asa-dmz-nat-acl.md) | Modulo-3 | [Lezione-5](https://profgiagnotti.altervista.org/acl-estese-sintassi-applicazione-e-casi-duso/) | DMZ, ASA 5506, ACL, NAT | Packet Tracer | ⭐⭐⭐ Avanzato |
