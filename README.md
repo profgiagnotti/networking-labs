@@ -265,10 +265,10 @@ Hai trovato un errore o vuoi aggiungere un laboratorio?
 
 ## 🔗 Risorse correlate
 
-- 🌐 **Sito:** [profgiagnotti.it](https://profgiagnotti.it)
-- ▶️ **YouTube:** [youtube.com/@profgiagnotti](https://youtube.com/@profgiagnotti)
-- 💬 **Discord:** [Unisciti alla community](https://discord.gg/profgiagnotti)
-- 📬 **Newsletter:** [profgiagnotti.it/newsletter](https://profgiagnotti.it/newsletter)
+- 🌐 **Sito web:** [prof giagnotti](https://profgiagnotti.altervista.org)
+- ▶️ **YouTube:** [Youtube](https://youtube.com/@profgiagnotti)
+- 💼 **LinkedIn:** [linkedin](https://www.linkedin.com/in/mariogiagnotti/)
+- ⓕ **Facebook** [Facebook](https://www.facebook.com/profgiagnotti.it)
 
 ---
 
